@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=8 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
 [ext_resource type="Script" path="res://objects/card_player/play_mat.gd" id="3_pgsh8"]
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="4_c7t3g"]
 [ext_resource type="Script" path="res://objects/score_counter/score_display.gd" id="5_f3pnb"]
+[ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://scenes/upgrade_screen.tscn" id="6_6v1j0"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -15,6 +16,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -171,16 +176,16 @@ mouse_filter = 2
 
 [node name="PlayHandButton" type="Button" parent="PlayMat"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -203.0
+offset_left = 372.0
 offset_top = -15.5
-offset_right = -117.0
+offset_right = 458.0
 offset_bottom = 15.5
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 text = "Play Hand"
 
@@ -232,6 +237,28 @@ text = "Score"
 layout_mode = 2
 
 [node name="EventHandler" type="Node" parent="ScoreDisplay"]
+script = ExtResource("4_c7t3g")
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = 122.0
+offset_right = 39.5
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+
+[node name="UpgradeScreen" parent="." instance=ExtResource("6_6v1j0")]
+visible = false
+layout_mode = 1
+
+[node name="EventHandler" type="Node" parent="."]
 script = ExtResource("4_c7t3g")
 
 [connection signal="pressed" from="SortButton" to="CardHandAnchor/CardHand" method="sort_hand"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn37juey6gqe5"]
+
+[ext_resource type="Script" path="res://scenes/game_loop.gd" id="1_mnbf5"]
+[ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="2_0xk4t"]
+
+[node name="GameLoop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_mnbf5")
+
+[node name="EventHandler" type="Node" parent="."]
+script = ExtResource("2_0xk4t")
