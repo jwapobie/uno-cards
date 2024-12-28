@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=9 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="4_c7t3g"]
 [ext_resource type="Script" path="res://objects/score_counter/score_display.gd" id="5_f3pnb"]
 [ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://scenes/upgrade_screen.tscn" id="6_6v1j0"]
+[ext_resource type="Script" path="res://scenes/add_display.gd" id="6_yy4x3"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -219,23 +220,32 @@ position = Vector2(646, 0)
 [node name="EventHandler" type="Node" parent="CardHandAnchor/CardHand"]
 script = ExtResource("4_c7t3g")
 
-[node name="ScoreDisplay" type="HBoxContainer" parent="."]
+[node name="ScoreDisplay" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_right = 28.0
+offset_bottom = 50.0
 grow_horizontal = 2
 script = ExtResource("5_f3pnb")
+
+[node name="AddDisplay" type="Node2D" parent="ScoreDisplay"]
+position = Vector2(61, 40)
+script = ExtResource("6_yy4x3")
 
 [node name="Label" type="Label" parent="ScoreDisplay"]
 layout_mode = 2
 text = "Score"
+horizontal_alignment = 1
 
 [node name="ScoreNumber" type="Label" parent="ScoreDisplay"]
 layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 1
 
 [node name="EventHandler" type="Node" parent="ScoreDisplay"]
 script = ExtResource("4_c7t3g")

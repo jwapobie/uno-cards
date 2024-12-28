@@ -75,3 +75,18 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 			picked = true
 			picked_offset = get_local_mouse_position().rotated(rotation)
 			is_card_picked = true
+
+func play_scoring_anim():
+	play_trigger_anim()
+	await card_visual.play_scoring_anim()
+
+func play_trigger_anim():
+	var orig_scale = scale
+	var tween = create_tween()
+	tween.tween_property(self, "scale", orig_scale*1.1, 0.1*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.parallel()
+	tween.tween_property(self, "rotation_degrees", 5, 0.1*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "scale", orig_scale, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
+	tween.parallel()
+	tween.tween_property(self, "rotation_degrees", 0, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
+	print("don")

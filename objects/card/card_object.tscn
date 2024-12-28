@@ -48,6 +48,7 @@ offset_right = 101.0
 offset_bottom = 151.0
 grow_horizontal = 1
 grow_vertical = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -55,6 +56,7 @@ shape = SubResource("RectangleShape2D_1fwka")
 
 [node name="Highlight" type="Panel" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = -99.0
 offset_top = -149.0
 offset_right = 101.0
@@ -64,6 +66,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mpvuy")
 
 [node name="Outline" type="Panel" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = -103.0
 offset_top = -153.0
 offset_right = 105.0

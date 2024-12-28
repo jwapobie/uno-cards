@@ -6,6 +6,8 @@ class_name Gameplay
 @onready var card_hand: CardHand = %CardHand
 @onready var upgrade_screen: UpgradeScreen = $UpgradeScreen
 
+static var anim_time_multiplier = 1.0
+
 var deck: CardDeck
 
 

@@ -25,3 +25,9 @@ var card: Card:
 @onready var number: Label = $Number
 @onready var number_2: Label = $Number2
 @onready var number_3: Label = $Number3
+
+func play_scoring_anim():
+	var tween = create_tween()
+	tween.tween_property(number, "scale", Vector2(1.3, 1.3), 0.1*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(number, "scale", Vector2(1.0, 1.0), 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
+	await tween.finished

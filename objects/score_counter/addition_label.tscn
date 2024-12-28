@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmyllk53req78"]
+
+[ext_resource type="Script" path="res://objects/score_counter/addition_label.gd" id="1_4hohw"]
+
+[node name="Label" type="Label"]
+offset_right = 41.0
+offset_bottom = 34.0
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.808594, 0.661409, 0.408015, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "+12"
+vertical_alignment = 1
+script = ExtResource("1_4hohw")

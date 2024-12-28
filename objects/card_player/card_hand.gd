@@ -14,7 +14,7 @@ var card_counter :int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_selected_card)
-	reposition()
+	#reposition()
 
 var last_selected_card :Card
 func on_selected_card(event :EventCardSelected):
