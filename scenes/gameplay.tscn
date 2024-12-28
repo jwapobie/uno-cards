@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=6 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
+[ext_resource type="Script" path="res://objects/card_player/play_mat.gd" id="3_pgsh8"]
+[ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="4_c7t3g"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -78,6 +80,9 @@ pull_up_curve = SubResource("Curve_gb3ms")
 [node name="DrawPosition" type="Node2D" parent="CardHandAnchor/CardHand"]
 position = Vector2(646, 0)
 
+[node name="EventHandler" type="Node" parent="CardHandAnchor/CardHand"]
+script = ExtResource("4_c7t3g")
+
 [node name="PlayMat" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 14
@@ -86,6 +91,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_pgsh8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayMat"]
 layout_mode = 1
@@ -101,6 +107,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/separation = 20
 
 [node name="CardSpace" type="Panel" parent="PlayMat/HBoxContainer"]
 z_index = -10
@@ -118,6 +125,92 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="CardSpace2" type="Panel" parent="PlayMat/HBoxContainer"]
+z_index = -10
+custom_minimum_size = Vector2(120, 180)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="PlayMat/HBoxContainer/CardSpace2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardSpace3" type="Panel" parent="PlayMat/HBoxContainer"]
+z_index = -10
+custom_minimum_size = Vector2(120, 180)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="PlayMat/HBoxContainer/CardSpace3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardSpace4" type="Panel" parent="PlayMat/HBoxContainer"]
+z_index = -10
+custom_minimum_size = Vector2(120, 180)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="PlayMat/HBoxContainer/CardSpace4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardSpace5" type="Panel" parent="PlayMat/HBoxContainer"]
+z_index = -10
+custom_minimum_size = Vector2(120, 180)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="PlayMat/HBoxContainer/CardSpace5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlayHandButton" type="Button" parent="PlayMat"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = -15.5
+offset_right = -117.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "Play Hand"
+
+[node name="EventHandler" type="Node" parent="PlayMat"]
+script = ExtResource("4_c7t3g")
 
 [connection signal="pressed" from="SortButton" to="CardHandAnchor/CardHand" method="sort_hand"]
 [connection signal="pressed" from="Button" to="." method="_draw_card"]

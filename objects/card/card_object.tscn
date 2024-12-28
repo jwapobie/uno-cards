@@ -28,7 +28,8 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="CardObject" type="Area2D"]
-scale = Vector2(0.8, 0.8)
+z_as_relative = false
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_fi250")
 attached_card_default = SubResource("Resource_icysm")
 

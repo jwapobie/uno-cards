@@ -3,6 +3,8 @@ class_name CardHand
 
 var card_object_scene = preload("res://objects/card/card_object.tscn")
 
+@onready var event_handler: EventHandler = $EventHandler
+
 @export var pull_up_curve :Curve
 var currently_picked :CardObject
 var hovered_card :CardObject
@@ -38,14 +40,13 @@ func clear_hand():
 		card.queue_free()
 
 func get_card_position(x :float) -> int:
-	var separation = min(1000.0/$Cards.get_child_count(), 160)
+	var separation = min(800.0/$Cards.get_child_count(), 95)
 	return clampi((x + separation*$Cards.get_child_count()/2)/separation + 0.5, 0, $Cards.get_child_count())
-	
-		
+
 func update_placement(delta :float):
 
 	var cards = $Cards.get_children()
-	var separation = min(1000.0/cards.size(), 160)
+	var separation = min(800.0/cards.size(), 95)
 	var exp :float = exp(-22 * delta)
 	var mouse_pos :Vector2 = get_local_mouse_position()
 	mouse_pos.x += 50
