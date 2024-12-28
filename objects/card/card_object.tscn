@@ -78,3 +78,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_w51gb")
 script = ExtResource("4_ggy1o")
 card_object = NodePath("..")
 metadata/_custom_type_script = ExtResource("5_l13lv")
+
+[node name="ScoreAnchor" type="Node2D" parent="."]
+position = Vector2(0, -183.333)

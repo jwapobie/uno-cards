@@ -2,7 +2,7 @@ extends Node
 @onready var event_handler: EventHandler = $EventHandler
 @onready var score_number: Label = $ScoreNumber
 @onready var add_display: Node2D = $AddDisplay
-@onready var gameplay: Gameplay = $".."
+@onready var gameplay: Gameplay = $"../../"
 
 var total_score: int
 @export var player_id := 0
@@ -13,7 +13,7 @@ func _ready() -> void:
 func on_score_added(event: EventScoreCreated) -> void:
 	if event.player_id == player_id:
 		event.is_blocking = true
-		add_display.add_score(event.score_amount)
+		add_display.add_score(event.score_amount, event.visual_source)
 		total_score += event.score_amount
 		gameplay.total_score = total_score
 		score_number.text = str(total_score)

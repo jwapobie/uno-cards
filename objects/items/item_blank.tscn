@@ -23,5 +23,8 @@ shape = SubResource("RectangleShape2D_ukyjp")
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("3_58v6q")
 
+[node name="ScoreAnchor" type="Node2D" parent="."]
+position = Vector2(0, 43)
+
 [connection signal="mouse_entered" from="TooltipZone" to="." method="_on_tooltip_zone_mouse_entered"]
 [connection signal="mouse_exited" from="TooltipZone" to="." method="_on_tooltip_zone_mouse_exited"]

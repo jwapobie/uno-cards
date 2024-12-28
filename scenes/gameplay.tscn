@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://objects/score_counter/score_display.gd" id="5_f3pnb"]
 [ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://scenes/upgrade_screen.tscn" id="6_6v1j0"]
 [ext_resource type="Script" path="res://scenes/items_container.gd" id="6_bg8mw"]
-[ext_resource type="Script" path="res://scenes/add_display.gd" id="6_yy4x3"]
+[ext_resource type="Script" path="res://objects/score_counter/add_display.gd" id="6_yy4x3"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -256,52 +256,26 @@ position = Vector2(646, 0)
 [node name="EventHandler" type="Node" parent="CardHandAnchor/CardHand"]
 script = ExtResource("4_c7t3g")
 
-[node name="ScoreDisplay" type="VBoxContainer" parent="."]
+[node name="ScoreLayout" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 28.0
-offset_bottom = 50.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 82.0
+offset_bottom = 167.0
 grow_horizontal = 2
-script = ExtResource("5_f3pnb")
+alignment = 1
 
-[node name="AddDisplay" type="Node2D" parent="ScoreDisplay"]
-position = Vector2(61, 40)
-script = ExtResource("6_yy4x3")
-
-[node name="Label" type="Label" parent="ScoreDisplay"]
+[node name="ScoreGoal" type="VBoxContainer" parent="ScoreLayout"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Score"
-horizontal_alignment = 1
+size_flags_horizontal = 10
 
-[node name="ScoreNumber" type="Label" parent="ScoreDisplay"]
-layout_mode = 2
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 42
-text = "0"
-horizontal_alignment = 1
-
-[node name="EventHandler" type="Node" parent="ScoreDisplay"]
-script = ExtResource("4_c7t3g")
-
-[node name="ScoreGoal" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -116.0
-offset_right = -68.0
-offset_bottom = 85.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="ScoreGoal"]
+[node name="Label" type="Label" parent="ScoreLayout/ScoreGoal"]
 layout_mode = 2
 text = "Score Goal"
 horizontal_alignment = 1
 
-[node name="ScoreGoalNumber" type="Label" parent="ScoreGoal"]
+[node name="ScoreGoalNumber" type="Label" parent="ScoreLayout/ScoreGoal"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.679688, 0.138947, 0.298675, 1)
@@ -310,22 +284,41 @@ theme_override_font_sizes/font_size = 42
 text = "0"
 horizontal_alignment = 1
 
-[node name="Turn" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 75.0
-offset_right = 157.0
-offset_bottom = 85.0
-grow_horizontal = 2
+[node name="ScoreDisplay" type="VBoxContainer" parent="ScoreLayout"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+script = ExtResource("5_f3pnb")
 
-[node name="Label" type="Label" parent="Turn"]
+[node name="AddDisplay" type="Node2D" parent="ScoreLayout/ScoreDisplay"]
+position = Vector2(75, 57)
+script = ExtResource("6_yy4x3")
+
+[node name="Label" type="Label" parent="ScoreLayout/ScoreDisplay"]
+layout_mode = 2
+text = "Score"
+horizontal_alignment = 1
+
+[node name="ScoreNumber" type="Label" parent="ScoreLayout/ScoreDisplay"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 1
+
+[node name="EventHandler" type="Node" parent="ScoreLayout/ScoreDisplay"]
+script = ExtResource("4_c7t3g")
+
+[node name="Turn" type="VBoxContainer" parent="ScoreLayout"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Label" type="Label" parent="ScoreLayout/Turn"]
 layout_mode = 2
 text = "Turn"
 horizontal_alignment = 1
 
-[node name="TurnCountLabel" type="Label" parent="Turn"]
+[node name="TurnCountLabel" type="Label" parent="ScoreLayout/Turn"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.613281, 0.413594, 0.514291, 1)
