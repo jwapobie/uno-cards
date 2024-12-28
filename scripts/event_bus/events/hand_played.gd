@@ -1,7 +1,7 @@
 extends Event
 class_name EventHandPlayed
 
-enum Order {PER_CARD, POST_HAND, POST_SCORING}
+enum Order {PRE_SCORING, PER_CARD, POST_HAND, POST_SCORING}
 
 #var card_id :int
 var cards: Array[Card]

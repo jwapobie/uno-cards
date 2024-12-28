@@ -6,4 +6,6 @@
 [node name="Item69" instance=ExtResource("1_d4sw6")]
 modulate = Color(0, 1, 2.162, 1)
 script = ExtResource("2_d8mai")
-description = "6 and 9 can be played as if they had the same value."
+description = "<c6> and <c9> can be played after each other.
+<x2> when 9 is scored after 6.
+<+10> when 6 is scored after 9."

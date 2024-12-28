@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c28r3hifxrcbb"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_7vhfm"]
+[ext_resource type="Script" path="res://objects/items/item_color_multi.gd" id="2_0qxm2"]
+
+[node name="ItemColorMulti" instance=ExtResource("1_7vhfm")]
+script = ExtResource("2_0qxm2")
+description = "1.5 multiplier for adjacent cards of diff colors"

@@ -1,7 +1,16 @@
 extends Control
 class_name UpgradeScreen
 
-var upgrade_prefabs :Array[PackedScene] = [preload("res://objects/items/adjacent_colors.tscn"), preload("res://objects/items/extra_score_1.tscn"), preload("res://objects/items/item_69.tscn"), preload("res://objects/items/item_pocky.tscn"), preload("res://objects/items/reverse.tscn")]
+var upgrade_prefabs :Array[PackedScene] = [
+	preload("res://objects/items/item_color_multi.tscn"), 
+	preload("res://objects/items/adjacent_colors.tscn"), 
+	preload("res://objects/items/extra_score_1.tscn"), 
+	preload("res://objects/items/item_69.tscn"), 
+	preload("res://objects/items/item_pocky.tscn"), 
+	preload("res://objects/items/reverse.tscn"),
+	preload("res://objects/items/item_5_hand_multi.tscn"),
+	
+	]
 
 @onready var upgrade_buttons: VBoxContainer = $Panel/UpgradeButtons
 var buttons: Array[Button] = []

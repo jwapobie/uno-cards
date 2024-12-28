@@ -5,7 +5,7 @@
 
 [node name="ExtraScore" instance=ExtResource("1_tjq0l")]
 script = ExtResource("2_x3u6j")
-description = "Gives 1 (one) extra score when scoring a card."
+description = "Gives <+2> score when scoring a card."
 
 [node name="Sprite2D" parent="." index="2"]
 modulate = Color(0.65235, 1, 0.469555, 1)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ywxyqnu2nv30"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_1r631"]
+[ext_resource type="Script" path="res://objects/items/item_5_hand_multi.gd" id="2_et6lt"]
+
+[node name="Item5HandMulti" instance=ExtResource("1_1r631")]
+script = ExtResource("2_et6lt")
+description = "<x1.1> when full hand was played."

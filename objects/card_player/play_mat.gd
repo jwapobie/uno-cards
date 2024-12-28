@@ -52,6 +52,7 @@ func play_hand() -> void:
 	hand_event.played_by_id = 0
 	hand_event.cards = cards
 	hand_event.card_objs = current_cards
+	GameState.played_hand = current_cards
 	EventBus.queue_event(hand_event)
 	play_hand_button.disabled = true
 

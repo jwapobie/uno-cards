@@ -3,7 +3,7 @@ extends Item
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	event_handler.register_handler(Event.Type.HAND_PLAYED, score_adjacent, EventHandPlayed.Order.POST_HAND)
+	event_handler.register_handler(Event.Type.HAND_PLAYED, score_adjacent, EventHandPlayed.Order.PRE_SCORING)
 
 func score_adjacent(event :EventHandPlayed):
 	if event.card_objs.size() <= 1:

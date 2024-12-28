@@ -10,7 +10,7 @@ func _ready() -> void:
 	match Gameplay.anim_time_multiplier:
 		0.5: speed_fast_button.button_pressed = true
 		1.0: speed_normal_button.button_pressed = true
-		3.0: speed_fast_button.button_pressed = true
+		3.0: speed_slow_button.button_pressed = true
 
 func set_speed(button :Button):
 	match button:
