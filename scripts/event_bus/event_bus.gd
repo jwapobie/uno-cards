@@ -6,7 +6,7 @@ var event_queue :Array[Event]
 var current_queue_order: int = 0
 var event_stack :Array[Event]
 
-var filter :Array[Event.Type] = [Event.Type.CARD_PLAYED, Event.Type.CARD_SELECTED, Event.Type.HAND_PLAYED]
+var filter :Array[Event.Type] = [Event.Type.CARD_SELECTED, Event.Type.HAND_PLAYED, Event.Type.CARD_PLAYABLE_CHECK]
 
 func compare(a :Dictionary, b :Dictionary):
 	if a["order"] == b["order"]:

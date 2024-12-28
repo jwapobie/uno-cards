@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://objects/card/card_object.gd" id="1_fi250"]
 [ext_resource type="PackedScene" uid="uid://lab3gphdrxmw" path="res://objects/card/card_visual.tscn" id="2_cg7nc"]
 [ext_resource type="Script" path="res://scripts/datamodel/card.gd" id="2_jrmpv"]
-[ext_resource type="Texture2D" uid="uid://cnmohn0lkb7oe" path="res://objects/card/highlight.png" id="4_4dhlv"]
 [ext_resource type="Script" path="res://objects/card/card_object_event_handler.gd" id="4_ggy1o"]
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="5_l13lv"]
 
@@ -15,17 +14,26 @@ value = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fwka"]
 size = Vector2(198, 296)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w51gb"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.0191547, 0.654874, 0.863281, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpvuy"]
+bg_color = Color(0.330709, 0.15147, 0.333333, 0.494118)
+border_color = Color(0.82402, 0.863281, 0.278111, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w51gb"]
+draw_center = false
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_size = 8
 
 [node name="CardObject" type="Area2D"]
 z_as_relative = false
@@ -45,16 +53,19 @@ grow_vertical = 1
 visible = false
 shape = SubResource("RectangleShape2D_1fwka")
 
-[node name="Highlight" type="Sprite2D" parent="."]
+[node name="Highlight" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
-scale = Vector2(0.641365, 0.658205)
-texture = ExtResource("4_4dhlv")
+offset_left = -99.0
+offset_top = -149.0
+offset_right = 101.0
+offset_bottom = 151.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mpvuy")
 
 [node name="Outline" type="Panel" parent="."]
 unique_name_in_owner = true
-offset_left = -104.0
-offset_top = -155.0
+offset_left = -103.0
+offset_top = -153.0
 offset_right = 105.0
 offset_bottom = 155.0
 mouse_filter = 2

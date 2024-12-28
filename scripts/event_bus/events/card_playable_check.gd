@@ -4,6 +4,7 @@ class_name EventCardPlayableCheck
 enum Order {INTERRUPT, PLAYABLE_RESOLVED}
 
 #var card_id :int
+var last_card :Card
 var card :Card
 	#set(value):
 		#card = value

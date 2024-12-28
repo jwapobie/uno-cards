@@ -13,8 +13,21 @@ var hovered_card :CardObject
 var card_counter :int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	event_handler.register_handler(Event.Type.CARD_SELECTED, on_selected_card)
 	reposition()
+
+var last_selected_card :Card
+func on_selected_card(event :EventCardSelected):
+	last_selected_card = event.card.attached_card
+	playable_check()
+
+func playable_check():
+	for card in get_cards():
+		var playable_check = EventCardPlayableCheck.new()
+		playable_check.card = card
+		playable_check.last_card = last_selected_card
+		EventBus.queue_event(playable_check)
+	
 
 func reposition():
 	global_position.x = get_viewport().size.x/2
@@ -33,6 +46,7 @@ func add_card(card :Card):
 	
 	$Cards.add_child(new_card)
 	#$"../EventHandler".update_card_playable_state()
+	playable_check()
 	update_placement(0)
 
 func clear_hand():

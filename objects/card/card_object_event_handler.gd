@@ -7,5 +7,14 @@ func _ready() -> void:
 
 func check_playable_state(event :EventCardPlayableCheck):
 	if event.card == card_object.attached_card:
-		%Highlight.visible = event.is_playable
-		card_object.is_draggable = event.is_playable
+		if event.last_card:
+			if event.last_card.color == event.card.color:
+				event.is_playable = true
+			elif event.last_card.value == event.card.value:
+				event.is_playable = true
+			else:
+				event.is_playable = false
+		else:
+			event.is_playable = true
+		%Highlight.visible = !event.is_playable
+		card_object.is_playable = event.is_playable

@@ -2,11 +2,11 @@ extends Area2D
 class_name CardObject
 
 @onready var card_visual: CardVisual = $CardVisual
-@onready var highlight: Sprite2D = %Highlight
+@onready var highlight: Panel = %Highlight
 @onready var outline: Panel = %Outline
 @onready var event_handler: Node = $EventHandler
 
-
+var is_playable :bool = true
 
 @export var attached_card_default: Resource
 var attached_card: Card

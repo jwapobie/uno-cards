@@ -21,7 +21,11 @@ func _ready() -> void:
 
 func on_card_selected(event: EventCardSelected) -> void:
 	var card_obj := event.card
+	if !card_obj.is_playable:
+		event.is_canceled = true
+		return
 	if current_cards.size() >= card_spaces.size():
+		event.is_canceled = true
 		return
 	card_obj.is_draggable = false
 	card_obj.picked = false
@@ -32,6 +36,7 @@ func on_card_selected(event: EventCardSelected) -> void:
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(card_obj, 'position', Vector2.ZERO, 0.25)
 	current_cards.append(card_obj)
+
 
 func play_hand() -> void:
 	if current_cards.size() <= 0:
