@@ -18,6 +18,8 @@ var current_cards: Array[CardObject]
 func _ready() -> void:
 	play_hand_button.pressed.connect(play_hand)
 	return_card_button.pressed.connect(return_card)
+	play_hand_button.disabled = true
+	return_card_button.disabled = true
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_card_selected)
 	event_handler.register_handler(Event.Type.HAND_PLAYED, on_hand_play, EventHandPlayed.Order.PER_CARD, 10)
 	event_handler.register_handler(Event.Type.CARD_SCORED, on_card_scored, EventCardScored.Order.BASE_VALUE)
@@ -40,6 +42,8 @@ func on_card_selected(event: EventCardSelected) -> void:
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(card_obj, 'position', Vector2.ZERO, 0.25)
 	current_cards.append(card_obj)
+	play_hand_button.disabled = false
+	return_card_button.disabled = false
 
 
 func return_card() -> void:
@@ -50,6 +54,11 @@ func return_card() -> void:
 		event.card = card
 		if current_cards.size() > 0:
 			event.new_last_card = current_cards.back().attached_card
+			play_hand_button.disabled = false
+			return_card_button.disabled = false
+		else:
+			play_hand_button.disabled = true
+			return_card_button.disabled = true
 		EventBus.queue_event(event)
 
 func pop_one_card() -> CardObject:
@@ -61,7 +70,6 @@ func pop_one_card() -> CardObject:
 func play_hand() -> void:
 	if current_cards.size() <= 0:
 		return
-	return_card_button.visible = false
 	
 	var cards: Array[Card] = []
 	for card_obj in current_cards:
@@ -74,7 +82,8 @@ func play_hand() -> void:
 	hand_event.card_objs = current_cards
 	GameState.played_hand = current_cards
 	EventBus.queue_event(hand_event)
-	play_hand_button.disabled = true
+	return_card_button.visible = false
+	play_hand_button.visible = false
 
 func on_hand_play(event: EventHandPlayed) -> void:
 	for i in range(event.card_objs.size()):
