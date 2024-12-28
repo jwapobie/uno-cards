@@ -12,6 +12,8 @@ var upgrade_prefabs :Array[PackedScene] = [
 	
 	]
 
+@onready var bg: ColorRect = $BG
+@onready var panel: Panel = $Panel
 @onready var upgrade_buttons: VBoxContainer = $Panel/UpgradeButtons
 var buttons: Array[Button] = []
 var num_upgrades := 3
@@ -20,7 +22,16 @@ var num_upgrades := 3
 func _ready() -> void:
 	show_upgrades()
 
+func animate_screen_appear() -> void:
+	bg.modulate = Color.TRANSPARENT
+	panel.position = Vector2(panel.position.x, panel.position.y-1000)
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(bg, 'modulate', Color.WHITE, 0.2)
+	tween.tween_property(panel, 'position', Vector2(panel.position.x, panel.position.y+1000), 0.2)
+
 func show_upgrades() -> void:
+	animate_screen_appear()
 	var upgrade_choices :Array[PackedScene] = upgrade_prefabs.duplicate()
 	var picked :Array[PackedScene] = []
 	for i in num_upgrades:
@@ -40,6 +51,10 @@ func show_upgrades() -> void:
 		upgrade_buttons.add_child(new_button)
 
 func on_upgrade_selected(item: PackedScene) -> void:
+	for child in upgrade_buttons.get_children():
+		var button := child as Button
+		if button:
+			button.disabled = true
 	var event := EventUpgradeSelected.new()
 	event.upgrade_item = item
 	EventBus.queue_event(event)
