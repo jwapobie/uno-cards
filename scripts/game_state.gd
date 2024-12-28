@@ -25,7 +25,6 @@ func save_this_round_hand() -> void:
 	if played_hand.size() <= 0:
 		return
 	played_hands.append(card_obj_arr_to_cards(played_hand))
-	print("Saved hand: %s" % str(played_hands.back()))
 	played_hand = []
 
 func card_obj_arr_to_cards(objs: Array[CardObject]) -> Array[Card]:

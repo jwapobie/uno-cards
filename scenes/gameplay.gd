@@ -24,7 +24,7 @@ func _ready() -> void:
 		deck.reset()
 	continue_button.pressed.connect(_show_upgrades)
 	continue_button.visible = false
-	event_handler.register_handler(Event.Type.HAND_PLAYED, _after_hand_played, EventHandPlayed.Order.POST_SCORING, 0)
+	event_handler.register_handler(Event.Type.SCORING_FINISHED, _after_scoring_finished)
 	score_goal_number.text = str(score_goal)
 	turn_count_label.text = str(turn)
 	draw_count(7)
@@ -43,8 +43,8 @@ func _draw_card() -> void:
 	if card:
 		card_hand.add_card(card)
 
-func _after_hand_played(event: EventHandPlayed) -> void:
-	if event.played_by_id == 0:
+func _after_scoring_finished(event: EventScoringFinished) -> void:
+	if event.player_id == 0:
 		continue_button.visible = true
 
 func _show_upgrades() -> void:

@@ -91,6 +91,9 @@ func on_hand_play(event: EventHandPlayed) -> void:
 		score_card.card_object = event.card_objs[i]
 		score_card.player_id = event.played_by_id
 		EventBus.queue_event(score_card, true)
+	var finish_event := EventScoringFinished.new()
+	finish_event.player_id = event.played_by_id
+	EventBus.queue_event(finish_event, false) # After all the scoring triggers finish
 
 func on_card_scored(event: EventCardScored) -> void:
 	if event.score_overriden:
