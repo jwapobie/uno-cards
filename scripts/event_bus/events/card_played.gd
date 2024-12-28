@@ -8,4 +8,4 @@ func _init() -> void:
 	type_lookup[type] = EventCardPlayed
 
 func _to_string() -> String:
-	return "<EventCardPlayed>"
+	return "<EventCardPlayed> %s" % card.attached_card

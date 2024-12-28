@@ -6,7 +6,7 @@ var event_queue :Array[Event]
 var current_queue_order: int = 0
 var event_stack :Array[Event]
 
-var filter :Array[Event.Type] = [Event.Type.CARD_PLAYED, Event.Type.DAMAGE, ]
+var filter :Array[Event.Type] = [Event.Type.CARD_PLAYED, Event.Type.DAMAGE, Event.Type.HAND_PLAYED]
 
 func compare(a :Dictionary, b :Dictionary):
 	if a["order"] == b["order"]:
@@ -49,7 +49,7 @@ signal evlog_made(evlog :Array[Dictionary])
 func fire_event(event :Event):
 	if filter.has(event.type):
 		evlog.append({depth = event_stack.size(), ev = event})
-		#print("* ".repeat(event_stack.size()) + " Event fired: %s" % [event])
+		print("* ".repeat(event_stack.size()) + " Event fired: %s" % [event])
 		
 	for handler in (handler_pool[event.type] as Array[Dictionary]):
 		if event.is_canceled:
