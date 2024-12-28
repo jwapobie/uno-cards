@@ -256,22 +256,6 @@ position = Vector2(646, 0)
 [node name="EventHandler" type="Node" parent="CardHandAnchor/CardHand"]
 script = ExtResource("4_c7t3g")
 
-[node name="ItemsContainer" type="Control" parent="."]
-unique_name_in_owner = true
-anchors_preset = 0
-offset_left = 37.0
-offset_top = 37.0
-offset_right = 77.0
-offset_bottom = 77.0
-mouse_filter = 2
-script = ExtResource("6_bg8mw")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ItemsContainer"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
 [node name="ScoreDisplay" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -368,6 +352,21 @@ text = "Continue"
 [node name="UpgradeScreen" parent="." instance=ExtResource("6_6v1j0")]
 visible = false
 layout_mode = 1
+
+[node name="ItemsContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 37.0
+offset_top = 37.0
+offset_right = 77.0
+offset_bottom = 77.0
+mouse_filter = 1
+script = ExtResource("6_bg8mw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemsContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("4_c7t3g")

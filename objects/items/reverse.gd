@@ -4,6 +4,8 @@ func _ready() -> void:
 	event_handler.register_handler(Event.Type.CARD_SCORED, set_scores, EventCardScored.Order.PRE_BASE_VALUE)
 
 func set_scores(event :EventCardScored):
+	if event.score_overriden:
+		return
 	if event.card_object.attached_card.value == 1:
 		var score_create := EventScoreCreated.new()
 		score_create.player_id = event.player_id
