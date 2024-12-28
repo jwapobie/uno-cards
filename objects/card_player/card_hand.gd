@@ -14,12 +14,17 @@ var card_counter :int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_selected_card)
+	event_handler.register_handler(Event.Type.CARD_RETURNED, on_card_returned)
 	#reposition()
 
 var last_selected_card :Card
 func on_selected_card(event :EventCardSelected):
 	last_selected_card = event.card.attached_card
 	playable_check()
+
+func on_card_returned(event: EventCardReturned) -> void:
+	last_selected_card = event.new_last_card
+	readd_card_obj(event.card)
 
 func playable_check():
 	for card in get_cards():
@@ -49,10 +54,16 @@ func add_card(card :Card):
 	new_card.attached_card = card
 	new_card.card_picked_off.connect(deselect_picked_card)
 	new_card.card_picked.connect(select_picked_card)
-	new_card.is_draggable = true
-	new_card.position = draw_position.position
-	
-	$Cards.add_child(new_card)
+	readd_card_obj(new_card)
+
+func readd_card_obj(card_obj: CardObject) -> void:
+	card_obj.is_draggable = true
+	if card_obj.get_parent():
+		card_obj.reparent($Cards)
+	else:
+		card_obj.position = draw_position.position
+		$Cards.add_child(card_obj)
+
 	#$"../EventHandler".update_card_playable_state()
 	playable_check()
 	update_placement(0)

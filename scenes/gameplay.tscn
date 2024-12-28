@@ -70,18 +70,21 @@ text = "Speed:"
 [node name="SpeedSlowButton" type="Button" parent="SpeedControl"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 toggle_mode = true
 text = "0.5x"
 
 [node name="SpeedNormalButton" type="Button" parent="SpeedControl"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 toggle_mode = true
 text = "1x"
 
 [node name="SpeedFastButton" type="Button" parent="SpeedControl"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 toggle_mode = true
 text = "3x"
 
@@ -226,6 +229,21 @@ offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play Hand"
+
+[node name="ReturnCardButton" type="Button" parent="PlayMat"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 133.0
+offset_right = 80.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return Card"
 
 [node name="EventHandler" type="Node" parent="PlayMat"]
 script = ExtResource("4_c7t3g")
