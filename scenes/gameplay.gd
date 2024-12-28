@@ -44,7 +44,7 @@ func _draw_card() -> void:
 		card_hand.add_card(card)
 
 func _after_scoring_finished(event: EventScoringFinished) -> void:
-	if event.player_id == 0:
+	if event.player_id == -1:
 		continue_button.visible = true
 
 func _show_upgrades() -> void:

@@ -5,7 +5,7 @@ extends Node
 @onready var gameplay: Gameplay = $"../../"
 
 var total_score: int
-@export var player_id := 0
+@export var player_id := -1
 
 func _ready() -> void:
 	event_handler.register_handler(Event.Type.SCORE_CREATED, on_score_added, 10)

@@ -77,7 +77,7 @@ func play_hand() -> void:
 		cards.append(card)
 
 	var hand_event := EventHandPlayed.new()
-	hand_event.played_by_id = 0
+	hand_event.played_by_id = -1
 	hand_event.cards = cards
 	hand_event.card_objs = current_cards
 	GameState.played_hand = current_cards
@@ -86,9 +86,12 @@ func play_hand() -> void:
 	play_hand_button.visible = false
 
 func on_hand_play(event: EventHandPlayed) -> void:
-	for i in range(event.card_objs.size()):
+	for i in range(event.cards.size()):
 		var score_card := EventCardScored.new()
-		score_card.card_object = event.card_objs[i]
+		score_card.card = event.cards[i]
+		score_card.card_num = i
+		if event.played_by_id == -1:
+			score_card.card_object = event.card_objs[i]
 		score_card.player_id = event.played_by_id
 		EventBus.queue_event(score_card, true)
 	var finish_event := EventScoringFinished.new()
@@ -100,6 +103,6 @@ func on_card_scored(event: EventCardScored) -> void:
 		return
 	var score_create := EventScoreCreated.new()
 	score_create.player_id = event.player_id
-	score_create.score_amount = event.card_object.attached_card.value
+	score_create.score_amount = event.card.value
 	score_create.visual_source = event.card_object
 	EventBus.queue_event(score_create, true)

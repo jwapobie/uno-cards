@@ -1,21 +1,38 @@
 extends Node
 
-var played_hand :Array[CardObject] = []
+var played_hand :Array[CardObject] = []:
+	set(arr):
+		played_hand = arr
+		played_hand_cards = card_obj_arr_to_cards(arr)
+var played_hand_cards: Array[Card] = []
 var played_hands: Array = []
 
-func find_left_card(card_object :CardObject) -> CardObject:
-	var idx := played_hand.find(card_object)
+func find_left_card_obj(idx: int) -> CardObject:
 	if idx >= 1:
 		return played_hand[idx - 1]
 	else:
 		return null
 
-func find_right_card(card_object :CardObject) -> CardObject:
-	var idx := played_hand.find(card_object)
+func find_right_card_obj(idx: int) -> CardObject:
 	if idx >= 0 and idx < played_hand.size() - 1:
 		return played_hand[idx + 1]
 	else:
 		return null
+
+func find_left_card(idx : int, player_id: int) -> Card:
+	var hand: Array[Card] = played_hand_cards if player_id == -1 else played_hands[player_id]
+	if idx >= 1:
+		return hand[idx - 1]
+	else:
+		return null
+
+func find_right_card(idx : int, player_id: int) -> Card:
+	var hand: Array[Card] = played_hand_cards if player_id == -1 else played_hands[player_id]
+	if idx >= 0 and idx < hand.size() - 1:
+		return hand[idx + 1]
+	else:
+		return null
+
 
 func reset() -> void:
 	played_hand = []

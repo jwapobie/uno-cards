@@ -6,12 +6,13 @@ func _ready() -> void:
 
 
 func score_pairs(event :EventCardScored):
-	var left_card := GameState.find_left_card(event.card_object)
+	var left_card := GameState.find_left_card(event.card_num, event.player_id)
 	if left_card:
-		if event.card_object.attached_card.color != left_card.attached_card.color:
+		if event.card.color != left_card.color:
 			var score_create := EventScoreMultiCreated.new()
 			score_create.player_id = event.player_id
 			score_create.multiplier = 1.5
 			score_create.visual_source = self
-			score_create.extra_trigger_anim = [event.card_object, left_card]
+			if event.player_id == -1:
+				score_create.extra_trigger_anim = [event.card_object, GameState.find_left_card_obj(event.card_num)]
 			EventBus.queue_event(score_create, true)

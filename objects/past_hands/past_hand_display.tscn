@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3me6aqwxjqn4"]
+[gd_scene load_steps=5 format=3 uid="uid://d3me6aqwxjqn4"]
 
 [ext_resource type="Theme" uid="uid://5c0tm6smuwr6" path="res://default_theme.tres" id="1_3gy45"]
 [ext_resource type="Script" path="res://objects/past_hands/past_hand_display.gd" id="2_jxjhh"]
+[ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="3_lk4pr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eer2q"]
 content_margin_left = 5.0
@@ -27,6 +28,29 @@ theme = ExtResource("1_3gy45")
 theme_override_styles/panel = SubResource("StyleBoxFlat_eer2q")
 script = ExtResource("2_jxjhh")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 2
-text = "Text texty"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "111"
+fit_content = true
+
+[node name="EventHandler" type="Node" parent="."]
+script = ExtResource("3_lk4pr")
+
+[node name="ScoreNumber" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+text = "0"
