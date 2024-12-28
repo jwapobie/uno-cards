@@ -1,4 +1,5 @@
 extends Node
+class_name PlayMat
 
 var play_slots := 5
 @onready var card_spaces: Array[Control] = [
@@ -12,9 +13,11 @@ var current_cards: Array[CardObject]
 
 @onready var event_handler: EventHandler = $EventHandler
 @onready var play_hand_button: Button = $PlayHandButton
+@onready var return_card_button: Button = $ReturnCardButton
 
 func _ready() -> void:
 	play_hand_button.pressed.connect(play_hand)
+	return_card_button.pressed.connect(return_card)
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_card_selected)
 	event_handler.register_handler(Event.Type.HAND_PLAYED, on_hand_play, EventHandPlayed.Order.PER_CARD, 10)
 	event_handler.register_handler(Event.Type.CARD_SCORED, on_card_scored, EventCardScored.Order.BASE_VALUE)
@@ -39,9 +42,26 @@ func on_card_selected(event: EventCardSelected) -> void:
 	current_cards.append(card_obj)
 
 
+func return_card() -> void:
+	var card := pop_one_card()
+	if card:
+		print("popped")
+		var event := EventCardReturned.new()
+		event.card = card
+		if current_cards.size() > 0:
+			event.new_last_card = current_cards.back().attached_card
+		EventBus.queue_event(event)
+
+func pop_one_card() -> CardObject:
+	if current_cards.size() <= 0:
+		return null
+	var card_obj: CardObject = current_cards.pop_back()
+	return card_obj
+
 func play_hand() -> void:
 	if current_cards.size() <= 0:
 		return
+	return_card_button.visible = false
 	
 	var cards: Array[Card] = []
 	for card_obj in current_cards:
