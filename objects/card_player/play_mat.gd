@@ -14,13 +14,17 @@ var current_cards: Array[CardObject]
 @onready var play_hand_button: Button = $PlayHandButton
 
 func _ready() -> void:
-	event_handler.register_handler(Event.Type.CARD_PLAYED, on_card_played)
+	play_hand_button.pressed.connect(play_hand)
+	event_handler.register_handler(Event.Type.CARD_SELECTED, on_card_selected)
+	event_handler.register_handler(Event.Type.HAND_PLAYED, on_hand_play, EventHandPlayed.Order.PER_CARD, 10)
 
 
-func on_card_played(event: EventCardPlayed) -> void:
+func on_card_selected(event: EventCardSelected) -> void:
 	var card_obj := event.card
 	if current_cards.size() >= card_spaces.size():
 		return
+	card_obj.is_draggable = false
+	card_obj.picked = false
 	var space := card_spaces[current_cards.size()]
 	card_obj.reparent(space)
 	var tween := card_obj.create_tween()
@@ -39,5 +43,15 @@ func play_hand() -> void:
 		cards.append(card)
 
 	var hand_event := EventHandPlayed.new()
+	hand_event.played_by_id = 0
 	hand_event.cards = cards
+	hand_event.card_objs = current_cards
 	EventBus.queue_event(hand_event)
+
+func on_hand_play(event: EventHandPlayed) -> void:
+	for i in range(event.cards.size()):
+		var score_create := EventScoreCreated.new()
+		score_create.player_id = event.played_by_id
+		score_create.score_amount = event.cards[i].value
+		score_create.visual_source = event.card_objs[i]
+		EventBus.queue_event(score_create)

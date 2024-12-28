@@ -5,6 +5,7 @@ enum Order {PER_CARD, POST_HAND}
 
 #var card_id :int
 var cards: Array[Card]
+var card_objs: Array[CardObject]
 	#set(value):
 		#card = value
 		#card_id = value.ref_id

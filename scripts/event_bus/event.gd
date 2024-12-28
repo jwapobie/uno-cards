@@ -13,17 +13,15 @@ signal event_resolved
 
 enum Type {
 	NONE,
-	_TEST_BUTTON_PRESSED,
-	DAMAGE,
 	CARD_DRAW,
 	CARD_PLAYABLE_CHECK,
+	CARD_SELECTED,
 	CARD_PLAYED,
-	HAND_PLAYED
+	HAND_PLAYED,
+	SCORE_CREATED,
 }
 
-static var type_lookup = {
-	Type.DAMAGE : EventDamage,
-}
+static var type_lookup = {}
 
 func get_type() -> Event.Type:
 	return type

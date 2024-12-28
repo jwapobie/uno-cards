@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=7 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
 [ext_resource type="Script" path="res://objects/card_player/play_mat.gd" id="3_pgsh8"]
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="4_c7t3g"]
+[ext_resource type="Script" path="res://objects/score_counter/score_display.gd" id="5_f3pnb"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -56,32 +57,6 @@ offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Draw Card"
-
-[node name="CardHandAnchor" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="CardHand" type="Node2D" parent="CardHandAnchor"]
-unique_name_in_owner = true
-position = Vector2(0, -61)
-script = ExtResource("2_jcadc")
-pull_up_curve = SubResource("Curve_gb3ms")
-
-[node name="Floating" type="Node2D" parent="CardHandAnchor/CardHand"]
-
-[node name="Cards" type="Node2D" parent="CardHandAnchor/CardHand"]
-
-[node name="DrawPosition" type="Node2D" parent="CardHandAnchor/CardHand"]
-position = Vector2(646, 0)
-
-[node name="EventHandler" type="Node" parent="CardHandAnchor/CardHand"]
-script = ExtResource("4_c7t3g")
 
 [node name="PlayMat" type="Control" parent="."]
 layout_mode = 1
@@ -210,6 +185,53 @@ grow_vertical = 2
 text = "Play Hand"
 
 [node name="EventHandler" type="Node" parent="PlayMat"]
+script = ExtResource("4_c7t3g")
+
+[node name="CardHandAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CardHand" type="Node2D" parent="CardHandAnchor"]
+unique_name_in_owner = true
+position = Vector2(0, -61)
+script = ExtResource("2_jcadc")
+pull_up_curve = SubResource("Curve_gb3ms")
+
+[node name="Floating" type="Node2D" parent="CardHandAnchor/CardHand"]
+
+[node name="Cards" type="Node2D" parent="CardHandAnchor/CardHand"]
+
+[node name="DrawPosition" type="Node2D" parent="CardHandAnchor/CardHand"]
+position = Vector2(646, 0)
+
+[node name="EventHandler" type="Node" parent="CardHandAnchor/CardHand"]
+script = ExtResource("4_c7t3g")
+
+[node name="ScoreDisplay" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("5_f3pnb")
+
+[node name="Label" type="Label" parent="ScoreDisplay"]
+layout_mode = 2
+text = "Score"
+
+[node name="ScoreNumber" type="Label" parent="ScoreDisplay"]
+layout_mode = 2
+
+[node name="EventHandler" type="Node" parent="ScoreDisplay"]
 script = ExtResource("4_c7t3g")
 
 [connection signal="pressed" from="SortButton" to="CardHandAnchor/CardHand" method="sort_hand"]

@@ -13,7 +13,7 @@ func _init() -> void:
 static func new_deck() -> CardDeck:
 	var deck = CardDeck.new()
 	for col in range(4):
-		for val in range(10):
+		for val in range(1, 10):
 			for i in range(1):
 				var card = Card.new()
 				card.color = col

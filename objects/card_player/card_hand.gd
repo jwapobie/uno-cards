@@ -79,12 +79,9 @@ func deselect_picked_card():
 	if currently_picked and abs(currently_picked.position.y) < 240:
 		$Cards.move_child(currently_picked, get_card_position(currently_picked.position.x))
 	elif currently_picked:
-		var card_played_event := EventCardPlayed.new()
-		card_played_event.card = currently_picked
-		EventBus.queue_event(card_played_event)
-		currently_picked.is_draggable = false
-		currently_picked.picked = false
-		currently_picked.reparent($Floating)
+		var card_selected_event := EventCardSelected.new()
+		card_selected_event.card = currently_picked
+		EventBus.queue_event(card_selected_event)
 	currently_picked = null	
 	pass
 
