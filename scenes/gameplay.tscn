@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=12 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://scenes/upgrade_screen.tscn" id="6_6v1j0"]
 [ext_resource type="Script" path="res://scenes/items_container.gd" id="6_bg8mw"]
 [ext_resource type="Script" path="res://objects/score_counter/add_display.gd" id="6_yy4x3"]
+[ext_resource type="Script" path="res://scenes/past_hands.gd" id="10_oblqp"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -389,11 +390,34 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -20.0
-offset_bottom = 20.0
+offset_left = -213.0
+offset_top = -278.0
+offset_bottom = 219.0
 grow_horizontal = 0
 grow_vertical = 2
+script = ExtResource("10_oblqp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PastHands"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PastHands/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="PastHands/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "HANDS TO BEAT"
+
+[node name="PastHandsList" type="VBoxContainer" parent="PastHands/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="pressed" from="Sort/SortColorButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["color"]]
 [connection signal="pressed" from="Sort/SortValueButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["value"]]

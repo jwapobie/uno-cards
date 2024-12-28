@@ -14,3 +14,10 @@ func _to_string() -> String:
 		2 : color_str = "blue"
 		3 : color_str = "yellow"
 	return "Card: %s (%s)" % [value, color_str] 
+
+const COLOR_LOOKUP := [
+	Color.MAROON,
+	Color.MEDIUM_SPRING_GREEN,
+	Color.DODGER_BLUE,
+	Color.MOCCASIN,
+]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3me6aqwxjqn4"]
+
+[ext_resource type="Theme" uid="uid://5c0tm6smuwr6" path="res://default_theme.tres" id="1_3gy45"]
+[ext_resource type="Script" path="res://objects/past_hands/past_hand_display.gd" id="2_jxjhh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eer2q"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.161636, 0.146445, 0.189983, 0.854902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.099986, 0.099986, 0.0999859, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="PastHandDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(150, 80)
+offset_right = 150.0
+offset_bottom = 80.0
+theme = ExtResource("1_3gy45")
+theme_override_styles/panel = SubResource("StyleBoxFlat_eer2q")
+script = ExtResource("2_jxjhh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+text = "Text texty"

@@ -3,13 +3,6 @@ class_name CardVisual
 
 const base_stylebox = preload('res://objects/card/card_stylebox.tres')
 
-const colors := [
-	Color.MAROON,
-	Color.MEDIUM_SPRING_GREEN,
-	Color.DODGER_BLUE,
-	Color.MOCCASIN,
-]
-
 var card: Card:
 	set(value):
 		card = value
@@ -17,9 +10,9 @@ var card: Card:
 		number_2.text = str(card.value)
 		number_3.text = str(card.value)
 		var col := card.color
-		if col < 4:
+		if col < Card.COLOR_LOOKUP.size():
 			var stylebox := base_stylebox.duplicate()
-			stylebox.bg_color = colors[col]
+			stylebox.bg_color = Card.COLOR_LOOKUP[col]
 			add_theme_stylebox_override("panel", stylebox)
 
 @onready var number: Label = $Number
