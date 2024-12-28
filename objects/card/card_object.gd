@@ -89,4 +89,3 @@ func play_trigger_anim():
 	tween.tween_property(self, "scale", orig_scale, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
 	tween.parallel()
 	tween.tween_property(self, "rotation_degrees", 0, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
-	print("don")

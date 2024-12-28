@@ -26,8 +26,16 @@ func playable_check():
 		var playable_check = EventCardPlayableCheck.new()
 		playable_check.card = card
 		playable_check.last_card = last_selected_card
+		if last_selected_card:
+			if last_selected_card.color == card.color:
+				playable_check.is_playable = true
+			elif last_selected_card.value == card.value:
+				playable_check.is_playable = true
+			else:
+				playable_check.is_playable = false
+		else:
+			playable_check.is_playable = true
 		EventBus.queue_event(playable_check)
-	
 
 func reposition():
 	global_position.x = get_viewport().size.x/2
@@ -113,23 +121,40 @@ func discard(card :Card):
 		else:
 			card_object.reparent($Cards)
 
-func sort_hand() -> void:
+func sort_hand(type :String) -> void:
 	var sorted_cards := $Cards.get_children()
-	sorted_cards.sort_custom(
-		func(a: Node, b: Node):
-			var a_card := a as CardObject
-			var b_card := b as CardObject
-			if a_card and b_card:
-				if a_card.attached_card.color == b_card.attached_card.color:
-					return a_card.attached_card.value < b_card.attached_card.value
-				else:
-					return a_card.attached_card.color < b_card.attached_card.color
-			if a_card:
-				return false
-			if b_card:
-				return true
-			return a.name.naturalnocasecmp_to(b.name)
-	)
+	if type == "color":
+		sorted_cards.sort_custom(
+			func(a: Node, b: Node):
+				var a_card := a as CardObject
+				var b_card := b as CardObject
+				if a_card and b_card:
+					if a_card.attached_card.color == b_card.attached_card.color:
+						return a_card.attached_card.value < b_card.attached_card.value
+					else:
+						return a_card.attached_card.color < b_card.attached_card.color
+				if a_card:
+					return false
+				if b_card:
+					return true
+				return a.name.naturalnocasecmp_to(b.name)
+		)
+	elif type == "value":
+		sorted_cards.sort_custom(
+			func(a: Node, b: Node):
+				var a_card := a as CardObject
+				var b_card := b as CardObject
+				if a_card and b_card:
+					if a_card.attached_card.value == b_card.attached_card.value:
+						return a_card.attached_card.color < b_card.attached_card.color
+					else:
+						return a_card.attached_card.value < b_card.attached_card.value
+				if a_card:
+					return false
+				if b_card:
+					return true
+				return a.name.naturalnocasecmp_to(b.name)
+		)
 	for card in $Cards.get_children():
 		$Cards.remove_child(card)
 	for card in sorted_cards:
@@ -137,3 +162,7 @@ func sort_hand() -> void:
 
 func _on_clear_hand_button_pressed() -> void:
 	clear_hand() # Replace with function body.
+
+
+func _on_sort_value_button_pressed() -> void:
+	pass # Replace with function body.

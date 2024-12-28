@@ -1,7 +1,7 @@
 extends Event
 class_name EventCardPlayableCheck
 
-enum Order {INTERRUPT, PLAYABLE_RESOLVED}
+enum Order {STANDARD_CHECK, OVERRIDE, PLAYABLE_RESOLVED}
 
 #var card_id :int
 var last_card :Card

@@ -20,6 +20,7 @@ enum Type {
 	HAND_PLAYED,
 	SCORE_CREATED,
 	UPGRADE_SELECTED,
+	CARD_SCORED,
 }
 
 static var type_lookup = {}

@@ -18,8 +18,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*res://scripts/event_bus/event_bus.gd"
+Tooltip="*res://objects/tooltip/tooltip.tscn"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom="res://default_theme.tres"

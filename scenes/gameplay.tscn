@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=11 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
+[ext_resource type="Script" path="res://scenes/speed_control.gd" id="2_w836i"]
 [ext_resource type="Script" path="res://objects/card_player/play_mat.gd" id="3_pgsh8"]
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="4_c7t3g"]
 [ext_resource type="Script" path="res://objects/score_counter/score_display.gd" id="5_f3pnb"]
 [ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://scenes/upgrade_screen.tscn" id="6_6v1j0"]
+[ext_resource type="Script" path="res://scenes/items_container.gd" id="6_bg8mw"]
 [ext_resource type="Script" path="res://scenes/add_display.gd" id="6_yy4x3"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
@@ -37,17 +39,51 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.15605, 0.103728, 0.168647, 1)
 
-[node name="SortButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = -183.0
-offset_right = 120.0
-offset_bottom = -152.0
-grow_vertical = 0
-text = "Sort"
+[node name="Sort" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 436.0
+offset_right = 104.0
+offset_bottom = 502.0
+
+[node name="SortColorButton" type="Button" parent="Sort"]
+layout_mode = 2
+text = "Sort Color"
+
+[node name="SortValueButton" type="Button" parent="Sort"]
+layout_mode = 2
+text = "Sort Value"
+
+[node name="SpeedControl" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 873.0
+offset_top = 14.0
+offset_right = 1141.0
+offset_bottom = 41.0
+alignment = 2
+script = ExtResource("2_w836i")
+
+[node name="Label" type="Label" parent="SpeedControl"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="SpeedSlowButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+toggle_mode = true
+text = "0.5x"
+
+[node name="SpeedNormalButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+toggle_mode = true
+text = "1x"
+
+[node name="SpeedFastButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+toggle_mode = true
+text = "3x"
 
 [node name="Button" type="Button" parent="."]
 visible = false
@@ -220,6 +256,22 @@ position = Vector2(646, 0)
 [node name="EventHandler" type="Node" parent="CardHandAnchor/CardHand"]
 script = ExtResource("4_c7t3g")
 
+[node name="ItemsContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 37.0
+offset_top = 37.0
+offset_right = 77.0
+offset_bottom = 77.0
+mouse_filter = 2
+script = ExtResource("6_bg8mw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemsContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
 [node name="ScoreDisplay" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -250,6 +302,54 @@ horizontal_alignment = 1
 [node name="EventHandler" type="Node" parent="ScoreDisplay"]
 script = ExtResource("4_c7t3g")
 
+[node name="ScoreGoal" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
+offset_right = -68.0
+offset_bottom = 85.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="ScoreGoal"]
+layout_mode = 2
+text = "Score Goal"
+horizontal_alignment = 1
+
+[node name="ScoreGoalNumber" type="Label" parent="ScoreGoal"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.679688, 0.138947, 0.298675, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 1
+
+[node name="Turn" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 75.0
+offset_right = 157.0
+offset_bottom = 85.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Turn"]
+layout_mode = 2
+text = "Turn"
+horizontal_alignment = 1
+
+[node name="TurnCountLabel" type="Label" parent="Turn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.613281, 0.413594, 0.514291, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 1
+
 [node name="ContinueButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -272,5 +372,6 @@ layout_mode = 1
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("4_c7t3g")
 
-[connection signal="pressed" from="SortButton" to="CardHandAnchor/CardHand" method="sort_hand"]
+[connection signal="pressed" from="Sort/SortColorButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["color"]]
+[connection signal="pressed" from="Sort/SortValueButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["value"]]
 [connection signal="pressed" from="Button" to="." method="_draw_card"]

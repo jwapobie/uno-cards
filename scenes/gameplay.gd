@@ -5,11 +5,16 @@ class_name Gameplay
 @onready var continue_button: Button = $ContinueButton
 @onready var card_hand: CardHand = %CardHand
 @onready var upgrade_screen: UpgradeScreen = $UpgradeScreen
+@onready var items_container: Control = %ItemsContainer
 
+@onready var score_goal_number: Label = %ScoreGoalNumber
+var score_goal :int
+var total_score :int
+@onready var turn_count_label: Label = %TurnCountLabel
+var turn :int
 static var anim_time_multiplier = 1.0
 
 var deck: CardDeck
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +25,13 @@ func _ready() -> void:
 	continue_button.pressed.connect(_show_upgrades)
 	continue_button.visible = false
 	event_handler.register_handler(Event.Type.HAND_PLAYED, _after_hand_played, EventHandPlayed.Order.POST_SCORING, 0)
+	score_goal_number.text = str(score_goal)
+	turn_count_label.text = str(turn)
 	draw_count(7)
+
+func set_items(items :Array[PackedScene]) -> void:
+	for item in items:
+		items_container.add_item(item.instantiate())
 
 func draw_count(num: int) -> void:
 	for i in range(num):

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d20p7pyt0d6it"]
+
+[ext_resource type="Script" path="res://objects/items/item.gd" id="1_kefis"]
+[ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="2_ed880"]
+[ext_resource type="Texture2D" uid="uid://ec4ody0rmgd0" path="res://icon.svg" id="3_58v6q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukyjp"]
+size = Vector2(46, 46)
+
+[node name="ItemBlank" type="Node2D"]
+script = ExtResource("1_kefis")
+description = "Empty"
+
+[node name="EventHandler" type="Node" parent="."]
+script = ExtResource("2_ed880")
+
+[node name="TooltipZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TooltipZone"]
+shape = SubResource("RectangleShape2D_ukyjp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.365, 0.365)
+texture = ExtResource("3_58v6q")
+
+[connection signal="mouse_entered" from="TooltipZone" to="." method="_on_tooltip_zone_mouse_entered"]
+[connection signal="mouse_exited" from="TooltipZone" to="." method="_on_tooltip_zone_mouse_exited"]

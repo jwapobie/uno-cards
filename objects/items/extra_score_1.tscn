@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://duidgql7ajrjb"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_tjq0l"]
+[ext_resource type="Script" path="res://objects/items/extra_score_1.gd" id="2_x3u6j"]
+
+[node name="ExtraScore" instance=ExtResource("1_tjq0l")]
+script = ExtResource("2_x3u6j")
+description = "Gives 1 (one) extra score when scoring a card."
+
+[node name="Sprite2D" parent="." index="2"]
+modulate = Color(0.65235, 1, 0.469555, 1)

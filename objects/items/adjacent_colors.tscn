@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlafq1d87bn6n"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_7bpqc"]
+[ext_resource type="Script" path="res://objects/items/adjacent_colors.gd" id="2_6pesq"]
+
+[node name="AdjacentColors" instance=ExtResource("1_7bpqc")]
+script = ExtResource("2_6pesq")
+description = "Get 2 score for each pair of same-color adjacent cards."
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(2.163, 0.445, 0.914, 1)

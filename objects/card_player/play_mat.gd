@@ -17,6 +17,7 @@ func _ready() -> void:
 	play_hand_button.pressed.connect(play_hand)
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_card_selected)
 	event_handler.register_handler(Event.Type.HAND_PLAYED, on_hand_play, EventHandPlayed.Order.PER_CARD, 10)
+	event_handler.register_handler(Event.Type.CARD_SCORED, on_card_scored, EventCardScored.Order.BASE_VALUE)
 
 
 func on_card_selected(event: EventCardSelected) -> void:
@@ -55,9 +56,17 @@ func play_hand() -> void:
 	play_hand_button.disabled = true
 
 func on_hand_play(event: EventHandPlayed) -> void:
-	for i in range(event.cards.size()):
-		var score_create := EventScoreCreated.new()
-		score_create.player_id = event.played_by_id
-		score_create.score_amount = event.cards[i].value
-		score_create.visual_source = event.card_objs[i]
-		EventBus.queue_event(score_create)
+	for i in range(event.card_objs.size()):
+		var score_card := EventCardScored.new()
+		score_card.card_object = event.card_objs[i]
+		score_card.player_id = event.played_by_id
+		EventBus.queue_event(score_card, true)
+
+func on_card_scored(event: EventCardScored) -> void:
+	if event.score_overriden:
+		return
+	var score_create := EventScoreCreated.new()
+	score_create.player_id = event.player_id
+	score_create.score_amount = event.card_object.attached_card.value
+	score_create.visual_source = event.card_object
+	EventBus.queue_event(score_create, true)

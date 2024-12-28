@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2tbntql41t7h"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_d4sw6"]
+[ext_resource type="Script" path="res://objects/items/item_69.gd" id="2_d8mai"]
+
+[node name="Item69" instance=ExtResource("1_d4sw6")]
+modulate = Color(0, 1, 2.162, 1)
+script = ExtResource("2_d8mai")
+description = "6 and 9 can be played as if they had the same value."
