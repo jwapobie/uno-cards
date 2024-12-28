@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://lab3gphdrxmw"]
+
+[ext_resource type="StyleBox" uid="uid://3k0csk5nyvy1" path="res://objects/card/card_stylebox.tres" id="1_xtixo"]
+[ext_resource type="Script" path="res://objects/card/card_visual.gd" id="1_ybb6g"]
+
+[node name="Panel" type="Panel"]
+offset_right = 200.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_xtixo")
+script = ExtResource("1_ybb6g")
+
+[node name="Number" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -98.5
+offset_right = 41.0
+offset_bottom = 98.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 144
+text = "9"
+
+[node name="Number2" type="Label" parent="."]
+layout_mode = 1
+offset_right = 52.0
+offset_bottom = 67.0
+theme_override_colors/font_shadow_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 48
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Number3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 50.0
+offset_bottom = 66.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 3.14159
+theme_override_colors/font_shadow_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 48
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1

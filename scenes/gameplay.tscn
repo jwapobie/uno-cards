@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuwq5a1ylpiw0"]
+
+[ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
+[ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
+
+[sub_resource type="Curve" id="Curve_gb3ms"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_cgi25")
+
+[node name="BG" type="ColorRect" parent="."]
+z_index = -200
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15605, 0.103728, 0.168647, 1)
+
+[node name="SortButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -183.0
+offset_right = 120.0
+offset_bottom = -152.0
+grow_vertical = 0
+text = "Sort"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -61.0
+offset_right = -37.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Draw Card"
+
+[node name="CardHandAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CardHand" type="Node2D" parent="CardHandAnchor"]
+unique_name_in_owner = true
+position = Vector2(0, -61)
+script = ExtResource("2_jcadc")
+pull_up_curve = SubResource("Curve_gb3ms")
+
+[node name="Floating" type="Node2D" parent="CardHandAnchor/CardHand"]
+
+[node name="Cards" type="Node2D" parent="CardHandAnchor/CardHand"]
+
+[node name="DrawPosition" type="Node2D" parent="CardHandAnchor/CardHand"]
+position = Vector2(646, 0)
+
+[node name="PlayMat" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayMat"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardSpace" type="Panel" parent="PlayMat/HBoxContainer"]
+z_index = -10
+custom_minimum_size = Vector2(120, 180)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="PlayMat/HBoxContainer/CardSpace"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="SortButton" to="CardHandAnchor/CardHand" method="sort_hand"]
+[connection signal="pressed" from="Button" to="." method="_draw_card"]

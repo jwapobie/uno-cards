@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://de1qwj4v202jf"]
+
+[ext_resource type="Script" path="res://objects/card/card_object.gd" id="1_fi250"]
+[ext_resource type="PackedScene" uid="uid://lab3gphdrxmw" path="res://objects/card/card_visual.tscn" id="2_cg7nc"]
+[ext_resource type="Script" path="res://scripts/datamodel/card.gd" id="2_jrmpv"]
+[ext_resource type="Texture2D" uid="uid://cnmohn0lkb7oe" path="res://objects/card/highlight.png" id="4_4dhlv"]
+[ext_resource type="Script" path="res://objects/card/card_object_event_handler.gd" id="4_ggy1o"]
+[ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="5_l13lv"]
+
+[sub_resource type="Resource" id="Resource_icysm"]
+script = ExtResource("2_jrmpv")
+color = 0
+value = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fwka"]
+size = Vector2(198, 296)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w51gb"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0191547, 0.654874, 0.863281, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CardObject" type="Area2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_fi250")
+attached_card_default = SubResource("Resource_icysm")
+
+[node name="CardVisual" parent="." instance=ExtResource("2_cg7nc")]
+offset_left = -99.0
+offset_top = -149.0
+offset_right = 101.0
+offset_bottom = 151.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_1fwka")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(0.641365, 0.658205)
+texture = ExtResource("4_4dhlv")
+
+[node name="Outline" type="Panel" parent="."]
+unique_name_in_owner = true
+offset_left = -104.0
+offset_top = -155.0
+offset_right = 105.0
+offset_bottom = 155.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w51gb")
+
+[node name="EventHandler" type="Node" parent="." node_paths=PackedStringArray("card_object")]
+script = ExtResource("4_ggy1o")
+card_object = NodePath("..")
+metadata/_custom_type_script = ExtResource("5_l13lv")
