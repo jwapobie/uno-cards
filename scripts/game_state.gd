@@ -5,7 +5,7 @@ class EnemyHand:
 	var round_num: int
 	var score_current: int
 
-const STARTING_HEALTH = 10
+const STARTING_HEALTH = 100
 
 var round_num: int = 1
 var health: int = STARTING_HEALTH

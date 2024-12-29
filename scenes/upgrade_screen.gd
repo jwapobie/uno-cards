@@ -55,6 +55,8 @@ func show_upgrades() -> void:
 		var upgrade_item :Item = item.instantiate()
 		var new_button = Button.new()
 		new_button.custom_minimum_size = Vector2(0, 100)
+		new_button.autowrap_mode = TextServer.AUTOWRAP_WORD
+		new_button.add_theme_constant_override('font_size', 20)
 		new_button.text = upgrade_item.description
 		new_button.pressed.connect(on_upgrade_selected.bind(item))
 		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))

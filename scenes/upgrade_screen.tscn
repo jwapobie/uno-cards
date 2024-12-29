@@ -40,9 +40,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -216.5
+offset_left = -290.0
 offset_top = -271.0
-offset_right = 216.5
+offset_right = 290.0
 offset_bottom = 271.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -56,3 +56,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="Button" type="Button" parent="Panel/UpgradeButtons"]
+layout_mode = 2
