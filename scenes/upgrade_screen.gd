@@ -10,6 +10,7 @@ var upgrade_prefabs :Array[PackedScene] = [
 	preload("res://objects/items/reverse.tscn"),
 	preload("res://objects/items/item_5_hand_multi.tscn"),
 	preload("res://objects/items/item_sequencer.tscn"),
+	preload("res://objects/items/empty_spaces.tscn"),
 	]
 
 @onready var bg: ColorRect = $BG

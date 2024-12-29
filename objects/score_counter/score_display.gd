@@ -46,4 +46,6 @@ func on_scoring_finished(event: EventScoringFinished) -> void:
 		var health_event := EventHealthChangeCreated.new()
 		health_event.visual_source = self
 		health_event.health_amount = total_score
-		EventBus.queue_event(health_event)
+		EventBus.queue_event(health_event, true)
+		var health_finished := EventHealthChangesFinished.new()
+		EventBus.queue_event(health_finished)
