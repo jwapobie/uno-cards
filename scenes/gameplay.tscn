@@ -49,10 +49,12 @@ offset_bottom = 502.0
 
 [node name="SortColorButton" type="Button" parent="Sort"]
 layout_mode = 2
+mouse_filter = 1
 text = "Sort Color"
 
 [node name="SortValueButton" type="Button" parent="Sort"]
 layout_mode = 2
+mouse_filter = 1
 text = "Sort Value"
 
 [node name="SpeedControl" type="HBoxContainer" parent="."]
@@ -117,6 +119,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("3_pgsh8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayMat"]
@@ -233,6 +236,7 @@ offset_right = 200.0
 offset_bottom = 171.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 text = "Play Hand"
 
 [node name="ReturnCardButton" type="Button" parent="PlayMat"]
@@ -248,6 +252,7 @@ offset_right = -55.0
 offset_bottom = 171.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 text = "Return Card"
 
 [node name="EventHandler" type="Node" parent="PlayMat"]
@@ -363,6 +368,7 @@ offset_right = 39.5
 offset_bottom = 153.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 text = "Continue"
 
 [node name="UpgradeScreen" parent="." instance=ExtResource("6_6v1j0")]
@@ -399,6 +405,7 @@ offset_right = -4.0
 offset_bottom = -105.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("10_oblqp")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PastHands"]

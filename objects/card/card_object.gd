@@ -42,7 +42,7 @@ func _mouse_enter() -> void:
 	pass
 
 func _mouse_exit() -> void:
-	if currently_hovered == self:
+	if currently_hovered == self and !picked:
 		currently_hovered = null
 
 
