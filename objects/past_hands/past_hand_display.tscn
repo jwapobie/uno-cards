@@ -10,11 +10,6 @@ content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
 bg_color = Color(0.161636, 0.146445, 0.189983, 0.854902)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.099986, 0.099986, 0.0999859, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -28,29 +23,104 @@ theme = ExtResource("1_3gy45")
 theme_override_styles/panel = SubResource("StyleBoxFlat_eer2q")
 script = ExtResource("2_jxjhh")
 
-[node name="Control" type="Control" parent="."]
+[node name="CardContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -127.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "111"
-fit_content = true
+
+[node name="Panel" type="Panel" parent="CardContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="CardContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="CardContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+horizontal_alignment = 1
+
+[node name="Panel4" type="Panel" parent="CardContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardContainer/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+horizontal_alignment = 1
+
+[node name="Panel5" type="Panel" parent="CardContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CardContainer/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+horizontal_alignment = 1
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("3_lk4pr")
 
 [node name="ScoreNumber" type="Label" parent="."]
 layout_mode = 2
-size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
 text = "0"
+
+[node name="TurnLabelContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="TurnLabelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.374892, 0.284604, 0.39406, 1)
+text = "Turn"
+
+[node name="Label2" type="Label" parent="TurnLabelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.374892, 0.284604, 0.39406, 1)
+text = "1"

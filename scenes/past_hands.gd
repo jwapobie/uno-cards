@@ -1,6 +1,7 @@
 extends Control
 
 @onready var past_hands_list: VBoxContainer = %PastHandsList
+@onready var empty_message: Panel = $ScrollContainer/VBoxContainer/EmptyMessage
 const PAST_HAND_DISPLAY = preload("res://objects/past_hands/past_hand_display.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +16,8 @@ func populate_hands_list() -> void:
 		new_display.hand = hand
 		new_display.player_id = i
 		past_hands_list.add_child(new_display)
+	if hands.size() > 0:
+		empty_message.visible = false
 	call_deferred("request_score_calculations")
 
 func request_score_calculations() -> void:

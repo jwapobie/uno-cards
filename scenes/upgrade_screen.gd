@@ -46,6 +46,7 @@ func show_upgrades() -> void:
 	for item in picked:
 		var upgrade_item :Item = item.instantiate()
 		var new_button = Button.new()
+		new_button.custom_minimum_size = Vector2(0, 100)
 		new_button.text = upgrade_item.description
 		new_button.pressed.connect(on_upgrade_selected.bind(item))
 		upgrade_buttons.add_child(new_button)

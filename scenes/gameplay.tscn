@@ -393,8 +393,9 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -213.0
+offset_left = -215.0
 offset_top = 46.0
+offset_right = -4.0
 offset_bottom = -105.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -405,6 +406,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -416,7 +418,28 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="PastHands/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "HANDS TO BEAT"
+text = "ENEMY HANDS"
+
+[node name="EmptyMessage" type="Panel" parent="PastHands/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PastHands/ScrollContainer/VBoxContainer/EmptyMessage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -11.5
+offset_right = 26.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.295867, 0.295866, 0.295866, 1)
+text = "EMPTY"
 
 [node name="PastHandsList" type="VBoxContainer" parent="PastHands/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
