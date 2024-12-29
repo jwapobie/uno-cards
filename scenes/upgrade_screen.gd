@@ -18,9 +18,17 @@ var upgrade_prefabs :Array[PackedScene] = [
 var buttons: Array[Button] = []
 var num_upgrades := 3
 
+var items_have_changed: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	show_upgrades()
+
+func _process(_delta: float) -> void:
+	if items_have_changed:
+		items_have_changed = false
+		var event := EventItemsChanged.new()
+		EventBus.queue_event(event)
 
 func animate_screen_appear() -> void:
 	bg.modulate = Color.TRANSPARENT
@@ -49,6 +57,10 @@ func show_upgrades() -> void:
 		new_button.custom_minimum_size = Vector2(0, 100)
 		new_button.text = upgrade_item.description
 		new_button.pressed.connect(on_upgrade_selected.bind(item))
+		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))
+		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item))
+		new_button.add_child(upgrade_item)
+		upgrade_item.position = Vector2.ZERO
 		upgrade_buttons.add_child(new_button)
 
 func on_upgrade_selected(item: PackedScene) -> void:
@@ -59,3 +71,11 @@ func on_upgrade_selected(item: PackedScene) -> void:
 	var event := EventUpgradeSelected.new()
 	event.upgrade_item = item
 	EventBus.queue_event(event)
+
+func on_button_hover(item: Item) -> void:
+	item.enable()
+	items_have_changed = true
+
+func on_button_unhover(item: Item) -> void:
+	item.disable()
+	items_have_changed = true

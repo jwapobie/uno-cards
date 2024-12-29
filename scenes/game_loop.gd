@@ -26,5 +26,4 @@ func new_round() -> void:
 
 func on_upgrade_selected(event: EventUpgradeSelected) -> void:
 	items.append(event.upgrade_item)
-	GameState.save_this_round_hand()
 	new_round()

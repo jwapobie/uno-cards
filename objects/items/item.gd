@@ -4,6 +4,12 @@ class_name Item
 @onready var event_handler: EventHandler = $EventHandler
 @export_multiline var description :String
 
+func enable():
+	pass
+
+func disable():
+	event_handler.unregister_handler()
+
 func play_scoring_anim():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.3, 1.3), 0.1*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)

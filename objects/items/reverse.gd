@@ -1,6 +1,6 @@
 extends Item
 
-func _ready() -> void:
+func enable() -> void:
 	event_handler.register_handler(Event.Type.CARD_SCORED, set_scores, EventCardScored.Order.PRE_BASE_VALUE)
 
 func set_scores(event :EventCardScored):

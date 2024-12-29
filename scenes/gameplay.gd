@@ -6,6 +6,7 @@ class_name Gameplay
 @onready var card_hand: CardHand = %CardHand
 @onready var upgrade_screen: UpgradeScreen = $UpgradeScreen
 @onready var items_container: Control = %ItemsContainer
+@onready var past_hands: PastHands = $PastHands
 
 @onready var score_goal_number: Label = %ScoreGoalNumber
 var score_goal :int
@@ -30,7 +31,9 @@ func _ready() -> void:
 
 func set_items(items :Array[PackedScene]) -> void:
 	for item in items:
-		items_container.add_item(item.instantiate())
+		var new_item := item.instantiate() as Item
+		items_container.add_item(new_item)
+		new_item.enable()
 
 func draw_count(num: int) -> void:
 	for i in range(num):
@@ -48,6 +51,8 @@ func _after_scoring_finished(event: EventScoringFinished) -> void:
 		continue_button.visible = true
 
 func _show_upgrades() -> void:
+	GameState.save_this_round_hand()
+	past_hands.populate_hands_list()
 	upgrade_screen.visible = true
 	upgrade_screen.show_upgrades()
 
