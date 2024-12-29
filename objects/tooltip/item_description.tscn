@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cup1ddu1cuss6"]
+
+[ext_resource type="FontFile" uid="uid://cks5i5h3v7xes" path="res://fonts/OpenSans-Medium.ttf" id="1_fjf5r"]
+[ext_resource type="FontFile" uid="uid://byc1ouwicguue" path="res://fonts/OpenSans-Bold.ttf" id="2_p64vq"]
+[ext_resource type="Script" path="res://objects/tooltip/label_parser.gd" id="3_ubm0e"]
+
+[node name="ItemDescription" type="RichTextLabel"]
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_fjf5r")
+theme_override_fonts/bold_font = ExtResource("2_p64vq")
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("3_ubm0e")

@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqhnayh2qw0yy"]
+[gd_scene load_steps=3 format=3 uid="uid://b6usub7sxa6j8"]
 
 [ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_rlceb"]
 [ext_resource type="Script" path="res://objects/items/item_sequencer.gd" id="2_nefc8"]
 
 [node name="ItemSequencer" instance=ExtResource("1_rlceb")]
 script = ExtResource("2_nefc8")
-description = "On Card scoring: If value is 1 higher than previous card, <x1.3> to score"
+item_name = "Sequencer"
+description = "<*On Card scoring:> If value is 1 higher than previous card, <x1.3> to score"
 
 [node name="Sprite2D" parent="." index="2"]
 modulate = Color(1, 0.309444, 0.822086, 1)

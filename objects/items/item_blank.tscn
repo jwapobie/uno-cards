@@ -9,6 +9,7 @@ size = Vector2(46, 46)
 
 [node name="ItemBlank" type="Node2D"]
 script = ExtResource("1_kefis")
+item_name = "Item Name"
 description = "Empty"
 
 [node name="EventHandler" type="Node" parent="."]

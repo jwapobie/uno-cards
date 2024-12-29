@@ -5,7 +5,8 @@
 
 [node name="ItemPocky" instance=ExtResource("1_6hou3")]
 script = ExtResource("2_xd5gu")
-description = "<c1> is scored a second time"
+item_name = "Pocky"
+description = "<c1> is scored a second time."
 
 [node name="Sprite2D" parent="." index="2"]
 modulate = Color(1, 0.309444, 0.822086, 1)

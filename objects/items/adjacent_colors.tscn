@@ -5,6 +5,7 @@
 
 [node name="AdjacentColors" instance=ExtResource("1_7bpqc")]
 script = ExtResource("2_6pesq")
+item_name = "Color Match"
 description = "Get <+3> for each card pair sharing color."
 
 [node name="Sprite2D" parent="." index="2"]

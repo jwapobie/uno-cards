@@ -15,6 +15,8 @@ var upgrade_prefabs :Array[PackedScene] = [
 @onready var bg: ColorRect = $BG
 @onready var panel: Panel = $Panel
 @onready var upgrade_buttons: VBoxContainer = $Panel/UpgradeButtons
+const ITEM_SELECTION = preload("res://objects/tooltip/item_selection.tscn")
+
 var buttons: Array[Button] = []
 var num_upgrades := 3
 
@@ -53,17 +55,15 @@ func show_upgrades() -> void:
 		child.queue_free()
 	for item in picked:
 		var upgrade_item :Item = item.instantiate()
-		var new_button = Button.new()
+		var new_button = ITEM_SELECTION.instantiate()
 		new_button.custom_minimum_size = Vector2(0, 100)
-		new_button.autowrap_mode = TextServer.AUTOWRAP_WORD
-		new_button.add_theme_constant_override('font_size', 20)
-		new_button.text = upgrade_item.description
 		new_button.pressed.connect(on_upgrade_selected.bind(item))
 		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))
 		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item))
 		new_button.add_child(upgrade_item)
-		upgrade_item.position = Vector2.ZERO
+		upgrade_item.visible = false
 		upgrade_buttons.add_child(new_button)
+		new_button.set_item(upgrade_item)
 
 func on_upgrade_selected(item: PackedScene) -> void:
 	for child in upgrade_buttons.get_children():

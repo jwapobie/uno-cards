@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://0uhrdhi1fimu"]
+
+[ext_resource type="Texture2D" uid="uid://ec4ody0rmgd0" path="res://icon.svg" id="1_hxeww"]
+[ext_resource type="Script" path="res://objects/tooltip/item_selection.gd" id="1_q738r"]
+[ext_resource type="PackedScene" uid="uid://cup1ddu1cuss6" path="res://objects/tooltip/item_description.tscn" id="2_oco1m"]
+[ext_resource type="FontFile" uid="uid://byc1ouwicguue" path="res://fonts/OpenSans-Bold.ttf" id="3_y6osn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pywe8"]
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0.636719, 0.413038, 0.350747, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -375.0
+offset_bottom = -388.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q738r")
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("1_hxeww")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ItemName" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.5625, 0.26108, 0.184979, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_y6osn")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_pywe8")
+text = "Item name"
+
+[node name="ItemDescription" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_oco1m")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
