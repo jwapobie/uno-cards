@@ -6,7 +6,6 @@ var gameplay: Gameplay
 const gameplay_prefab := preload('res://scenes/gameplay.tscn')
 var items :Array[PackedScene]
 var score_goal :int = 15
-var turn :int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +14,7 @@ func _ready() -> void:
 	new_round()
 
 func new_round() -> void:
-	turn += 1
+	GameState.round_num += 1
 	if gameplay:
 		score_goal = gameplay.total_score
 		gameplay.queue_free()
@@ -24,7 +23,7 @@ func new_round() -> void:
 	gameplay = gameplay_prefab.instantiate()
 	gameplay.deck = deck
 	gameplay.score_goal = score_goal
-	gameplay.turn = turn
+	gameplay.turn = GameState.round_num
 	add_child(gameplay)
 	gameplay.set_items(items)
 

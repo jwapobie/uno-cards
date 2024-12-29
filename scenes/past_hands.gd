@@ -9,24 +9,24 @@ func _ready() -> void:
 	populate_hands_list()
 
 func populate_hands_list() -> void:
-	var hands := GameState.played_hands
-	for i in range(hands.size()):
-		var hand = hands[i]
+	var enemy_turns := GameState.played_hands
+	for i in range(enemy_turns.size()):
+		var hand := enemy_turns[i].cards
 		var new_display := PAST_HAND_DISPLAY.instantiate() as PastHandDisplay
 		new_display.hand = hand
 		new_display.player_id = i
+		new_display.round_number = enemy_turns[i].round_num
 		past_hands_list.add_child(new_display)
-	if hands.size() > 0:
+	if enemy_turns.size() > 0:
 		empty_message.visible = false
 	call_deferred("request_score_calculations")
 
 func request_score_calculations() -> void:
 	for i in range(GameState.played_hands.size()):
-		var hand = GameState.played_hands[i]
+		var hand = GameState.played_hands[i].cards
 		start_hand_score_calculate(hand, i)
 
 func start_hand_score_calculate(hand: Array[Card], player_num: int) -> void:
-	print(hand)
 	var event := EventHandPlayed.new()
 	event.cards = hand
 	event.played_by_id = player_num

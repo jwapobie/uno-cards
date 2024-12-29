@@ -17,6 +17,7 @@ func on_score_added(event: EventScoreCreated) -> void:
 		add_display.add_score(event.score_amount, event.visual_source)
 		total_score += event.score_amount
 		gameplay.total_score = total_score
+		GameState.this_round_score = total_score
 		score_number.text = str(total_score)
 		for trigger_anim in event.extra_trigger_anim:
 			trigger_anim.play_trigger_anim()
