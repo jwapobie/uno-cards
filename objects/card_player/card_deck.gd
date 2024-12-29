@@ -17,6 +17,7 @@ static func new_deck() -> CardDeck:
 			for i in range(1):
 				var card = Card.new()
 				card.color = col
+				card.base_value = val
 				card.value = val
 				deck.all_cards.append(card)
 	return deck

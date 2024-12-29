@@ -7,7 +7,6 @@ var player_id: int
 var card: Card
 var card_object :CardObject
 var card_num: int
-var score_overriden :bool
 var triggered :bool = false
 
 func _init() -> void:

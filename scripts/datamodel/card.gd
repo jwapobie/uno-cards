@@ -4,7 +4,8 @@ class_name Card
 
 
 @export var color: int
-@export var value: int
+var value: int
+@export var base_value :int
 
 func _to_string() -> String:
 	var color_str :String

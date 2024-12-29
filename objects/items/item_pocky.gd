@@ -6,7 +6,7 @@ func enable() -> void:
 
 
 func score_again(event :EventCardScored):
-	if event.card.value == 1 and event.triggered == false:
+	if event.card.base_value == 1 and event.triggered == false:
 		var double_scoring := EventCardScored.new()
 		double_scoring.player_id = event.player_id
 		double_scoring.card_object = event.card_object

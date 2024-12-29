@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdns1bvxgdova"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_gwubo"]
+[ext_resource type="Script" path="res://objects/items/full_reverse.gd" id="2_gsuqm"]
+
+[node name="ItemReverse" instance=ExtResource("1_gwubo")]
+script = ExtResource("2_gsuqm")
+item_name = "Mirror"
+description = "Reverses score values of all cards."
+
+[node name="Sprite2D" parent="." index="2"]
+modulate = Color(1, 0.9084, 0.0827047, 1)

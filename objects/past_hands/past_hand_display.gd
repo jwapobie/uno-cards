@@ -41,7 +41,7 @@ func show_card(card: Card, idx: int) -> void:
 	stylebox.bg_color = Card.COLOR_LOOKUP[card.color]
 	panel.add_theme_stylebox_override('panel', stylebox)
 	var label: Label = panel.get_child(0)
-	label.text = str(card.value)
+	label.text = str(card.base_value)
 
 func on_score_added(event: EventScoreCreated) -> void:
 	if event.player_id == player_id:

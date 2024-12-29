@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dplc6e6of1m3o"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_po0hv"]
+[ext_resource type="Script" path="res://objects/items/flatline.gd" id="2_rdmah"]
+
+[node name="ItemReverse" instance=ExtResource("1_po0hv")]
+script = ExtResource("2_rdmah")
+item_name = "Flatline"
+description = "All cards score for 5."
+
+[node name="Sprite2D" parent="." index="2"]
+modulate = Color(1, 0.9084, 0.0827047, 1)

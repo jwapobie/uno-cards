@@ -36,8 +36,13 @@ func request_score_calculations() -> void:
 		var hand = GameState.played_hands[i].cards
 		start_hand_score_calculate(hand, i)
 
+func reset_base_values(cards :Array[Card]) -> void:
+	for card in cards:
+		card.value = card.base_value
+
 func start_hand_score_calculate(hand: Array[Card], player_num: int) -> void:
 	var event := EventHandPlayed.new()
+	reset_base_values(hand)
 	event.cards = hand
 	event.played_by_id = player_num
 	EventBus.queue_event(event)

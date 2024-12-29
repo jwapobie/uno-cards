@@ -34,7 +34,7 @@ func playable_check():
 		if last_selected_card:
 			if last_selected_card.color == card.color:
 				playable_check.is_playable = true
-			elif last_selected_card.value == card.value:
+			elif last_selected_card.base_value == card.base_value:
 				playable_check.is_playable = true
 			else:
 				playable_check.is_playable = false
@@ -141,7 +141,7 @@ func sort_hand(type :String) -> void:
 				var b_card := b as CardObject
 				if a_card and b_card:
 					if a_card.attached_card.color == b_card.attached_card.color:
-						return a_card.attached_card.value < b_card.attached_card.value
+						return a_card.attached_card.base_value < b_card.attached_card.base_value
 					else:
 						return a_card.attached_card.color < b_card.attached_card.color
 				if a_card:
@@ -156,10 +156,10 @@ func sort_hand(type :String) -> void:
 				var a_card := a as CardObject
 				var b_card := b as CardObject
 				if a_card and b_card:
-					if a_card.attached_card.value == b_card.attached_card.value:
+					if a_card.attached_card.base_value == b_card.attached_card.base_value:
 						return a_card.attached_card.color < b_card.attached_card.color
 					else:
-						return a_card.attached_card.value < b_card.attached_card.value
+						return a_card.attached_card.base_value < b_card.attached_card.base_value
 				if a_card:
 					return false
 				if b_card:

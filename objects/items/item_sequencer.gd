@@ -7,7 +7,7 @@ func enable() -> void:
 
 func score_mult(event :EventCardScored):
 	var prev_card := GameState.find_left_card(event.card_num, event.player_id)
-	if prev_card and event.card.value == prev_card.value + 1:
+	if prev_card and event.card.base_value == prev_card.base_value + 1:
 		var score_create := EventScoreMultiCreated.new()
 		score_create.player_id = event.player_id
 		score_create.multiplier = 1.3

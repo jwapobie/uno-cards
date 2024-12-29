@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxbeg370uh7cd"]
 
 [ext_resource type="Script" path="res://objects/tooltip/tooltip.gd" id="1_qc2au"]
-[ext_resource type="PackedScene" uid="uid://cup1ddu1cuss6" path="res://objects/tooltip/item_description.tscn" id="2_wdlnm"]
+[ext_resource type="PackedScene" uid="uid://d3urw8d4uyseg" path="res://objects/tooltip/item_description.tscn" id="2_wdlnm"]
 
 [node name="Tooltip" type="PanelContainer"]
 visible = false
