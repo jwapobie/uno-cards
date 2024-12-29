@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=14 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://scenes/upgrade_screen.tscn" id="6_6v1j0"]
 [ext_resource type="Script" path="res://scenes/items_container.gd" id="6_bg8mw"]
 [ext_resource type="Script" path="res://objects/score_counter/add_display.gd" id="6_yy4x3"]
+[ext_resource type="Script" path="res://objects/health_display/health_display.gd" id="7_6u6od"]
+[ext_resource type="Script" path="res://objects/health_display/add_display.gd" id="8_lp0fn"]
 [ext_resource type="Script" path="res://scenes/past_hands.gd" id="10_oblqp"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
@@ -311,24 +313,31 @@ offset_bottom = 167.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="ScoreGoal" type="VBoxContainer" parent="ScoreLayout"]
+[node name="HealthDisplay" type="VBoxContainer" parent="ScoreLayout"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+script = ExtResource("7_6u6od")
 
-[node name="Label" type="Label" parent="ScoreLayout/ScoreGoal"]
+[node name="Label" type="Label" parent="ScoreLayout/HealthDisplay"]
 layout_mode = 2
 text = "Health"
 horizontal_alignment = 1
 
-[node name="ScoreGoalNumber" type="Label" parent="ScoreLayout/ScoreGoal"]
-unique_name_in_owner = true
+[node name="ScoreNumber" type="Label" parent="ScoreLayout/HealthDisplay"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.679688, 0.138947, 0.298675, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 42
 text = "10"
 horizontal_alignment = 1
+
+[node name="HealthAddDisplay" type="Node2D" parent="ScoreLayout/HealthDisplay"]
+position = Vector2(82, 59)
+script = ExtResource("8_lp0fn")
+
+[node name="EventHandler" type="Node" parent="ScoreLayout/HealthDisplay"]
+script = ExtResource("4_c7t3g")
 
 [node name="ScoreDisplay" type="VBoxContainer" parent="ScoreLayout"]
 custom_minimum_size = Vector2(150, 0)
@@ -353,6 +362,9 @@ horizontal_alignment = 1
 
 [node name="EventHandler" type="Node" parent="ScoreLayout/ScoreDisplay"]
 script = ExtResource("4_c7t3g")
+
+[node name="ScoreAnchor" type="Node2D" parent="ScoreLayout/ScoreDisplay"]
+position = Vector2(40, 56)
 
 [node name="Turn" type="VBoxContainer" parent="ScoreLayout"]
 custom_minimum_size = Vector2(150, 0)

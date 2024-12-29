@@ -1,5 +1,5 @@
 extends Control
-
+class_name AdditionLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,3 +22,6 @@ func pop_off() -> void:
 
 func set_text(str: String) -> void:
 	$Label.text = str
+
+func set_color(col: Color) -> void:
+	$Label.add_theme_color_override("font_color", col)

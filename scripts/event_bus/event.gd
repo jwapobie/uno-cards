@@ -25,6 +25,7 @@ enum Type {
 	UPGRADE_SELECTED,
 	CARD_SCORED,
 	ITEMS_CHANGED,
+	HEALTH_CHANGE_CREATED,
 }
 
 static var type_lookup = {}

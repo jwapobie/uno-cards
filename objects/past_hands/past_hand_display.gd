@@ -21,13 +21,19 @@ var round_number: int
 func _ready() -> void:
 	show_hand()
 
+func play_scoring_anim():
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1.3, 1.3), 0.1*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
+	await tween.finished
+
 func show_hand() -> void:
 	for i in range(hand.size()):
 		show_card(hand[i], i)
 	round_number_label.text = str(round_number)
 	event_handler.register_handler(Event.Type.SCORE_CREATED, on_score_added, 10)
 	event_handler.register_handler(Event.Type.SCORE_MULTI_CREATED, on_score_multi_added, 10)
-	event_handler.register_handler(Event.Type.SCORING_FINISHED, on_scoring_finished)
+	event_handler.register_handler(Event.Type.SCORING_FINISHED, on_scoring_finished, EventScoringFinished.Order.ENEMY_RESPONSE)
 
 func show_card(card: Card, idx: int) -> void:
 	var panel := card_containers[idx]
@@ -55,13 +61,22 @@ func on_scoring_finished(event: EventScoringFinished) -> void:
 	if event.player_id == -1:
 		if GameState.this_round_score >= total_score:
 			eliminate()
+		else:
+			change_player_health(-total_score)
 	elif event.player_id == player_id:
 		GameState.played_hands[player_id].score_current = total_score
 
 func eliminate() -> void:
+	change_player_health(total_score)
 	GameState.remove_enemy_hand(round_number)
 	eliminate_label.modulate = Color.TRANSPARENT
 	eliminate_label.visible = true
 	var tween := create_tween()
 	tween.tween_property(self, "modulate", Color.GRAY, 0.25)
 	tween.tween_property(eliminate_label, "modulate", Color.WHITE, 0.25)
+
+func change_player_health(amount: int) -> void:
+	var event = EventHealthChangeCreated.new()
+	event.health_amount = amount
+	event.visual_source = self
+	EventBus.queue_event(event, true)

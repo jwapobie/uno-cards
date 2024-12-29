@@ -1,6 +1,8 @@
 extends Event
 class_name EventScoringFinished
 
+enum Order {PLAYER_SELF_EFFECT, ENEMY_RESPONSE}
+
 var player_id: int
 
 func _init() -> void:
