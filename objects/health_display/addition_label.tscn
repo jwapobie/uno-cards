@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmyllk53req78"]
+[gd_scene load_steps=3 format=3 uid="uid://vyhffv54y372"]
 
-[ext_resource type="Script" path="res://objects/score_counter/addition_label.gd" id="1_4hohw"]
-[ext_resource type="AudioStream" uid="uid://xyyyf0pj2xti" path="res://audio/GM Tamb.wav" id="2_lif8s"]
+[ext_resource type="Script" path="res://objects/score_counter/addition_label.gd" id="1_xu1cf"]
+[ext_resource type="AudioStream" uid="uid://e3bk26lsqg3o" path="res://audio/8BitRetroSFXPack1_Traditional_GameStarting08_2.wav" id="2_go4t7"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_4hohw")
+script = ExtResource("1_xu1cf")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -30,4 +30,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_lif8s")
+stream = ExtResource("2_go4t7")
+volume_db = -10.0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bm7axu2aj3qfo"
+path="res://.godot/imported/Alma Bram SFX.wav-2e1da04bb5ebb0c4bfe7154186e0f53b.sample"
+
+[deps]
+
+source_file="res://audio/Alma Bram SFX.wav"
+dest_files=["res://.godot/imported/Alma Bram SFX.wav-2e1da04bb5ebb0c4bfe7154186e0f53b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

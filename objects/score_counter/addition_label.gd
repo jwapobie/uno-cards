@@ -1,8 +1,17 @@
 extends Control
 class_name AdditionLabel
 
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+var sound: AudioStream
+var pitch_scale_modifier: float = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if sound:
+		audio_stream_player_2d.stream = sound
+	audio_stream_player_2d.pitch_scale = randf_range(0.95, 1.05) * pitch_scale_modifier
+	audio_stream_player_2d.play()
+
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.3, 1.3), 0.1*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT)
