@@ -15,3 +15,5 @@ func set_values(event :EventHandPlayed):
 			7 : card.value = 5
 			8 : card.value = 5
 			9 : card.value = 5
+	if event.played_by_id == -1:
+		play_scoring_anim()

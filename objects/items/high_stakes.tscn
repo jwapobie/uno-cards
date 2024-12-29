@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyjw2dy5qfh2v"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_hly2x"]
+[ext_resource type="Script" path="res://objects/items/high_stakes.gd" id="2_2e23x"]
+
+[node name="ItemReverse" instance=ExtResource("1_hly2x")]
+script = ExtResource("2_2e23x")
+item_name = "High Stakes"
+description = "<c7>, <c8>, <c9> score for 10.
+All other cards score 0."
+
+[node name="Sprite2D" parent="." index="2"]
+modulate = Color(1, 0.9084, 0.0827047, 1)

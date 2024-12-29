@@ -6,14 +6,14 @@ func enable() -> void:
 func set_values(event :EventHandPlayed):
 	for card in event.cards:
 		match card.base_value:
-			1 : card.value = 9
-			2 : card.value = 8
-			3 : card.value = 7
-			4 : card.value = 6
-			5 : card.value = 5
-			6 : card.value = 4
-			7 : card.value = 3
-			8 : card.value = 2
-			9 : card.value = 1
+			1 : card.value = 0
+			2 : card.value = 0
+			3 : card.value = 0
+			4 : card.value = 0
+			5 : card.value = 0
+			6 : card.value = 0
+			7 : card.value = 10
+			8 : card.value = 10
+			9 : card.value = 10
 	if event.played_by_id == -1:
 		play_scoring_anim()

@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_icysm"]
 script = ExtResource("2_jrmpv")
 color = 0
-value = 2
+base_value = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fwka"]
 size = Vector2(198, 296)
