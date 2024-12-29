@@ -15,7 +15,6 @@ var card_counter :int = 0
 func _ready() -> void:
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_selected_card)
 	event_handler.register_handler(Event.Type.CARD_RETURNED, on_card_returned)
-	#reposition()
 
 var last_selected_card :Card
 func on_selected_card(event :EventCardSelected):
@@ -41,10 +40,6 @@ func playable_check():
 		else:
 			playable_check.is_playable = true
 		EventBus.queue_event(playable_check)
-
-func reposition():
-	global_position.x = get_viewport().size.x/2
-	#global_position.y = get_viewport().size.y
 
 func add_card(card :Card):
 	if not card:

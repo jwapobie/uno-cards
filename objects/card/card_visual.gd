@@ -6,9 +6,9 @@ const base_stylebox = preload('res://objects/card/card_stylebox.tres')
 var card: Card:
 	set(value):
 		card = value
-		number.text = str(card.value)
-		number_2.text = str(card.value)
-		number_3.text = str(card.value)
+		number.text = str(card.base_value)
+		number_2.text = str(card.base_value)
+		number_3.text = str(card.base_value)
 		var col := card.color
 		if col < Card.COLOR_LOOKUP.size():
 			var stylebox := base_stylebox.duplicate()
