@@ -10,9 +10,8 @@ var filter :Array[Event.Type] = [
 	Event.Type.CARD_SELECTED,
 	Event.Type.CARD_RETURNED,
 	Event.Type.HAND_PLAYED,
-	Event.Type.CARD_SCORED,
-	Event.Type.SCORE_CREATED,
-	Event.Type.SCORE_MULTI_CREATED,
+	Event.Type.SCORING_FINISHED,
+	Event.Type.HEALTH_CHANGE_CREATED,
 ]
 
 func compare(a :Dictionary, b :Dictionary):

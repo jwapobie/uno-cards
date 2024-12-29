@@ -22,7 +22,7 @@ func _ready() -> void:
 		deck.reset()
 	continue_button.pressed.connect(_show_upgrades)
 	continue_button.visible = false
-	event_handler.register_handler(Event.Type.SCORING_FINISHED, _after_scoring_finished)
+	event_handler.register_handler(Event.Type.HEALTH_CHANGES_FINISHED, _after_health_changes_finished)
 	turn_count_label.text = str(turn)
 	draw_count(7)
 
@@ -42,10 +42,9 @@ func _draw_card() -> void:
 	if card:
 		card_hand.add_card(card)
 
-func _after_scoring_finished(event: EventScoringFinished) -> void:
-	if event.player_id == -1:
-		await get_tree().create_timer(1).timeout
-		continue_button.visible = true
+func _after_health_changes_finished(event: EventHealthChangesFinished) -> void:
+	await get_tree().create_timer(0.2).timeout
+	continue_button.visible = true
 
 func _show_upgrades() -> void:
 	GameState.save_this_round_hand()
