@@ -295,7 +295,7 @@ size_flags_horizontal = 10
 
 [node name="Label" type="Label" parent="ScoreLayout/ScoreGoal"]
 layout_mode = 2
-text = "Score Goal"
+text = "Health"
 horizontal_alignment = 1
 
 [node name="ScoreGoalNumber" type="Label" parent="ScoreLayout/ScoreGoal"]
@@ -304,7 +304,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.679688, 0.138947, 0.298675, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 42
-text = "0"
+text = "10"
 horizontal_alignment = 1
 
 [node name="ScoreDisplay" type="VBoxContainer" parent="ScoreLayout"]

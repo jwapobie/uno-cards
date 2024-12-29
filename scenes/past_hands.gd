@@ -19,6 +19,7 @@ func populate_hands_list() -> void:
 		past_hands_list.add_child(new_display)
 	if enemy_turns.size() > 0:
 		empty_message.visible = false
+	await get_tree().create_timer(0.05, false).timeout
 	call_deferred("request_score_calculations")
 
 func request_score_calculations() -> void:

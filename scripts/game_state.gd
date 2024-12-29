@@ -5,7 +5,10 @@ class EnemyHand:
 	var round_num: int
 	var score_current: int
 
+const STARTING_HEALTH = 10
+
 var round_num: int = 1
+var health: int = STARTING_HEALTH
 var played_hand :Array[CardObject] = []:
 	set(arr):
 		played_hand = arr
@@ -46,6 +49,7 @@ func reset() -> void:
 	played_hands = []
 	round_num = 1
 	this_round_score = 0
+	health = STARTING_HEALTH
 
 func save_this_round_hand() -> void:
 	if played_hand.size() <= 0:

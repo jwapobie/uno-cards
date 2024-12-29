@@ -105,7 +105,7 @@ script = ExtResource("3_lk4pr")
 [node name="ScoreNumber" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "0"
+text = "--"
 
 [node name="EliminateLabel" type="Label" parent="ScoreNumber"]
 visible = false

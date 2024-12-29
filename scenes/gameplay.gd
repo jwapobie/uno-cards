@@ -9,7 +9,6 @@ class_name Gameplay
 
 @onready var score_goal_number: Label = %ScoreGoalNumber
 var score_goal :int
-var total_score :int
 @onready var turn_count_label: Label = %TurnCountLabel
 var turn :int
 static var anim_time_multiplier = 1.0
@@ -25,7 +24,7 @@ func _ready() -> void:
 	continue_button.pressed.connect(_show_upgrades)
 	continue_button.visible = false
 	event_handler.register_handler(Event.Type.SCORING_FINISHED, _after_scoring_finished)
-	score_goal_number.text = str(score_goal)
+	score_goal_number.text = str(GameState.health)
 	turn_count_label.text = str(turn)
 	draw_count(7)
 
@@ -45,8 +44,18 @@ func _draw_card() -> void:
 
 func _after_scoring_finished(event: EventScoringFinished) -> void:
 	if event.player_id == -1:
+		await update_health()
 		continue_button.visible = true
 
 func _show_upgrades() -> void:
 	upgrade_screen.visible = true
 	upgrade_screen.show_upgrades()
+
+func update_health() -> void:
+	GameState.health += GameState.this_round_score
+	score_goal_number.text = str(GameState.health)
+	await get_tree().create_timer(1).timeout
+	for enemy_hand in GameState.played_hands:
+		GameState.health -= enemy_hand.score_current
+		score_goal_number.text = str(GameState.health)
+		await get_tree().create_timer(0.5).timeout
