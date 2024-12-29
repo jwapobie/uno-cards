@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://0uhrdhi1fimu"]
+[gd_scene load_steps=7 format=3 uid="uid://db0q2oseq1tiw"]
 
 [ext_resource type="Texture2D" uid="uid://ec4ody0rmgd0" path="res://icon.svg" id="1_hxeww"]
 [ext_resource type="Script" path="res://objects/tooltip/item_selection.gd" id="1_q738r"]
-[ext_resource type="PackedScene" uid="uid://cup1ddu1cuss6" path="res://objects/tooltip/item_description.tscn" id="2_oco1m"]
+[ext_resource type="Script" path="res://scripts/utility/sound_button.gd" id="2_27dig"]
+[ext_resource type="PackedScene" uid="uid://d3urw8d4uyseg" path="res://objects/tooltip/item_description.tscn" id="2_oco1m"]
 [ext_resource type="FontFile" uid="uid://byc1ouwicguue" path="res://fonts/OpenSans-Bold.ttf" id="3_y6osn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pywe8"]
@@ -29,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_27dig")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

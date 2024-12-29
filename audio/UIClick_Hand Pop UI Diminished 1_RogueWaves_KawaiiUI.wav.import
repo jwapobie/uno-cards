@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bds1n7s2v17ni"
+path="res://.godot/imported/UIClick_Hand Pop UI Diminished 1_RogueWaves_KawaiiUI.wav-39be4e1ea8e55968ad884f7d94db5387.sample"
+
+[deps]
+
+source_file="res://audio/UIClick_Hand Pop UI Diminished 1_RogueWaves_KawaiiUI.wav"
+dest_files=["res://.godot/imported/UIClick_Hand Pop UI Diminished 1_RogueWaves_KawaiiUI.wav-39be4e1ea8e55968ad884f7d94db5387.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

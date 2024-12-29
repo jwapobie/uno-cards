@@ -7,7 +7,7 @@ class EnemyHand:
 
 const STARTING_HEALTH = 100
 
-var round_num: int = 1
+var round_num: int = 0
 var health: int = STARTING_HEALTH
 var played_hand :Array[CardObject] = []:
 	set(arr):
