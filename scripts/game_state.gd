@@ -46,7 +46,7 @@ func find_right_card(idx : int, player_id: int) -> Card:
 
 func reset() -> void:
 	played_hand = []
-	played_hands = []
+	played_hands = [create_first_round_enemy_hand()]
 	round_num = 1
 	this_round_score = 0
 	health = STARTING_HEALTH
@@ -59,6 +59,25 @@ func save_this_round_hand() -> void:
 	enemy_hand.round_num = round_num
 	played_hands.append(enemy_hand)
 	played_hand = []
+
+func create_first_round_enemy_hand() -> EnemyHand:
+	var card1 = Card.new()
+	card1.base_value = 5
+	card1.value = 5
+	card1.color = 0
+	var card2 = Card.new()
+	card2.base_value = 5
+	card2.value = 5
+	card2.color = 0
+	var card3 = Card.new()
+	card3.base_value = 5
+	card3.value = 5
+	card3.color = 0
+	var enemy_hand := EnemyHand.new()
+	enemy_hand.cards = [card1, card2, card3]
+	enemy_hand.round_num = 0
+	enemy_hand.score_current = 15
+	return enemy_hand
 
 func card_obj_arr_to_cards(objs: Array[CardObject]) -> Array[Card]:
 	var newarr: Array[Card] = []
