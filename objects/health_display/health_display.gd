@@ -1,4 +1,4 @@
-extends Node
+extends Control
 @onready var event_handler: EventHandler = $EventHandler
 @onready var score_number: Label = $ScoreNumber
 @onready var add_display: HealthAddDisplay = $HealthAddDisplay

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=17 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://objects/health_display/health_display.gd" id="7_6u6od"]
 [ext_resource type="Script" path="res://objects/health_display/add_display.gd" id="8_lp0fn"]
 [ext_resource type="Script" path="res://scenes/past_hands.gd" id="10_oblqp"]
+[ext_resource type="Script" path="res://scripts/utility/tooltipped.gd" id="10_xu2qm"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -332,8 +333,11 @@ script = ExtResource("7_6u6od")
 
 [node name="Label" type="Label" parent="ScoreLayout/HealthDisplay"]
 layout_mode = 2
+mouse_filter = 1
 text = "Health"
 horizontal_alignment = 1
+script = ExtResource("10_xu2qm")
+tooltip_content = "When your <*Health> reaches 0, the game will end. Increase your health by increasing your <*Round Score> and eliminating <*Enemy Hands>."
 
 [node name="ScoreNumber" type="Label" parent="ScoreLayout/HealthDisplay"]
 layout_mode = 2
@@ -466,7 +470,10 @@ size_flags_vertical = 0
 
 [node name="Label" type="Label" parent="PastHands/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "ENEMY HANDS"
+script = ExtResource("10_xu2qm")
+tooltip_content = "When you play a hand, it is saved as an <*Enemy Hand>. <*Enemy Hands> will grow stronger with your items and attack you in each future turn! If you play a hand which surpasses their value, you will <*Eliminate> the hand for good and steal their value as life."
 
 [node name="EmptyMessage" type="Panel" parent="PastHands/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
