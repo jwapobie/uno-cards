@@ -5,7 +5,7 @@
 
 [node name="ItemSequencer" instance=ExtResource("1_rlceb")]
 script = ExtResource("2_nefc8")
-description = "On Card scoring: If value is 1 higher than previous card, <x1.3> to score"
+description = "During Scoring: If value is 1 higher than previous card, <x1.3> to score"
 
 [node name="Sprite2D" parent="." index="2"]
 modulate = Color(1, 0.309444, 0.822086, 1)
