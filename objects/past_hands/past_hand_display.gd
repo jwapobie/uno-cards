@@ -59,9 +59,9 @@ func on_score_multi_added(event: EventScoreMultiCreated) -> void:
 
 func on_scoring_finished(event: EventScoringFinished) -> void:
 	if event.player_id == -1:
-		if GameState.this_round_score >= total_score:
+		if GameState.this_round_score > total_score:
 			eliminate()
-		else:
+		elif GameState.this_round_score < total_score:
 			change_player_health(-total_score)
 	elif event.player_id == player_id:
 		GameState.played_hands[player_id].score_current = total_score

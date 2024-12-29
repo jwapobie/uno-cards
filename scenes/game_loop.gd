@@ -9,6 +9,7 @@ var items :Array[PackedScene]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	event_handler.register_handler(Event.Type.UPGRADE_SELECTED, on_upgrade_selected, 10, 0)
+	GameState.reset()
 	deck = CardDeck.new_deck()
 	new_round()
 
