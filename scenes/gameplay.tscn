@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=18 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://objects/health_display/add_display.gd" id="8_lp0fn"]
 [ext_resource type="Script" path="res://scenes/past_hands.gd" id="10_oblqp"]
 [ext_resource type="Script" path="res://scripts/utility/tooltipped.gd" id="10_xu2qm"]
+[ext_resource type="Script" path="res://scenes/quit_run_button.gd" id="16_3gbey"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -511,6 +512,26 @@ layout_mode = 2
 
 [node name="EventHandler" type="Node" parent="PastHands"]
 script = ExtResource("4_c7t3g")
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -62.0
+offset_right = 97.0
+offset_bottom = -24.0
+grow_vertical = 0
+text = "Quit"
+script = ExtResource("16_3gbey")
+
+[node name="ProgressBar" type="ProgressBar" parent="QuitButton"]
+layout_mode = 0
+offset_top = -15.0
+offset_right = 69.0
+offset_bottom = -6.0
+show_percentage = false
 
 [connection signal="pressed" from="Sort/SortColorButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["color"]]
 [connection signal="pressed" from="Sort/SortValueButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["value"]]

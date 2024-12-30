@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3t44ki3xv33d"]
+[gd_scene load_steps=14 format=3 uid="uid://b3t44ki3xv33d"]
 
 [ext_resource type="Script" path="res://objects/review_screen/review_screen.gd" id="1_t1e3r"]
 [ext_resource type="FontFile" uid="uid://clkjryi7d3f4q" path="res://fonts/Cthulhu's Calling.otf" id="2_lj1hc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://objects/review_screen/cumulative_round_score_label.gd" id="8_6fihq"]
 [ext_resource type="Script" path="res://objects/exit_run_button.gd" id="9_kfy6g"]
 [ext_resource type="Script" path="res://objects/review_screen/restart_button.gd" id="10_fln3s"]
+[ext_resource type="Script" path="res://scripts/utility/sound_button.gd" id="11_p7bic"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_56ptt"]
 particle_flag_disable_z = true
@@ -212,3 +213,4 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Continue (Endless)"
+script = ExtResource("11_p7bic")
