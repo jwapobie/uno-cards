@@ -14,6 +14,7 @@ func score(event :EventCardScored):
 			score_create.score_amount = left_card.value
 			score_create.visual_source = self
 			if event.player_id == -1:
+				score_create.visual_source = GameState.find_left_card_obj(event.card_num)
 				score_create.extra_trigger_anim = [event.card_object, GameState.find_left_card_obj(event.card_num)]
 			EventBus.queue_event(score_create, true)
 		var right_card := GameState.find_right_card(event.card_num, event.player_id)
@@ -23,5 +24,6 @@ func score(event :EventCardScored):
 			score_create.score_amount = right_card.value
 			score_create.visual_source = self
 			if event.player_id == -1:
+				score_create.visual_source = GameState.find_right_card_obj(event.card_num)
 				score_create.extra_trigger_anim = [event.card_object, GameState.find_right_card_obj(event.card_num)]
 			EventBus.queue_event(score_create, true)
