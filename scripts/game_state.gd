@@ -69,7 +69,9 @@ func save_this_round_hand() -> void:
 	if played_hand.size() <= 0:
 		return
 	var enemy_hand := EnemyHand.new()
-	enemy_hand.cards = card_obj_arr_to_cards(played_hand)
+	enemy_hand.cards = []
+	for card in card_obj_arr_to_cards(played_hand):
+		enemy_hand.cards.append(card.duplicate_card())
 	enemy_hand.round_num = round_num
 	played_hands.append(enemy_hand)
 	played_hand = []
