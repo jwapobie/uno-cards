@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=18 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://objects/health_display/add_display.gd" id="8_lp0fn"]
 [ext_resource type="Script" path="res://scenes/past_hands.gd" id="10_oblqp"]
 [ext_resource type="Script" path="res://scripts/utility/tooltipped.gd" id="10_xu2qm"]
+[ext_resource type="PackedScene" uid="uid://b3t44ki3xv33d" path="res://objects/review_screen/review_screen.tscn" id="16_enues"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -300,11 +301,14 @@ script = ExtResource("4_c7t3g")
 
 [node name="ItemsContainer" type="Control" parent="."]
 unique_name_in_owner = true
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_left = 37.0
 offset_top = 37.0
-offset_right = 900.0
+offset_right = -252.0
 offset_bottom = 312.0
+grow_horizontal = 2
 mouse_filter = 1
 script = ExtResource("6_bg8mw")
 
@@ -508,6 +512,10 @@ layout_mode = 2
 
 [node name="EventHandler" type="Node" parent="PastHands"]
 script = ExtResource("4_c7t3g")
+
+[node name="ReviewScreen" parent="." instance=ExtResource("16_enues")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Sort/SortColorButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["color"]]
 [connection signal="pressed" from="Sort/SortValueButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["value"]]

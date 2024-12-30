@@ -3,7 +3,11 @@ class_name EventHandPlayed
 
 enum Order {PRE_SCORING, PER_CARD, POST_HAND, POST_SCORING}
 
-var cards: Array[Card]
+var cards: Array[Card] = []:
+	set(arr):
+		cards = []
+		for card in arr:
+			cards.append(card.duplicate_card())
 var card_objs: Array[CardObject]
 var played_by_id :int
 var custom_tags :Dictionary

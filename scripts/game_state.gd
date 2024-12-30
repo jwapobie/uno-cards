@@ -8,6 +8,9 @@ class EnemyHand:
 const STARTING_HEALTH = 100
 
 var round_num: int = 0
+var max_round_score: int = 0
+var cumulative_round_score: int = 0
+
 var health: int = STARTING_HEALTH
 var played_hand :Array[CardObject] = []:
 	set(arr):
@@ -47,9 +50,13 @@ func find_right_card(idx : int, player_id: int) -> Card:
 func reset() -> void:
 	played_hand = []
 	played_hands = [create_first_round_enemy_hand()]
-	round_num = 1
+	round_num = 0
 	this_round_score = 0
 	health = STARTING_HEALTH
+
+func round_scoring_finished() -> void:
+	max_round_score = max(max_round_score, this_round_score)
+	cumulative_round_score += this_round_score
 
 func save_this_round_hand() -> void:
 	if played_hand.size() <= 0:

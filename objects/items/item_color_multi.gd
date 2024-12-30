@@ -2,7 +2,7 @@ extends Item
 
 # Called when the node enters the scene tree for the first time.
 func enable() -> void:
-	event_handler.register_handler(Event.Type.CARD_SCORED, score_pairs, EventCardScored.Order.POST_BASE_VALUE)
+	event_handler.register_handler(Event.Type.CARD_SCORED, score_pairs, EventCardScored.Order.POST_BASE_VALUE, index)
 
 
 func score_pairs(event :EventCardScored):

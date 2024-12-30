@@ -2,8 +2,8 @@ extends Item
 
 
 func enable() -> void:
-	event_handler.register_handler(Event.Type.CARD_PLAYABLE_CHECK, compare_69, EventCardPlayableCheck.Order.OVERRIDE)
-	event_handler.register_handler(Event.Type.CARD_SCORED, score, EventCardScored.Order.POST_BASE_VALUE)
+	event_handler.register_handler(Event.Type.CARD_PLAYABLE_CHECK, compare_69, EventCardPlayableCheck.Order.OVERRIDE, index)
+	event_handler.register_handler(Event.Type.CARD_SCORED, score, EventCardScored.Order.POST_BASE_VALUE, index)
 
 func compare_69(event :EventCardPlayableCheck):
 	if event.last_card:
