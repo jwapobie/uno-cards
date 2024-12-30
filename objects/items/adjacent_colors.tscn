@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlafq1d87bn6n"]
+[gd_scene load_steps=4 format=3 uid="uid://dlafq1d87bn6n"]
 
 [ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_7bpqc"]
 [ext_resource type="Script" path="res://objects/items/adjacent_colors.gd" id="2_6pesq"]
+[ext_resource type="Texture2D" uid="uid://dwedu1ta7xha8" path="res://icons/color_pair.png" id="3_vcphq"]
 
 [node name="AdjacentColors" instance=ExtResource("1_7bpqc")]
 script = ExtResource("2_6pesq")
@@ -9,4 +10,4 @@ item_name = "Color Match"
 description = "Get <+3> for each card pair sharing color."
 
 [node name="Sprite2D" parent="." index="2"]
-modulate = Color(2.163, 0.445, 0.914, 1)
+texture = ExtResource("3_vcphq")
