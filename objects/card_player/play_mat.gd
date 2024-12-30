@@ -15,6 +15,7 @@ var has_played := false
 @onready var event_handler: EventHandler = $EventHandler
 @onready var play_hand_button: Button = $PlayHandButton
 @onready var return_card_button: Button = $ReturnCardButton
+signal hand_played
 
 func _ready() -> void:
 	play_hand_button.pressed.connect(play_hand)
@@ -76,6 +77,7 @@ func play_hand() -> void:
 	for card_obj in current_cards:
 		var card := card_obj.attached_card
 		cards.append(card)
+	hand_played.emit()
 
 	var hand_event := EventHandPlayed.new()
 	hand_event.played_by_id = -1

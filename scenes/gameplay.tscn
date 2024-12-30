@@ -49,9 +49,21 @@ color = Color(0.15605, 0.103728, 0.168647, 1)
 [node name="Sort" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 436.0
-offset_right = 104.0
-offset_bottom = 502.0
+offset_top = 415.0
+offset_right = 155.0
+offset_bottom = 522.0
+
+[node name="Label" type="RichTextLabel" parent="Sort"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+bbcode_enabled = true
+text = "[center]Card rules [img=20x20 color=SANDY_BROWN]res://icons/question.png[/img][/center]"
+fit_content = true
+script = ExtResource("10_xu2qm")
+tooltip_content = "Play up to <*five> cards. Cards are played from <*left to right>.
+Cards have a <*Color> and a <*Value>, each played card has to match either the <*Value> or the <*Color> of previously played card. Some items may change that!
+During <*Card Scoring> each card's <*Value> is added to your score in order."
 
 [node name="SortColorButton" type="Button" parent="Sort"]
 layout_mode = 2
@@ -335,11 +347,13 @@ layout_mode = 2
 size_flags_horizontal = 10
 script = ExtResource("7_6u6od")
 
-[node name="Label" type="Label" parent="ScoreLayout/HealthDisplay"]
+[node name="Label" type="RichTextLabel" parent="ScoreLayout/HealthDisplay"]
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 1
-text = "Health"
-horizontal_alignment = 1
+bbcode_enabled = true
+text = "[center]Health [img=20x20 color=SANDY_BROWN]res://icons/question.png[/img][/center]"
+fit_content = true
 script = ExtResource("10_xu2qm")
 tooltip_content = "When your <*Health> reaches 0, the game will end. Increase your health by increasing your <*Round Score> and eliminating <*Enemy Hands>."
 
@@ -367,11 +381,12 @@ script = ExtResource("5_f3pnb")
 position = Vector2(75, 57)
 script = ExtResource("6_yy4x3")
 
-[node name="Label" type="Label" parent="ScoreLayout/ScoreDisplay"]
+[node name="Label" type="RichTextLabel" parent="ScoreLayout/ScoreDisplay"]
 layout_mode = 2
 mouse_filter = 1
-text = "Score"
-horizontal_alignment = 1
+bbcode_enabled = true
+text = "[center]Score [img=20x20 color=SANDY_BROWN]res://icons/question.png[/img][/center]"
+fit_content = true
 script = ExtResource("10_xu2qm")
 tooltip_content = "When you play a <*Hand>, it is added to your <*Round Score>. Your <*Round Score> heals you and can eliminate <*Enemy Hands>."
 
@@ -393,11 +408,12 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Label" type="Label" parent="ScoreLayout/Turn"]
+[node name="Label" type="RichTextLabel" parent="ScoreLayout/Turn"]
 layout_mode = 2
 mouse_filter = 1
-text = "Turn"
-horizontal_alignment = 1
+bbcode_enabled = true
+text = "[center]Turn [img=20x20 color=SANDY_BROWN]res://icons/question.png[/img][/center]"
+fit_content = true
 script = ExtResource("10_xu2qm")
 tooltip_content = "You must play 1 hand each <*Turn.> After each turn, you can choose an <*Item> which empowers your run. Reach turn 12, and maximize your score on the way!"
 
@@ -478,10 +494,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="PastHands/ScrollContainer/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="PastHands/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-text = "ENEMY HANDS"
+bbcode_enabled = true
+text = "[center]ENEMY HANDS [img=20x20 color=SANDY_BROWN]res://icons/question.png[/img][/center]"
+fit_content = true
 script = ExtResource("10_xu2qm")
 tooltip_content = "When you play a hand, it is saved as an <*Enemy Hand>. <*Enemy Hands> will grow stronger with your items and attack you in each future turn! If you play a hand which surpasses their value, you will <*Eliminate> the hand for good and steal their value as life."
 
@@ -536,3 +554,4 @@ show_percentage = false
 [connection signal="pressed" from="Sort/SortColorButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["color"]]
 [connection signal="pressed" from="Sort/SortValueButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["value"]]
 [connection signal="pressed" from="Button" to="." method="_draw_card"]
+[connection signal="hand_played" from="PlayMat" to="CardHandAnchor/CardHand" method="_on_play_mat_hand_played"]

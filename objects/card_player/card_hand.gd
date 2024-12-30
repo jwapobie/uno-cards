@@ -176,3 +176,8 @@ func _on_clear_hand_button_pressed() -> void:
 
 func _on_sort_value_button_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_play_mat_hand_played() -> void:
+	Gameplay.hand_played = true
+	playable_check()

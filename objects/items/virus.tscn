@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ujm16pdig8u0"]
+[gd_scene load_steps=3 format=3 uid="uid://bwdito55q6vt5"]
 
 [ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_elj4t"]
 [ext_resource type="Script" path="res://objects/items/virus.gd" id="2_hsfnp"]

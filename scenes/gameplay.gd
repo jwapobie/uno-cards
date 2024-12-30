@@ -13,11 +13,13 @@ const REVIEW_SCREEN = preload("res://objects/review_screen/review_screen.tscn")
 @onready var turn_count_label: Label = %TurnCountLabel
 var turn :int
 static var anim_time_multiplier = 1.0
+static var hand_played :bool = false
 
 var deck: CardDeck
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	hand_played = false
 	if !deck:
 		printerr("Deck not configured, using default deck. Launch gameplay from Game Loop scene")
 		deck = CardDeck.new_deck()

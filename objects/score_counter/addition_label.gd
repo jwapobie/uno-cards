@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func pop_off() -> void:
 	var tween = create_tween()
+	tween.tween_interval(0.2*Gameplay.anim_time_multiplier)
 	tween.tween_property(self, "position", Vector2.ZERO, 0.3*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.set_parallel()
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.3*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
