@@ -5,6 +5,7 @@ class_name Item
 @export var item_name :String
 @export_multiline var description :String
 @onready var sprite_2d: Sprite2D = $Sprite2D
+var index: int = 0
 
 func enable():
 	pass

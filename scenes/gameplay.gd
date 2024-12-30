@@ -7,6 +7,7 @@ class_name Gameplay
 @onready var upgrade_screen: UpgradeScreen = $UpgradeScreen
 @onready var items_container: Control = %ItemsContainer
 @onready var past_hands: PastHands = $PastHands
+@onready var review_screen: ReviewScreen = $ReviewScreen
 
 @onready var turn_count_label: Label = %TurnCountLabel
 var turn :int
@@ -27,9 +28,11 @@ func _ready() -> void:
 	draw_count(7)
 
 func set_items(items :Array[PackedScene]) -> void:
-	for item in items:
+	for i in items.size():
+		var item = items[i]
 		var new_item := item.instantiate() as Item
 		items_container.add_item(new_item)
+		new_item.index = i
 		new_item.enable()
 
 func draw_count(num: int) -> void:
@@ -43,8 +46,12 @@ func _draw_card() -> void:
 		card_hand.add_card(card)
 
 func _after_health_changes_finished(event: EventHealthChangesFinished) -> void:
+	GameState.round_scoring_finished()
 	await get_tree().create_timer(0.2).timeout
-	continue_button.visible = true
+	if GameState.health <= 0:
+		_end_game()
+	else:
+		continue_button.visible = true
 
 func _show_upgrades() -> void:
 	GameState.save_this_round_hand()
@@ -52,11 +59,5 @@ func _show_upgrades() -> void:
 	upgrade_screen.visible = true
 	upgrade_screen.show_upgrades()
 
-#func update_health() -> void:
-	#GameState.health += GameState.this_round_score
-	#score_goal_number.text = str(GameState.health)
-	#await get_tree().create_timer(1).timeout
-	#for enemy_hand in GameState.played_hands:
-		#GameState.health -= enemy_hand.score_current
-		#score_goal_number.text = str(GameState.health)
-		#await get_tree().create_timer(0.5).timeout
+func _end_game() -> void:
+	review_screen.visible = true

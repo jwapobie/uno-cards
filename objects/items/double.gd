@@ -1,7 +1,7 @@
 extends Item
 
 func enable() -> void:
-	event_handler.register_handler(Event.Type.HAND_PLAYED, set_values, EventHandPlayed.Order.PRE_SCORING, 10)
+	event_handler.register_handler(Event.Type.HAND_PLAYED, set_values, EventHandPlayed.Order.PRE_SCORING, index + 5000)
 
 func set_values(event :EventHandPlayed):
 	for card in event.cards:

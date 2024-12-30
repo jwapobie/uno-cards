@@ -2,8 +2,7 @@ extends Item
 
 
 func enable() -> void:
-	event_handler.register_handler(Event.Type.CARD_SCORED, score_again, EventCardScored.Order.POST_BASE_VALUE, 10)
-
+	event_handler.register_handler(Event.Type.CARD_SCORED, score_again, EventCardScored.Order.POST_BASE_VALUE, index)
 
 func score_again(event :EventCardScored):
 	if event.card.base_value == 1 and event.triggered == false:

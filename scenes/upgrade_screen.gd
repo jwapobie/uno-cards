@@ -79,6 +79,7 @@ func on_upgrade_selected(item: PackedScene) -> void:
 	EventBus.queue_event(event)
 
 func on_button_hover(item: Item) -> void:
+	item.index = 100
 	item.enable()
 	items_have_changed = true
 

@@ -1,0 +1,161 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3t44ki3xv33d"]
+
+[ext_resource type="Script" path="res://objects/review_screen/review_screen.gd" id="1_t1e3r"]
+[ext_resource type="FontFile" uid="uid://clkjryi7d3f4q" path="res://fonts/Cthulhu's Calling.otf" id="2_lj1hc"]
+[ext_resource type="FontFile" uid="uid://cks5i5h3v7xes" path="res://fonts/OpenSans-Medium.ttf" id="3_cvl1g"]
+[ext_resource type="StyleBox" uid="uid://bvws0ot8as4h" path="res://objects/review_screen/review_screen_field.tres" id="3_x2m0q"]
+[ext_resource type="FontFile" uid="uid://ddhnwno2t52hu" path="res://fonts/Tabloid Scuzzball.otf" id="4_4foom"]
+[ext_resource type="Script" path="res://objects/review_screen/round_num_label.gd" id="6_d6a30"]
+[ext_resource type="Script" path="res://objects/review_screen/max_round_score_label.gd" id="7_mj78r"]
+[ext_resource type="Script" path="res://objects/review_screen/cumulative_round_score_label.gd" id="8_6fihq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t5wt"]
+bg_color = Color(0.111996, 0.0994017, 0.110006, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.980727, 0.8343, 0.493666, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ReviewScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_t1e3r")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.615686)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -271.0
+offset_right = 290.0
+offset_bottom = 271.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8t5wt")
+
+[node name="MarginContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/MarginContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lj1hc")
+theme_override_font_sizes/font_size = 48
+text = "RUN COMPLETE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="Label1" type="Label" parent="Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_cvl1g")
+text = "Round Number"
+horizontal_alignment = 2
+
+[node name="Panel" type="PanelContainer" parent="Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_x2m0q")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/GridContainer/Panel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4foom")
+theme_override_font_sizes/font_size = 20
+text = "20"
+horizontal_alignment = 2
+script = ExtResource("6_d6a30")
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_cvl1g")
+text = "Highest Round Score"
+horizontal_alignment = 2
+
+[node name="Panel2" type="PanelContainer" parent="Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_x2m0q")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/GridContainer/Panel2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4foom")
+theme_override_font_sizes/font_size = 20
+text = "20"
+horizontal_alignment = 2
+script = ExtResource("7_mj78r")
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_cvl1g")
+text = "Cumulative Score"
+horizontal_alignment = 2
+
+[node name="Panel3" type="PanelContainer" parent="Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_x2m0q")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/GridContainer/Panel3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4foom")
+theme_override_font_sizes/font_size = 20
+text = "20"
+horizontal_alignment = 2
+script = ExtResource("8_6fihq")
+
+[node name="Control" type="Control" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Game"
