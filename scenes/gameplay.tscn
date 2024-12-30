@@ -365,8 +365,11 @@ script = ExtResource("6_yy4x3")
 
 [node name="Label" type="Label" parent="ScoreLayout/ScoreDisplay"]
 layout_mode = 2
+mouse_filter = 1
 text = "Score"
 horizontal_alignment = 1
+script = ExtResource("10_xu2qm")
+tooltip_content = "When you play a <*Hand>, it is added to your <*Round Score>. Your <*Round Score> heals you and can eliminate <*Enemy Hands>."
 
 [node name="ScoreNumber" type="Label" parent="ScoreLayout/ScoreDisplay"]
 layout_mode = 2
@@ -388,8 +391,11 @@ size_flags_horizontal = 2
 
 [node name="Label" type="Label" parent="ScoreLayout/Turn"]
 layout_mode = 2
+mouse_filter = 1
 text = "Turn"
 horizontal_alignment = 1
+script = ExtResource("10_xu2qm")
+tooltip_content = "You must play 1 hand each <*Turn.> After each turn, you can choose an <*Item> which empowers your run. Reach turn 12, and maximize your score on the way!"
 
 [node name="TurnCountLabel" type="Label" parent="ScoreLayout/Turn"]
 unique_name_in_owner = true
