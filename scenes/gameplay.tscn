@@ -332,6 +332,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 76.0
+offset_right = 210.0
+offset_bottom = 173.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.157, 0.102, 0.169, 0.6)
+
 [node name="ScoreLayout" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -371,6 +384,9 @@ script = ExtResource("8_lp0fn")
 
 [node name="EventHandler" type="Node" parent="ScoreLayout/HealthDisplay"]
 script = ExtResource("4_c7t3g")
+
+[node name="ColorRect" type="ColorRect" parent="ScoreLayout/HealthDisplay"]
+layout_mode = 2
 
 [node name="ScoreDisplay" type="VBoxContainer" parent="ScoreLayout"]
 custom_minimum_size = Vector2(150, 0)
