@@ -5,6 +5,7 @@ var last_label : Control
 func add_score(score :int, score_emitter: Node):
 	var new_label = ADDITION_LABEL.instantiate()
 	new_label.set_text("+%s" % score)
+	new_label.set_color(Color.LIGHT_SKY_BLUE)
 	new_label.pitch_scale_modifier = get_pitch_level(score+8, 16)
 	add_child(new_label)
 	var pos := global_position
@@ -20,6 +21,7 @@ func add_score(score :int, score_emitter: Node):
 func add_score_multi(multiplier :float, score_emitter: Node):
 	var new_label = ADDITION_LABEL.instantiate()
 	new_label.set_text("x%s" % multiplier)
+	new_label.set_color(Color.TOMATO)
 	new_label.pitch_scale_modifier = get_pitch_level(multiplier, 1.5)
 	add_child(new_label)
 	var pos := global_position
