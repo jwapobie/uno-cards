@@ -10,6 +10,7 @@ var play_slots := 5
 	$HBoxContainer/CardSpace5/Control
 ]
 var current_cards: Array[CardObject]
+var has_played := false
 
 @onready var event_handler: EventHandler = $EventHandler
 @onready var play_hand_button: Button = $PlayHandButton
@@ -27,7 +28,7 @@ func _ready() -> void:
 
 func on_card_selected(event: EventCardSelected) -> void:
 	var card_obj := event.card
-	if !card_obj.is_playable:
+	if !card_obj.is_playable or has_played:
 		event.is_canceled = true
 		return
 	if current_cards.size() >= card_spaces.size():
@@ -84,6 +85,7 @@ func play_hand() -> void:
 	EventBus.queue_event(hand_event)
 	return_card_button.visible = false
 	play_hand_button.visible = false
+	has_played = true
 
 func on_hand_play(event: EventHandPlayed) -> void:
 	for i in range(event.cards.size()):
