@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="uno-cards"
+config/name="unhando"
+config/description="Card game"
 run/main_scene="res://scenes/game_controller.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
