@@ -21,6 +21,7 @@ var played_hand :Array[CardObject] = []:
 var this_round_score: int = 0
 var played_hand_cards: Array[Card] = []
 var played_hands: Array[EnemyHand] = []
+var upgrades_block :Array[int]
 
 signal main_menu_requested
 signal new_run_requested
@@ -58,6 +59,7 @@ func reset() -> void:
 	round_num = 0
 	this_round_score = 0
 	health = STARTING_HEALTH
+	upgrades_block = []
 
 func round_scoring_finished() -> void:
 	max_round_score = max(max_round_score, this_round_score)

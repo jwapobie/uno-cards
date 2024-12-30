@@ -7,3 +7,4 @@
 script = ExtResource("2_3egy6")
 item_name = "heartheartheart"
 description = "Red cards can be played together with cards of +1 or -1 value."
+is_unique = true

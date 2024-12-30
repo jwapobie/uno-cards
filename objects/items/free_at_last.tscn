@@ -7,3 +7,4 @@
 script = ExtResource("2_1v7du")
 item_name = "Free At Last"
 description = "<*Any card> can be played in the <*5th> slot."
+is_unique = true

@@ -21,6 +21,8 @@ var upgrade_prefabs :Array[PackedScene] = [
 	preload("res://objects/items/pure_extract.tscn"),
 	]
 
+var upgrades_block :Array[int] = []
+
 @onready var bg: ColorRect = $BG
 @onready var panel: Panel = $Panel
 @onready var upgrade_buttons: VBoxContainer = $Panel/UpgradeButtons
@@ -33,7 +35,8 @@ var items_have_changed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	show_upgrades()
+	pass
+	#show_upgrades()
 
 func _process(_delta: float) -> void:
 	if items_have_changed:
@@ -52,6 +55,9 @@ func animate_screen_appear() -> void:
 func show_upgrades() -> void:
 	animate_screen_appear()
 	var upgrade_choices :Array[PackedScene] = upgrade_prefabs.duplicate()
+	for i in range(upgrade_choices.size() - 1, -1, -1):
+		if GameState.upgrades_block.has(i):
+			upgrade_choices.remove_at(i)
 	var picked :Array[PackedScene] = []
 	for i in num_upgrades:
 		upgrade_choices.shuffle()
@@ -66,7 +72,7 @@ func show_upgrades() -> void:
 		var upgrade_item :Item = item.instantiate()
 		var new_button = ITEM_SELECTION.instantiate()
 		new_button.custom_minimum_size = Vector2(0, 160)
-		new_button.pressed.connect(on_upgrade_selected.bind(item))
+		new_button.pressed.connect(on_upgrade_selected.bind(item, upgrade_item.is_unique))
 		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))
 		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item))
 		new_button.add_child(upgrade_item)
@@ -74,7 +80,7 @@ func show_upgrades() -> void:
 		upgrade_buttons.add_child(new_button)
 		new_button.set_item(upgrade_item)
 
-func on_upgrade_selected(item: PackedScene) -> void:
+func on_upgrade_selected(item: PackedScene, is_unique :bool) -> void:
 	for child in upgrade_buttons.get_children():
 		var button := child as Button
 		if button:
@@ -82,6 +88,9 @@ func on_upgrade_selected(item: PackedScene) -> void:
 	var event := EventUpgradeSelected.new()
 	event.upgrade_item = item
 	EventBus.queue_event(event)
+	if is_unique:
+		GameState.upgrades_block.append(upgrade_prefabs.find(item))
+
 
 func on_button_hover(item: Item) -> void:
 	item.index = 100
