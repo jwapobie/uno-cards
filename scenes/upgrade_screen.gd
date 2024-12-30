@@ -19,6 +19,9 @@ var upgrade_prefabs :Array[PackedScene] = [
 	preload("res://objects/items/snowball.tscn"),
 	preload("res://objects/items/heart_heart.tscn"),
 	preload("res://objects/items/pure_extract.tscn"),
+	preload("res://objects/items/step_up.tscn"),
+	preload("res://objects/items/tumbling_down.tscn"),
+	preload("res://objects/items/blank_slate.tscn")
 	]
 
 var upgrades_block :Array[int] = []

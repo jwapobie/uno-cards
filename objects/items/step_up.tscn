@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2gmypc0v5w38"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_p7mka"]
+[ext_resource type="Script" path="res://objects/items/step_up.gd" id="2_ubnv6"]
+[ext_resource type="Texture2D" uid="uid://bwgggmjgv4sty" path="res://icons/step_up.png" id="3_3kpt6"]
+
+[node name="StepUp" instance=ExtResource("1_p7mka")]
+script = ExtResource("2_ubnv6")
+item_name = "Step Up"
+description = "<x2> when all cards in hand form growing sequence. Needs at least 3 cards played.
+Example: 1 2 2 4 9"
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_3kpt6")

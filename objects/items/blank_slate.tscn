@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://drqmgjlk77627"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_fuxdt"]
+[ext_resource type="Script" path="res://objects/items/blank_slate.gd" id="2_g0ps1"]
+[ext_resource type="Texture2D" uid="uid://bssm3o6bydd5a" path="res://icons/blank_slate.png" id="3_02fi0"]
+
+[node name="BlankSlate" instance=ExtResource("1_fuxdt")]
+script = ExtResource("2_g0ps1")
+item_name = "Blank Slate"
+description = "Sets card values to their base value and increases each card value by 1.
+"
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_02fi0")

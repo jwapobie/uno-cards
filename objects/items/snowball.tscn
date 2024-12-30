@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://rtntfb4byjln"]
+[gd_scene load_steps=4 format=3 uid="uid://rtntfb4byjln"]
 
 [ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_ac0s7"]
 [ext_resource type="Script" path="res://objects/items/snowball.gd" id="2_kvnb5"]
+[ext_resource type="Texture2D" uid="uid://doqccn5rxn7g" path="res://icons/8ball.png" id="3_rlkeg"]
 
 [node name="Snowball" instance=ExtResource("1_ac0s7")]
 script = ExtResource("2_kvnb5")
 item_name = "Snow-8-ball Effect"
 description = "Adds 8 to <*scoring value> of each card played after <c8>"
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_rlkeg")
