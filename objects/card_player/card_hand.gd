@@ -108,7 +108,7 @@ func get_cards() -> Array[Card]:
 	return result
 
 func deselect_picked_card():
-	if currently_picked and abs(currently_picked.position.y) < 240:
+	if currently_picked and abs(currently_picked.position.y) < 120:
 		$Cards.move_child(currently_picked, get_card_position(currently_picked.position.x))
 	elif currently_picked:
 		var card_selected_event := EventCardSelected.new()
