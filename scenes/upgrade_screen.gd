@@ -2,18 +2,18 @@ extends Control
 class_name UpgradeScreen
 
 var upgrade_prefabs :Array[PackedScene] = [
-	#preload("res://objects/items/item_color_multi.tscn"), 
-	#preload("res://objects/items/adjacent_colors.tscn"), 
-	#preload("res://objects/items/extra_score_1.tscn"), 
-	#preload("res://objects/items/item_69.tscn"), 
-	#preload("res://objects/items/item_pocky.tscn"),
-	#preload("res://objects/items/item_5_hand_multi.tscn"),
-	#preload("res://objects/items/item_sequencer.tscn"),
-	#preload("res://objects/items/empty_spaces.tscn"),
+	preload("res://objects/items/item_color_multi.tscn"), 
+	preload("res://objects/items/adjacent_colors.tscn"), 
+	preload("res://objects/items/extra_score_1.tscn"), 
+	preload("res://objects/items/item_69.tscn"), 
+	preload("res://objects/items/item_pocky.tscn"),
+	preload("res://objects/items/item_5_hand_multi.tscn"),
+	preload("res://objects/items/item_sequencer.tscn"),
+	preload("res://objects/items/empty_spaces.tscn"),
 	preload("res://objects/items/full_reverse.tscn"),
-	#preload("res://objects/items/flatline.tscn"),
+	preload("res://objects/items/flatline.tscn"),
 	preload("res://objects/items/high_stakes.tscn"),
-	#preload("res://objects/items/double.tscn"),
+	preload("res://objects/items/double.tscn"),
 	]
 
 @onready var bg: ColorRect = $BG
