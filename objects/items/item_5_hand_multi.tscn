@@ -6,6 +6,7 @@
 
 [node name="Item5HandMulti" instance=ExtResource("1_1r631")]
 script = ExtResource("2_et6lt")
+item_name = "Everyone's Here"
 description = "<x1.1> when <*full hand> was played."
 
 [node name="Sprite2D" parent="." index="2"]
