@@ -14,6 +14,8 @@ var upgrade_prefabs :Array[PackedScene] = [
 	preload("res://objects/items/flatline.tscn"),
 	preload("res://objects/items/high_stakes.tscn"),
 	preload("res://objects/items/double.tscn"),
+	preload("res://objects/items/free_at_last.tscn"),
+	preload("res://objects/items/virus.tscn"),
 	]
 
 @onready var bg: ColorRect = $BG

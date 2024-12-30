@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwdito55q6vt5"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_elj4t"]
+[ext_resource type="Script" path="res://objects/items/virus.gd" id="2_hsfnp"]
+
+[node name="Virus" instance=ExtResource("1_elj4t")]
+script = ExtResource("2_hsfnp")
+item_name = "Virus"
+description = "<*When scoring:> When non-green card adjancent to a green card is scored, gain extra score of the adjancent green card. tl;dr;"
+
+[node name="Sprite2D" parent="." index="2"]
+modulate = Color(0.426395, 1, 0.245578, 1)

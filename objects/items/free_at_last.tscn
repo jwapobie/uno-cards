@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cplby7b6ddp5i"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_xtepj"]
+[ext_resource type="Script" path="res://free_at_last.gd" id="2_1v7du"]
+
+[node name="FreeAtLast" instance=ExtResource("1_xtepj")]
+script = ExtResource("2_1v7du")
+item_name = "Free At Last"
+description = "<*Any card> can be played in the <*5th> slot."

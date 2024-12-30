@@ -15,14 +15,17 @@ var card_counter :int = 0
 func _ready() -> void:
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_selected_card)
 	event_handler.register_handler(Event.Type.CARD_RETURNED, on_card_returned)
+	card_counter = 0
 
 var last_selected_card :Card
 func on_selected_card(event :EventCardSelected):
 	last_selected_card = event.card.attached_card
+	card_counter += 1
 	playable_check()
 
 func on_card_returned(event: EventCardReturned) -> void:
 	last_selected_card = event.new_last_card
+	card_counter -= 1
 	readd_card_obj(event.card)
 
 func playable_check():
@@ -30,6 +33,7 @@ func playable_check():
 		var playable_check = EventCardPlayableCheck.new()
 		playable_check.card = card
 		playable_check.last_card = last_selected_card
+		playable_check.current_slot = card_counter
 		if last_selected_card:
 			if last_selected_card.color == card.color:
 				playable_check.is_playable = true

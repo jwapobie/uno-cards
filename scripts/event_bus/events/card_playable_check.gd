@@ -5,6 +5,7 @@ enum Order {STANDARD_CHECK, OVERRIDE, PLAYABLE_RESOLVED}
 
 #var card_id :int
 var last_card :Card
+var current_slot :int
 var card :Card
 	#set(value):
 		#card = value
