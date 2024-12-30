@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://1dbvsyiqxhb5"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_n850t"]
+[ext_resource type="Script" path="res://objects/items/heart_heart.gd" id="2_3egy6"]
+
+[node name="HeartHeart" instance=ExtResource("1_n850t")]
+script = ExtResource("2_3egy6")
+item_name = "heartheartheart"
+description = "Red cards can be played together with cards of +1 or -1 value."

@@ -16,6 +16,9 @@ var upgrade_prefabs :Array[PackedScene] = [
 	preload("res://objects/items/double.tscn"),
 	preload("res://objects/items/free_at_last.tscn"),
 	preload("res://objects/items/virus.tscn"),
+	preload("res://objects/items/snowball.tscn"),
+	preload("res://objects/items/heart_heart.tscn"),
+	preload("res://objects/items/pure_extract.tscn"),
 	]
 
 @onready var bg: ColorRect = $BG
@@ -62,7 +65,7 @@ func show_upgrades() -> void:
 	for item in picked:
 		var upgrade_item :Item = item.instantiate()
 		var new_button = ITEM_SELECTION.instantiate()
-		new_button.custom_minimum_size = Vector2(0, 100)
+		new_button.custom_minimum_size = Vector2(0, 160)
 		new_button.pressed.connect(on_upgrade_selected.bind(item))
 		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))
 		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item))

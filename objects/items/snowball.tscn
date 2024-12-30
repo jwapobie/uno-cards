@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://rtntfb4byjln"]
+
+[ext_resource type="PackedScene" uid="uid://d20p7pyt0d6it" path="res://objects/items/item_blank.tscn" id="1_ac0s7"]
+[ext_resource type="Script" path="res://objects/items/snowball.gd" id="2_kvnb5"]
+
+[node name="Snowball" instance=ExtResource("1_ac0s7")]
+script = ExtResource("2_kvnb5")
+item_name = "Snow-8-ball Effect"
+description = "Adds 8 to <*scoring value> of each card played after <c8>"

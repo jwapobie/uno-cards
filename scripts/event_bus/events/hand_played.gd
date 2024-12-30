@@ -1,7 +1,7 @@
 extends Event
 class_name EventHandPlayed
 
-enum Order {PRE_SCORING, PER_CARD, POST_HAND, POST_SCORING}
+enum Order {PRE_SCORING, SCORING_MODIFIERS, PER_CARD, POST_HAND, POST_SCORING}
 
 var cards: Array[Card] = []:
 	set(arr):
