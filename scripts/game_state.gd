@@ -11,6 +11,8 @@ var round_num: int = 0
 var max_round_score: int = 0
 var cumulative_round_score: int = 0
 
+var goal_rounds: int = 12
+
 var health: int = STARTING_HEALTH
 var played_hand :Array[CardObject] = []:
 	set(arr):
@@ -19,6 +21,9 @@ var played_hand :Array[CardObject] = []:
 var this_round_score: int = 0
 var played_hand_cards: Array[Card] = []
 var played_hands: Array[EnemyHand] = []
+
+signal main_menu_requested
+signal new_run_requested
 
 func find_left_card_obj(idx: int) -> CardObject:
 	if idx >= 1:

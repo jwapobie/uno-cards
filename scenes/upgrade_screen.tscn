@@ -46,12 +46,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.615686)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(578, -20)
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control"]
+position = Vector2(22, -20)
 amount = 1024
 process_material = SubResource("ParticleProcessMaterial_k11sl")
 lifetime = 10.0
 preprocess = 10.0
+local_coords = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

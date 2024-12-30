@@ -1,13 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3t44ki3xv33d"]
+[gd_scene load_steps=14 format=3 uid="uid://b3t44ki3xv33d"]
 
 [ext_resource type="Script" path="res://objects/review_screen/review_screen.gd" id="1_t1e3r"]
 [ext_resource type="FontFile" uid="uid://clkjryi7d3f4q" path="res://fonts/Cthulhu's Calling.otf" id="2_lj1hc"]
-[ext_resource type="FontFile" uid="uid://cks5i5h3v7xes" path="res://fonts/OpenSans-Medium.ttf" id="3_cvl1g"]
 [ext_resource type="StyleBox" uid="uid://bvws0ot8as4h" path="res://objects/review_screen/review_screen_field.tres" id="3_x2m0q"]
+[ext_resource type="FontFile" uid="uid://byc1ouwicguue" path="res://fonts/OpenSans-Bold.ttf" id="3_xin4d"]
 [ext_resource type="FontFile" uid="uid://ddhnwno2t52hu" path="res://fonts/Tabloid Scuzzball.otf" id="4_4foom"]
 [ext_resource type="Script" path="res://objects/review_screen/round_num_label.gd" id="6_d6a30"]
 [ext_resource type="Script" path="res://objects/review_screen/max_round_score_label.gd" id="7_mj78r"]
 [ext_resource type="Script" path="res://objects/review_screen/cumulative_round_score_label.gd" id="8_6fihq"]
+[ext_resource type="Script" path="res://objects/exit_run_button.gd" id="9_kfy6g"]
+[ext_resource type="Script" path="res://objects/review_screen/restart_button.gd" id="10_fln3s"]
+[ext_resource type="Script" path="res://scripts/utility/sound_button.gd" id="11_p7bic"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_56ptt"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(800, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.029
+turbulence_influence_max = 0.029
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t5wt"]
 bg_color = Color(0.111996, 0.0994017, 0.110006, 1)
@@ -40,6 +56,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.615686)
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control"]
+position = Vector2(22, -20)
+amount = 1024
+process_material = SubResource("ParticleProcessMaterial_56ptt")
+lifetime = 10.0
+preprocess = 10.0
+local_coords = true
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -66,9 +100,10 @@ offset_right = -9.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 12
 
-[node name="Label" type="Label" parent="Panel/MarginContainer"]
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lj1hc")
@@ -76,6 +111,9 @@ theme_override_font_sizes/font_size = 48
 text = "RUN COMPLETE"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer"]
+layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
@@ -86,7 +124,8 @@ columns = 2
 [node name="Label1" type="Label" parent="Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_cvl1g")
+theme_override_fonts/font = ExtResource("3_xin4d")
+theme_override_font_sizes/font_size = 20
 text = "Round Number"
 horizontal_alignment = 2
 
@@ -98,7 +137,7 @@ theme_override_styles/panel = ExtResource("3_x2m0q")
 [node name="Label" type="Label" parent="Panel/MarginContainer/GridContainer/Panel"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_4foom")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "20"
 horizontal_alignment = 2
 script = ExtResource("6_d6a30")
@@ -106,7 +145,8 @@ script = ExtResource("6_d6a30")
 [node name="Label2" type="Label" parent="Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_cvl1g")
+theme_override_fonts/font = ExtResource("3_xin4d")
+theme_override_font_sizes/font_size = 20
 text = "Highest Round Score"
 horizontal_alignment = 2
 
@@ -118,7 +158,7 @@ theme_override_styles/panel = ExtResource("3_x2m0q")
 [node name="Label" type="Label" parent="Panel/MarginContainer/GridContainer/Panel2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_4foom")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "20"
 horizontal_alignment = 2
 script = ExtResource("7_mj78r")
@@ -126,7 +166,8 @@ script = ExtResource("7_mj78r")
 [node name="Label3" type="Label" parent="Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_cvl1g")
+theme_override_fonts/font = ExtResource("3_xin4d")
+theme_override_font_sizes/font_size = 20
 text = "Cumulative Score"
 horizontal_alignment = 2
 
@@ -138,7 +179,7 @@ theme_override_styles/panel = ExtResource("3_x2m0q")
 [node name="Label" type="Label" parent="Panel/MarginContainer/GridContainer/Panel3"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_4foom")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "20"
 horizontal_alignment = 2
 script = ExtResource("8_6fihq")
@@ -147,15 +188,29 @@ script = ExtResource("8_6fihq")
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer"]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Exit"
+script = ExtResource("9_kfy6g")
 
-[node name="Button2" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+[node name="RestartButton" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "New Game"
+script = ExtResource("10_fln3s")
+
+[node name="CloseButton" type="Button" parent="Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Continue (Endless)"
+script = ExtResource("11_p7bic")
