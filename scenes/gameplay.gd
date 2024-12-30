@@ -51,6 +51,8 @@ func _after_health_changes_finished(event: EventHealthChangesFinished) -> void:
 	if GameState.health <= 0:
 		_end_game()
 	else:
+		if GameState.round_num == GameState.goal_rounds:
+			review_screen.show_run_complete_screen()
 		continue_button.visible = true
 
 func _show_upgrades() -> void:
@@ -60,4 +62,4 @@ func _show_upgrades() -> void:
 	upgrade_screen.show_upgrades()
 
 func _end_game() -> void:
-	review_screen.visible = true
+	review_screen.show_game_over_screen()
