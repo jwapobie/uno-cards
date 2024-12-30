@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3t44ki3xv33d"]
+[gd_scene load_steps=13 format=3 uid="uid://b3t44ki3xv33d"]
 
 [ext_resource type="Script" path="res://objects/review_screen/review_screen.gd" id="1_t1e3r"]
 [ext_resource type="FontFile" uid="uid://clkjryi7d3f4q" path="res://fonts/Cthulhu's Calling.otf" id="2_lj1hc"]
@@ -10,6 +10,19 @@
 [ext_resource type="Script" path="res://objects/review_screen/cumulative_round_score_label.gd" id="8_6fihq"]
 [ext_resource type="Script" path="res://objects/exit_run_button.gd" id="9_kfy6g"]
 [ext_resource type="Script" path="res://objects/review_screen/restart_button.gd" id="10_fln3s"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_56ptt"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(800, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 98, 0)
+scale_max = 2.0
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_speed_random = 0.1
+turbulence_influence_min = 0.029
+turbulence_influence_max = 0.029
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8t5wt"]
 bg_color = Color(0.111996, 0.0994017, 0.110006, 1)
@@ -41,6 +54,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.615686)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control"]
+position = Vector2(22, -20)
+amount = 1024
+process_material = SubResource("ParticleProcessMaterial_56ptt")
+lifetime = 10.0
+preprocess = 10.0
+local_coords = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

@@ -1,4 +1,4 @@
 extends Button
 
 func _pressed() -> void:
-	GameState.exit_game_pressed.emit()
+	GameState.main_menu_requested.emit()

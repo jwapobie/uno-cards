@@ -1,13 +1,14 @@
 extends Control
 class_name Gameplay
 
+const REVIEW_SCREEN = preload("res://objects/review_screen/review_screen.tscn")
+
 @onready var event_handler: EventHandler = $EventHandler
 @onready var continue_button: Button = $ContinueButton
 @onready var card_hand: CardHand = %CardHand
 @onready var upgrade_screen: UpgradeScreen = $UpgradeScreen
 @onready var items_container: Control = %ItemsContainer
 @onready var past_hands: PastHands = $PastHands
-@onready var review_screen: ReviewScreen = $ReviewScreen
 
 @onready var turn_count_label: Label = %TurnCountLabel
 var turn :int
@@ -52,6 +53,8 @@ func _after_health_changes_finished(event: EventHealthChangesFinished) -> void:
 		_end_game()
 	else:
 		if GameState.round_num == GameState.goal_rounds:
+			var review_screen := REVIEW_SCREEN.instantiate()
+			add_child(review_screen)
 			review_screen.show_run_complete_screen()
 		continue_button.visible = true
 
@@ -62,4 +65,6 @@ func _show_upgrades() -> void:
 	upgrade_screen.show_upgrades()
 
 func _end_game() -> void:
+	var review_screen := REVIEW_SCREEN.instantiate()
+	add_child(review_screen)
 	review_screen.show_game_over_screen()

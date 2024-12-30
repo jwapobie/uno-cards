@@ -45,3 +45,4 @@ func animate_screen_disappear() -> void:
 	tween.tween_property(panel, 'position', Vector2(panel.position.x, panel.position.y+1000), 0.2)
 	await tween.finished
 	visible = false
+	queue_free()

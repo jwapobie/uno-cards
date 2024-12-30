@@ -22,8 +22,8 @@ var this_round_score: int = 0
 var played_hand_cards: Array[Card] = []
 var played_hands: Array[EnemyHand] = []
 
-signal exit_game_pressed
-signal restart_run_pressed
+signal main_menu_requested
+signal new_run_requested
 
 func find_left_card_obj(idx: int) -> CardObject:
 	if idx >= 1:
