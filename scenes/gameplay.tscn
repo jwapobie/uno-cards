@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=19 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scenes/past_hands.gd" id="10_oblqp"]
 [ext_resource type="Script" path="res://scripts/utility/tooltipped.gd" id="10_xu2qm"]
 [ext_resource type="Script" path="res://scenes/quit_run_button.gd" id="16_3gbey"]
+[ext_resource type="Script" path="res://objects/volume_slider.gd" id="17_pimmb"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -561,11 +562,47 @@ text = "Quit"
 script = ExtResource("16_3gbey")
 
 [node name="ProgressBar" type="ProgressBar" parent="QuitButton"]
-layout_mode = 0
-offset_top = -15.0
-offset_right = 69.0
-offset_bottom = -6.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -13.0
+offset_bottom = -5.0
+grow_horizontal = 2
 show_percentage = false
+
+[node name="MusicSlider" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -116.0
+offset_right = 139.0
+offset_bottom = -76.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="MusicSlider"]
+layout_mode = 2
+offset_top = 11.0
+offset_right = 22.0
+offset_bottom = 33.3333
+text = "🎵"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="MusicSlider"]
+layout_mode = 2
+offset_left = 23.0
+offset_right = 122.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+script = ExtResource("17_pimmb")
+audio_bus_name = "Music"
 
 [connection signal="pressed" from="Sort/SortColorButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["color"]]
 [connection signal="pressed" from="Sort/SortValueButton" to="CardHandAnchor/CardHand" method="sort_hand" binds= ["value"]]

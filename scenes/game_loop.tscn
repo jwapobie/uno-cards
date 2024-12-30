@@ -18,6 +18,7 @@ script = ExtResource("1_mnbf5")
 stream = ExtResource("2_gp3ah")
 volume_db = -6.0
 autoplay = true
+bus = &"Music"
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("2_0xk4t")
