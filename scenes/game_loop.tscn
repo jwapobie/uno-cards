@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn37juey6gqe5"]
+[gd_scene load_steps=4 format=3 uid="uid://cn37juey6gqe5"]
 
 [ext_resource type="Script" path="res://scenes/game_loop.gd" id="1_mnbf5"]
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="2_0xk4t"]
+[ext_resource type="AudioStream" uid="uid://co17glcr4bds7" path="res://audio/music1.wav" id="2_gp3ah"]
 
 [node name="GameLoop" type="Control"]
 layout_mode = 3
@@ -12,6 +13,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_mnbf5")
+
+[node name="Music1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gp3ah")
+volume_db = -6.0
+autoplay = true
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("2_0xk4t")
