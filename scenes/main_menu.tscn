@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt087mwc204t2"]
+[gd_scene load_steps=5 format=3 uid="uid://bt087mwc204t2"]
 
 [ext_resource type="Texture2D" uid="uid://b6gppx3mdxwik" path="res://icons/pocky.png" id="2_kunl1"]
+[ext_resource type="Script" path="res://objects/quit_button.gd" id="2_lwwgd"]
 [ext_resource type="FontFile" uid="uid://clkjryi7d3f4q" path="res://fonts/Cthulhu's Calling.otf" id="2_ytlxq"]
 [ext_resource type="Script" path="res://objects/review_screen/restart_button.gd" id="3_2c2ra"]
 
@@ -57,10 +58,11 @@ size_flags_vertical = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Exit Game"
+script = ExtResource("2_lwwgd")
 
 [node name="PlayGameButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

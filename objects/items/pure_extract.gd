@@ -15,10 +15,10 @@ func set_multiplier(event :EventHandPlayed):
 	var new_score := EventScoreMultiCreated.new()
 	new_score.player_id = event.played_by_id
 	match count:
-		1: new_score.multiplier = 3.0
-		2: new_score.multiplier = 1.5
-		3: new_score.multiplier = 0.75
-		4: new_score.multiplier = 0.5
+		1: new_score.multiplier = 2.0
+		2: new_score.multiplier = 1.2
+		3: new_score.multiplier = 0.8
+		4: new_score.multiplier = 0.75
 	new_score.visual_source = self
 	if event.played_by_id == -1:
 		var cards :Array[Node] = []
