@@ -28,6 +28,7 @@ var upgrades_block :Array[int] = []
 
 @onready var bg: ColorRect = $BG
 @onready var panel: Panel = $Panel
+@onready var gpu_particles_2d: GPUParticles2D = $Control/GPUParticles2D
 @onready var upgrade_buttons: VBoxContainer = $Panel/UpgradeButtons
 const ITEM_SELECTION = preload("res://objects/tooltip/item_selection.tscn")
 
@@ -38,6 +39,8 @@ var items_have_changed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if OS.has_feature("no_particles"):
+		gpu_particles_2d.visible = false
 	pass
 	#show_upgrades()
 

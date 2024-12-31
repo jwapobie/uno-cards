@@ -1,5 +1,9 @@
 extends Item
 
+func _ready() -> void:
+	if OS.has_feature("web"):
+		description = description.replace("→", "to")
+
 func enable() -> void:
 	event_handler.register_handler(Event.Type.HAND_PLAYED, set_values, EventHandPlayed.Order.PRE_SCORING, index)
 
