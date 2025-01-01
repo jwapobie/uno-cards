@@ -24,6 +24,7 @@ func _ready() -> void:
 	return_card_button.disabled = true
 	event_handler.register_handler(Event.Type.CARD_SELECTED, on_card_selected)
 	event_handler.register_handler(Event.Type.HAND_PLAYED, on_hand_play, EventHandPlayed.Order.PER_CARD, 10)
+	event_handler.register_handler(Event.Type.HAND_PLAYED, set_scoring_overrides, EventHandPlayed.Order.SCORING_MODIFIERS, -10)
 	event_handler.register_handler(Event.Type.CARD_SCORED, on_card_scored, EventCardScored.Order.BASE_VALUE)
 
 
@@ -101,6 +102,15 @@ func on_hand_play(event: EventHandPlayed) -> void:
 	var finish_event := EventScoringFinished.new()
 	finish_event.player_id = event.played_by_id
 	EventBus.queue_event(finish_event, false) # After all the scoring triggers finish
+
+func set_scoring_overrides(event: EventHandPlayed) -> void:
+	if event.played_by_id != -1:
+		return
+	for card in event.card_objs:
+		event.is_blocking = true
+		await card.card_visual.value_override(card.attached_card.value)
+		
+	event.set_resolved()
 
 func on_card_scored(event: EventCardScored) -> void:
 	var score_create := EventScoreCreated.new()
