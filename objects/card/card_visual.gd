@@ -41,14 +41,14 @@ func value_override(new_val :int):
 		slash_3.visible = false
 
 func animate_new_val():
-	number_2_new.scale = Vector2.ONE*3
+	number_2_new.scale = Vector2.ONE*2
 	var tween = create_tween()
 	tween.tween_property(number_2_new, "scale", Vector2.ONE, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	await tween.finished
 
 func animate_slash():
 	slash_2.visible = true
-	number_2_new.scale = Vector2.ONE*3
+	number_2_new.scale = Vector2.ONE*2
 	var tween = create_tween()
 	tween.tween_property(slash_2, "size:x", 40, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel()
