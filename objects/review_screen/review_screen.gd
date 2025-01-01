@@ -7,12 +7,15 @@ class_name ReviewScreen
 @onready var exit_button: Button = %ExitButton
 @onready var restart_button: Button = %RestartButton
 @onready var close_button: Button = %CloseButton
+@onready var gpu_particles_2d: GPUParticles2D = $Control/GPUParticles2D
 
 
 var is_continue := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if OS.has_feature("no_particles"):
+		gpu_particles_2d.visible = false
 	close_button.pressed.connect(animate_screen_disappear)
 
 func show_game_over_screen() -> void:
