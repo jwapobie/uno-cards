@@ -28,7 +28,10 @@ func value_override(new_val :int):
 	if new_val != card.base_value:
 		number_2_new.text = str(new_val)
 		number_3_new.text = str(new_val)
-		await animate_slash()
+		if !slash_2.visible:
+			await animate_slash()
+		else:
+			await animate_new_val()
 		#slash_3.visible = true
 	else:
 		number_2.modulate = Color.WHITE
@@ -36,6 +39,12 @@ func value_override(new_val :int):
 		number_3_new.visible = false
 		slash_2.visible = false
 		slash_3.visible = false
+
+func animate_new_val():
+	number_2_new.scale = Vector2.ONE*3
+	var tween = create_tween()
+	tween.tween_property(number_2_new, "scale", Vector2.ONE, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	await tween.finished
 
 func animate_slash():
 	slash_2.visible = true

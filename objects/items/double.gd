@@ -8,3 +8,7 @@ func set_values(event :EventHandPlayed):
 		card.value *= 2
 	if event.played_by_id == -1:
 		play_scoring_anim()
+		event.is_blocking = true
+		for card_obj in event.card_objs:
+			await card_obj.card_visual.value_override(card_obj.attached_card.value)
+		event.set_resolved()
