@@ -4,6 +4,7 @@ class_name CardHand
 var card_object_scene = preload("res://objects/card/card_object.tscn")
 
 @onready var event_handler: EventHandler = $EventHandler
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var pull_up_curve :Curve
 var currently_picked :CardObject
@@ -108,12 +109,20 @@ func get_cards() -> Array[Card]:
 	return result
 
 func deselect_picked_card():
-	if currently_picked and abs(currently_picked.position.y) < 120:
-		$Cards.move_child(currently_picked, get_card_position(currently_picked.position.x))
-	elif currently_picked:
-		var card_selected_event := EventCardSelected.new()
-		card_selected_event.card = currently_picked
-		EventBus.queue_event(card_selected_event)
+	if currently_picked:
+		var try_select := false
+		if (currently_picked.is_playable and currently_picked.picked_total_travel <= 10 and currently_picked.picked_time < 0.1):
+			audio_stream_player_2d.play()
+			try_select = true
+		elif abs(currently_picked.position.y) >= 120:
+			try_select = true
+
+		if try_select:
+			var card_selected_event := EventCardSelected.new()
+			card_selected_event.card = currently_picked
+			EventBus.queue_event(card_selected_event)
+		else:
+			$Cards.move_child(currently_picked, get_card_position(currently_picked.position.x))
 	currently_picked = null	
 	pass
 

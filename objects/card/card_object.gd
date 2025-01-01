@@ -16,6 +16,8 @@ static var current_event :InputEvent
 var picked :bool = false
 static var is_card_picked :bool = false
 var picked_offset :Vector2 = Vector2.ZERO
+var picked_total_travel :float = 0
+var picked_time :float = 0
 var is_draggable :bool = false
 
 
@@ -32,6 +34,10 @@ func _ready() -> void:
 	card_visual.card = attached_card
 
 func _process(delta: float) -> void:
+	if picked:
+		picked_time += delta
+	else:
+		picked_time = 0
 	if currently_hovered == self and is_draggable:
 		outline.visible = true
 	else:
@@ -56,6 +62,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_draggable:
 		if picked and event is InputEventMouseMotion:
 			position = position + event.relative
+			picked_total_travel += event.relative.length()
 		if event is InputEventMouseButton:
 			if not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 				card_picked_off.emit()
@@ -74,6 +81,7 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 			card_picked.emit(self)
 			picked = true
 			picked_offset = get_local_mouse_position().rotated(rotation)
+			picked_total_travel = 0
 			is_card_picked = true
 
 func play_scoring_anim():
