@@ -41,7 +41,6 @@ var items_have_changed: bool = false
 func _ready() -> void:
 	if OS.has_feature("no_particles"):
 		gpu_particles_2d.visible = false
-	pass
 	#show_upgrades()
 
 func _process(_delta: float) -> void:
@@ -65,6 +64,7 @@ func show_upgrades() -> void:
 		if GameState.upgrades_block.has(i):
 			upgrade_choices.remove_at(i)
 	var picked :Array[PackedScene] = []
+	
 	for i in num_upgrades:
 		upgrade_choices.shuffle()
 		if upgrade_choices.is_empty():
@@ -74,17 +74,27 @@ func show_upgrades() -> void:
 			
 	for child in upgrade_buttons.get_children():
 		child.queue_free()
+	var item_select_callbacks: Array[ItemAndSelectCallback]= []
 	for item in picked:
 		var upgrade_item :Item = item.instantiate()
 		var new_button = ITEM_SELECTION.instantiate()
 		new_button.custom_minimum_size = Vector2(0, 160)
-		new_button.pressed.connect(on_upgrade_selected.bind(item, upgrade_item.is_unique))
+		var on_select := on_upgrade_selected.bind(item, upgrade_item.is_unique)
+		new_button.pressed.connect(on_select)
 		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))
 		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item))
 		new_button.add_child(upgrade_item)
 		upgrade_item.visible = false
 		upgrade_buttons.add_child(new_button)
 		new_button.set_item(upgrade_item)
+		
+		var item_select_callback := ItemAndSelectCallback.new()
+		item_select_callback.item = upgrade_item
+		item_select_callback.select_callback = on_select
+		item_select_callbacks.append(item_select_callback)
+	
+	await get_tree().create_timer(5).timeout
+	create_actions(item_select_callbacks)
 
 func on_upgrade_selected(item: PackedScene, is_unique :bool) -> void:
 	for child in upgrade_buttons.get_children():
@@ -106,3 +116,26 @@ func on_button_hover(item: Item) -> void:
 func on_button_unhover(item: Item) -> void:
 	item.disable()
 	items_have_changed = true
+
+class ItemAndSelectCallback:
+	var item: Item
+	var select_callback: Callable
+
+func create_actions(picked: Array[ItemAndSelectCallback]) -> void:
+	if !self:
+		return
+	var action_window = ActionWindow.new(self)
+	var action := create_item_selection_action(action_window, picked)
+	action_window.add_action(action)
+	action_window.set_force(0, "Please select an upgrade to proceed.", '')
+	action_window.register()
+	await get_tree().create_timer(15.0).timeout
+	if self:
+		action_window.set_end(0)
+		picked[0].select_callback.call()
+
+func create_item_selection_action(action_window: ActionWindow, picked: Array[ItemAndSelectCallback]) -> NeuroAction:
+	var action := SelectUpgradeAction.new(action_window)
+	for pick in picked:
+		action.items[pick.item.item_name] = pick.select_callback
+	return action

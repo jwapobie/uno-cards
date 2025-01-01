@@ -190,3 +190,12 @@ func _on_sort_value_button_pressed() -> void:
 func _on_play_mat_hand_played() -> void:
 	Gameplay.hand_played = true
 	playable_check()
+
+func tell_neuro_about_hand() -> void:
+	var hand_cards : Array[Card] = []
+	for card_obj in $Cards.get_children():
+		var cardd := card_obj as CardObject
+		if cardd:
+			hand_cards.append(cardd.attached_card)
+	Context.send('Here is a list of the cards in your hand: %s' % str(hand_cards), true)
+	Context.send('You can choose any card to start. After that, must play cards which have the same color or the same value as the previous card.', true)
