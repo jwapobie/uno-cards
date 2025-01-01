@@ -122,17 +122,13 @@ class ItemAndSelectCallback:
 	var select_callback: Callable
 
 func create_actions(picked: Array[ItemAndSelectCallback]) -> void:
-	if !self:
+	if !self or GameState.neuro_integration_mode == GameState.NEURO_INTEGRATION_MODE.Off:
 		return
 	var action_window = ActionWindow.new(self)
 	var action := create_item_selection_action(action_window, picked)
 	action_window.add_action(action)
-	action_window.set_force(0, "Please select an upgrade to proceed.", '')
+	action_window.set_force(15, "Please select an upgrade to proceed.", '')
 	action_window.register()
-	await get_tree().create_timer(15.0).timeout
-	if self:
-		action_window.set_end(0)
-		picked[0].select_callback.call()
 
 func create_item_selection_action(action_window: ActionWindow, picked: Array[ItemAndSelectCallback]) -> NeuroAction:
 	var action := SelectUpgradeAction.new(action_window)

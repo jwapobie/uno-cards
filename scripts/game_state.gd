@@ -13,6 +13,12 @@ var cumulative_round_score: int = 0
 
 var goal_rounds: int = 12
 
+enum NEURO_INTEGRATION_MODE {
+	Off,
+	Coop
+}
+var neuro_integration_mode := NEURO_INTEGRATION_MODE.Off
+
 var health: int = STARTING_HEALTH
 var played_hand :Array[CardObject] = []:
 	set(arr):
