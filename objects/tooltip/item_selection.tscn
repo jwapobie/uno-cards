@@ -1,11 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://db0q2oseq1tiw"]
+[gd_scene load_steps=10 format=3 uid="uid://db0q2oseq1tiw"]
 
 [ext_resource type="Texture2D" uid="uid://ec4ody0rmgd0" path="res://icon.svg" id="1_hxeww"]
 [ext_resource type="Script" path="res://objects/tooltip/item_selection.gd" id="1_q738r"]
 [ext_resource type="Script" path="res://scripts/utility/sound_button.gd" id="2_27dig"]
+[ext_resource type="StyleBox" uid="uid://b2n2lhl4do6xx" path="res://button_style.tres" id="2_fgg7x"]
 [ext_resource type="PackedScene" uid="uid://d3urw8d4uyseg" path="res://objects/tooltip/item_description.tscn" id="2_oco1m"]
-[ext_resource type="AudioStream" uid="uid://bds1n7s2v17ni" path="res://audio/UIClick_Hand Pop UI Diminished 1_RogueWaves_KawaiiUI.wav" id="3_bolpl"]
 [ext_resource type="FontFile" uid="uid://byc1ouwicguue" path="res://fonts/OpenSans-Bold.ttf" id="3_y6osn"]
+
+[sub_resource type="Curve" id="Curve_nm3mg"]
+_data = [Vector2(0, 1), 0.0, -1.27724e-06, 0, 1, Vector2(0.0933333, 1), 0.0, 0.0, 0, 0, Vector2(0.28, 0), -5.35714, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_l5usf"]
+offsets = PackedFloat32Array(0, 0.0862944, 0.152284, 0.304569)
+colors = PackedColorArray(1, 0.886275, 0.662745, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pywe8"]
 draw_center = false
@@ -32,8 +40,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme_override_styles/disabled_mirrored = ExtResource("2_fgg7x")
+theme_override_styles/disabled = ExtResource("2_fgg7x")
 script = ExtResource("2_27dig")
-sound_on_press = ExtResource("3_bolpl")
+
+[node name="Control" type="Control" parent="Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Button/Control"]
+z_index = 1
+emitting = false
+amount = 28
+lifetime = 4.0
+one_shot = true
+preprocess = 0.2
+explosiveness = 0.95
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 713.11
+initial_velocity_max = 713.11
+damping_min = 1000.0
+damping_max = 1200.0
+damping_curve = SubResource("Curve_nm3mg")
+scale_amount_min = 0.0
+scale_amount_max = 17.4
+color_ramp = SubResource("Gradient_l5usf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

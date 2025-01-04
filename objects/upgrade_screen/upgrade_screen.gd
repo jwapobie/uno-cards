@@ -30,6 +30,7 @@ var upgrades_block :Array[int] = []
 @onready var panel: Panel = $Panel
 @onready var gpu_particles_2d: GPUParticles2D = $Control/GPUParticles2D
 @onready var upgrade_buttons: VBoxContainer = $Panel/UpgradeButtons
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 const ITEM_SELECTION = preload("res://objects/tooltip/item_selection.tscn")
 
 var buttons: Array[Button] = []
@@ -80,7 +81,7 @@ func show_upgrades() -> void:
 		var upgrade_item :Item = item.instantiate()
 		var new_button = ITEM_SELECTION.instantiate()
 		new_button.custom_minimum_size = Vector2(0, 160)
-		var on_select := on_upgrade_selected.bind(item, upgrade_item.is_unique)
+		var on_select := on_upgrade_selected.bind(item, upgrade_item.is_unique, new_button)
 		new_button.pressed.connect(on_select)
 		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))
 		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item))
@@ -97,13 +98,16 @@ func show_upgrades() -> void:
 	await get_tree().create_timer(0.5).timeout
 	create_actions(item_select_callbacks)
 
-func on_upgrade_selected(item: PackedScene, is_unique :bool) -> void:
+func on_upgrade_selected(item: PackedScene, is_unique :bool, button: ItemSelection) -> void:
 	for child in upgrade_buttons.get_children():
-		var button := child as Button
-		if button:
-			button.disabled = true
-	
-	
+		var sel := child as ItemSelection
+		if sel:
+			sel.button.disabled = true
+	button.play_pressed_anim()
+	audio_stream_player_2d.play()
+	var time_wait = 0.8 if GameState.neuro_integration_mode == GameState.NEURO_INTEGRATION_MODE.Off else 1.2
+	await get_tree().create_timer(time_wait).timeout
+
 	var event := EventUpgradeSelected.new()
 	event.upgrade_item = item
 	EventBus.queue_event(event)
