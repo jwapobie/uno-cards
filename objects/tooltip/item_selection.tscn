@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://db0q2oseq1tiw"]
+[gd_scene load_steps=8 format=3 uid="uid://db0q2oseq1tiw"]
 
 [ext_resource type="Texture2D" uid="uid://ec4ody0rmgd0" path="res://icon.svg" id="1_hxeww"]
 [ext_resource type="Script" path="res://objects/tooltip/item_selection.gd" id="1_q738r"]
 [ext_resource type="Script" path="res://scripts/utility/sound_button.gd" id="2_27dig"]
 [ext_resource type="PackedScene" uid="uid://d3urw8d4uyseg" path="res://objects/tooltip/item_description.tscn" id="2_oco1m"]
+[ext_resource type="AudioStream" uid="uid://bds1n7s2v17ni" path="res://audio/UIClick_Hand Pop UI Diminished 1_RogueWaves_KawaiiUI.wav" id="3_bolpl"]
 [ext_resource type="FontFile" uid="uid://byc1ouwicguue" path="res://fonts/OpenSans-Bold.ttf" id="3_y6osn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pywe8"]
@@ -32,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("2_27dig")
+sound_on_press = ExtResource("3_bolpl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

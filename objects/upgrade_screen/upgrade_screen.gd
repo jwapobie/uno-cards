@@ -41,7 +41,6 @@ var items_have_changed: bool = false
 func _ready() -> void:
 	if OS.has_feature("no_particles"):
 		gpu_particles_2d.visible = false
-	#show_upgrades()
 
 func _process(_delta: float) -> void:
 	if items_have_changed:
@@ -59,6 +58,8 @@ func animate_screen_appear() -> void:
 
 func show_upgrades() -> void:
 	animate_screen_appear()
+	if GameState.neuro_integration_mode != GameState.NEURO_INTEGRATION_MODE.Off:
+		GameState.neuro_wait_started.emit()
 	var upgrade_choices :Array[PackedScene] = upgrade_prefabs.duplicate()
 	for i in range(upgrade_choices.size() - 1, -1, -1):
 		if GameState.upgrades_block.has(i):
@@ -93,7 +94,7 @@ func show_upgrades() -> void:
 		item_select_callback.select_callback = on_select
 		item_select_callbacks.append(item_select_callback)
 	
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(0.5).timeout
 	create_actions(item_select_callbacks)
 
 func on_upgrade_selected(item: PackedScene, is_unique :bool) -> void:
@@ -101,11 +102,15 @@ func on_upgrade_selected(item: PackedScene, is_unique :bool) -> void:
 		var button := child as Button
 		if button:
 			button.disabled = true
+	
+	
 	var event := EventUpgradeSelected.new()
 	event.upgrade_item = item
 	EventBus.queue_event(event)
 	if is_unique:
 		GameState.upgrades_block.append(upgrade_prefabs.find(item))
+	if GameState.neuro_integration_mode != GameState.NEURO_INTEGRATION_MODE.Off:
+		GameState.neuro_wait_ended.emit()
 
 
 func on_button_hover(item: Item) -> void:

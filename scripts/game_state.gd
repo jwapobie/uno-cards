@@ -18,6 +18,8 @@ enum NEURO_INTEGRATION_MODE {
 	Coop
 }
 var neuro_integration_mode := NEURO_INTEGRATION_MODE.Off
+signal neuro_wait_started
+signal neuro_wait_ended
 
 var health: int = STARTING_HEALTH
 var played_hand :Array[CardObject] = []:

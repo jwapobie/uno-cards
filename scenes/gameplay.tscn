@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=24 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
@@ -8,19 +8,31 @@
 [ext_resource type="Script" path="res://scripts/utility/sound_button.gd" id="4_ullpb"]
 [ext_resource type="AudioStream" uid="uid://bxeun3p5fmv8b" path="res://audio/UIClick_Operating System UI Cursor_RogueWaves_KawaiiUI.wav" id="5_bqihu"]
 [ext_resource type="Script" path="res://objects/score_counter/score_display.gd" id="5_f3pnb"]
-[ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://scenes/upgrade_screen.tscn" id="6_6v1j0"]
+[ext_resource type="PackedScene" uid="uid://cbm78yibra6u3" path="res://objects/upgrade_screen/upgrade_screen.tscn" id="6_6v1j0"]
 [ext_resource type="Script" path="res://scenes/items_container.gd" id="6_bg8mw"]
 [ext_resource type="Script" path="res://objects/score_counter/add_display.gd" id="6_yy4x3"]
 [ext_resource type="Script" path="res://objects/health_display/health_display.gd" id="7_6u6od"]
 [ext_resource type="Script" path="res://objects/health_display/add_display.gd" id="8_lp0fn"]
 [ext_resource type="Script" path="res://scenes/past_hands.gd" id="10_oblqp"]
 [ext_resource type="Script" path="res://scripts/utility/tooltipped.gd" id="10_xu2qm"]
+[ext_resource type="FontFile" uid="uid://bjv5hli5b22x2" path="res://fonts/Nebulous Content.otf" id="14_5g5dt"]
+[ext_resource type="Script" path="res://objects/neuro_ui/neuro_control_overlay.gd" id="14_qe8ue"]
 [ext_resource type="Script" path="res://scenes/quit_run_button.gd" id="16_3gbey"]
 [ext_resource type="Script" path="res://objects/volume_slider.gd" id="17_pimmb"]
 
 [sub_resource type="Curve" id="Curve_gb3ms"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_heoua"]
+offsets = PackedFloat32Array(0.442786, 0.895522, 1)
+colors = PackedColorArray(0.506929, 0.322586, 0.492271, 0, 0.828305, 0.764115, 0.823202, 0.651786, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d4tdq"]
+gradient = SubResource("Gradient_heoua")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1.5, 0)
 
 [sub_resource type="GDScript" id="GDScript_jtk48"]
 script/source = "extends Label
@@ -87,47 +99,6 @@ script = ExtResource("4_ullpb")
 layout_mode = 2
 mouse_filter = 1
 text = "Sort Value"
-script = ExtResource("4_ullpb")
-
-[node name="SpeedControl" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -279.0
-offset_top = 14.0
-offset_right = -11.0
-offset_bottom = 41.0
-grow_horizontal = 0
-alignment = 2
-script = ExtResource("2_w836i")
-
-[node name="Label" type="Label" parent="SpeedControl"]
-layout_mode = 2
-text = "Speed:"
-
-[node name="SpeedSlowButton" type="Button" parent="SpeedControl"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-toggle_mode = true
-text = "0.5x"
-script = ExtResource("4_ullpb")
-
-[node name="SpeedNormalButton" type="Button" parent="SpeedControl"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-toggle_mode = true
-text = "1x"
-script = ExtResource("4_ullpb")
-
-[node name="SpeedFastButton" type="Button" parent="SpeedControl"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-toggle_mode = true
-text = "3x"
 script = ExtResource("4_ullpb")
 
 [node name="Button" type="Button" parent="."]
@@ -495,6 +466,84 @@ layout_mode = 1
 
 [node name="EventHandler" type="Node" parent="."]
 script = ExtResource("4_c7t3g")
+
+[node name="NeuroControlOverlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_qe8ue")
+
+[node name="Label" type="Label" parent="NeuroControlOverlay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.5
+offset_top = 21.0
+offset_right = 113.5
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.748738, 0.0115674, 0.751088, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("14_5g5dt")
+theme_override_font_sizes/font_size = 24
+text = "Neuro is choosing an action..."
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NeuroControlOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_d4tdq")
+
+[node name="SpeedControl" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -279.0
+offset_top = 14.0
+offset_right = -11.0
+offset_bottom = 41.0
+grow_horizontal = 0
+alignment = 2
+script = ExtResource("2_w836i")
+
+[node name="Label" type="Label" parent="SpeedControl"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="SpeedSlowButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "0.5x"
+script = ExtResource("4_ullpb")
+
+[node name="SpeedNormalButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "1x"
+script = ExtResource("4_ullpb")
+
+[node name="SpeedFastButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "3x"
+script = ExtResource("4_ullpb")
 
 [node name="PastHands" type="Control" parent="."]
 layout_mode = 1
