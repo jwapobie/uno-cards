@@ -63,6 +63,7 @@ func on_scoring_finished(event: EventScoringFinished) -> void:
 			eliminate()
 		elif GameState.this_round_score < total_score:
 			change_player_health(-total_score)
+			Context.send('You took %s damage from the round %s enemy hand.' % [total_score, round_number], false)
 	elif event.player_id == player_id:
 		GameState.played_hands[player_id].score_current = total_score
 
@@ -74,6 +75,7 @@ func eliminate() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "modulate", Color.GRAY, 0.25)
 	tween.tween_property(eliminate_label, "modulate", Color.WHITE, 0.25)
+	Context.send('You eliminated the enemy hand from round %s, stealing back %s health.' % [round_number, total_score], false)
 
 func change_player_health(amount: int) -> void:
 	var event = EventHealthChangeCreated.new()
