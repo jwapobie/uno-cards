@@ -1,0 +1,26 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://co2kwaeuoysg"]
+
+[sub_resource type="VisualShaderNodeVec3Parameter" id="VisualShaderNodeVec3Parameter_tyewj"]
+parameter_name = "Vector3Parameter"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_wqcll"]
+size = Vector2(250, 150)
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+"
+graph_offset = Vector2(-399.747, 16.7904)
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeVec3Parameter_tyewj")
+nodes/fragment/2/position = Vector2(-300, 180)
+nodes/fragment/3/node = SubResource("VisualShaderNodeExpression_wqcll")
+nodes/fragment/3/position = Vector2(680, 100)
+nodes/fragment/3/size = Vector2(250, 150)
+nodes/fragment/3/input_ports = "0,4,input0;"
+nodes/fragment/3/output_ports = ""
+nodes/fragment/3/expression = ""

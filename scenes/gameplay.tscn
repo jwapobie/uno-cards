@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=21 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
+[ext_resource type="PackedScene" uid="uid://dwa7rhnrk7fw7" path="res://scenes/shader_bg.tscn" id="2_qcblm"]
 [ext_resource type="Script" path="res://scenes/speed_control.gd" id="2_w836i"]
 [ext_resource type="Script" path="res://objects/card_player/play_mat.gd" id="3_pgsh8"]
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="4_c7t3g"]
@@ -57,6 +58,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.15605, 0.103728, 0.168647, 1)
+
+[node name="ShaderBg" parent="." instance=ExtResource("2_qcblm")]
+z_index = -200
+layout_mode = 1
 
 [node name="Sort" type="VBoxContainer" parent="."]
 layout_mode = 0

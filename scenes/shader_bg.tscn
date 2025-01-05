@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwa7rhnrk7fw7"]
+
+[ext_resource type="Script" path="res://scenes/shader_bg.gd" id="1_h16mg"]
+[ext_resource type="Shader" path="res://scenes/shader_bg.gdshader" id="2_1va2p"]
+[ext_resource type="Script" path="res://scripts/lava_ball.gd" id="3_f1db1"]
+
+[sub_resource type="Gradient" id="Gradient_yq3ic"]
+offsets = PackedFloat32Array(0.429719, 0.751004, 0.911647)
+colors = PackedColorArray(0.160156, 0.109101, 0.155027, 1, 0.320313, 0.0837007, 0.0669596, 1, 0.335938, 0.171985, 0.141777, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tvigu"]
+gradient = SubResource("Gradient_yq3ic")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2y00"]
+shader = ExtResource("2_1va2p")
+shader_parameter/array_size = 16
+shader_parameter/input_points = Array[Vector3]([Vector3(1.15758, 0.533493, 3.5), Vector3(0.964438, 0.390803, 1.31961), Vector3(1.4233, 0.609946, 2.9), Vector3(0.331906, 0.209908, 1.89859), Vector3(1.6876, 0.511724, 1.49456), Vector3(0.737304, 0.530211, 1.25694), Vector3(1.32335, 0.149968, 1.9), Vector3(0.461256, 0.923235, 1.9), Vector3(1.47764, -0.249941, 1.94693), Vector3(0.780411, 1.13596, 2.03726), Vector3(0.79572, 0.894373, 1.53062), Vector3(1.7228, 0.641811, 0.854167), Vector3(1.71042, 0.335024, 1.07887), Vector3(1.12375, 0.689812, 0.299383), Vector3(1.00645, -0.00657984, 0.596364), Vector3(0.247011, 0.245718, 1e-05)])
+shader_parameter/canvas_size = Vector2(1152, 648)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_tvigu")
+
+[node name="ShaderBg" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_h16mg")
+metadata/_edit_lock_ = true
+
+[node name="ShaderRect" type="ColorRect" parent="."]
+z_index = -1
+z_as_relative = false
+material = SubResource("ShaderMaterial_h2y00")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ControlPoints" type="Node" parent="."]
+
+[node name="MouseBall" type="Node2D" parent="."]
+position = Vector2(160.063, 159.226)
+scale = Vector2(1e-05, 1)
+script = ExtResource("3_f1db1")
+
+[node name="Manual" type="Node" parent="."]
+
+[node name="top" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 22.3333
+text = "0.953"
+
+[node name="bottom" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -22.3333
+offset_right = 40.0
+grow_vertical = 0
+text = "0.000"
+
+[node name="Total" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 29.0
+offset_right = 40.0
+offset_bottom = 51.3333
+text = "total: 25.466"
+
+[node name="Avg" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 82.3333
+text = "avg: 1.698"
