@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwa7rhnrk7fw7"]
+[gd_scene load_steps=7 format=3 uid="uid://fqy1sq8ab6au"]
 
 [ext_resource type="Script" path="res://scenes/shader_bg.gd" id="1_h16mg"]
 [ext_resource type="Shader" path="res://scenes/shader_bg.gdshader" id="2_1va2p"]
@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_yq3ic")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2y00"]
 shader = ExtResource("2_1va2p")
 shader_parameter/array_size = 16
-shader_parameter/input_points = Array[Vector3]([Vector3(1.15758, 0.533493, 3.5), Vector3(0.964438, 0.390803, 1.31961), Vector3(1.4233, 0.609946, 2.9), Vector3(0.331906, 0.209908, 1.89859), Vector3(1.6876, 0.511724, 1.49456), Vector3(0.737304, 0.530211, 1.25694), Vector3(1.32335, 0.149968, 1.9), Vector3(0.461256, 0.923235, 1.9), Vector3(1.47764, -0.249941, 1.94693), Vector3(0.780411, 1.13596, 2.03726), Vector3(0.79572, 0.894373, 1.53062), Vector3(1.7228, 0.641811, 0.854167), Vector3(1.71042, 0.335024, 1.07887), Vector3(1.12375, 0.689812, 0.299383), Vector3(1.00645, -0.00657984, 0.596364), Vector3(0.247011, 0.245718, 1e-05)])
+shader_parameter/input_points = Array[Vector3]([Vector3(1.36386, 0.999568, 3.15921), Vector3(1.35963, 0.241135, 3.45135), Vector3(0.607107, 1.08489, 4.28674), Vector3(0.0100132, 1.02704, 2.38117), Vector3(0.331757, 1.22441, 1.50897), Vector3(1.71043, 1.07484, 3.85455), Vector3(0.608882, 0.669406, 4.47013), Vector3(1.21993, 1.08715, 4.38495), Vector3(1.12585, 0.825763, 3.42493), Vector3(0.876296, 0.719531, 5.2039), Vector3(1.30132, -0.0572237, 4.91884), Vector3(1.71615, 0.0944095, 4.00221), Vector3(1.14297, -0.470192, 0.879035), Vector3(1.77532, 0.633769, 5.14327), Vector3(1.34222, 0.929112, 2.94425), Vector3(1.98699, -0.399947, 1e-05)])
 shader_parameter/canvas_size = Vector2(1152, 648)
 shader_parameter/color_ramp = SubResource("GradientTexture1D_tvigu")
 
@@ -30,8 +30,6 @@ script = ExtResource("1_h16mg")
 metadata/_edit_lock_ = true
 
 [node name="ShaderRect" type="ColorRect" parent="."]
-z_index = -1
-z_as_relative = false
 material = SubResource("ShaderMaterial_h2y00")
 layout_mode = 1
 anchors_preset = 15
@@ -45,7 +43,7 @@ metadata/_edit_lock_ = true
 [node name="ControlPoints" type="Node" parent="."]
 
 [node name="MouseBall" type="Node2D" parent="."]
-position = Vector2(160.063, 159.226)
+position = Vector2(1078.02, -181.27)
 scale = Vector2(1e-05, 1)
 script = ExtResource("3_f1db1")
 
@@ -56,7 +54,7 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 22.3333
-text = "0.953"
+text = "3.434"
 
 [node name="bottom" type="Label" parent="."]
 visible = false
@@ -67,7 +65,7 @@ anchor_bottom = 1.0
 offset_top = -22.3333
 offset_right = 40.0
 grow_vertical = 0
-text = "0.000"
+text = "4.636"
 
 [node name="Total" type="Label" parent="."]
 visible = false
@@ -75,7 +73,7 @@ layout_mode = 0
 offset_top = 29.0
 offset_right = 40.0
 offset_bottom = 51.3333
-text = "total: 25.466"
+text = "total: 61.549"
 
 [node name="Avg" type="Label" parent="."]
 visible = false
@@ -83,4 +81,4 @@ layout_mode = 0
 offset_top = 60.0
 offset_right = 40.0
 offset_bottom = 82.3333
-text = "avg: 1.698"
+text = "avg: 4.103"

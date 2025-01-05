@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cuwq5a1ylpiw0"]
+[gd_scene load_steps=25 format=3 uid="uid://cuwq5a1ylpiw0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_cgi25"]
 [ext_resource type="Script" path="res://objects/card_player/card_hand.gd" id="2_jcadc"]
-[ext_resource type="PackedScene" uid="uid://dwa7rhnrk7fw7" path="res://scenes/shader_bg.tscn" id="2_qcblm"]
+[ext_resource type="PackedScene" uid="uid://fqy1sq8ab6au" path="res://scenes/shader_bg.tscn" id="2_qcblm"]
 [ext_resource type="Script" path="res://scenes/speed_control.gd" id="2_w836i"]
 [ext_resource type="Script" path="res://objects/card_player/play_mat.gd" id="3_pgsh8"]
 [ext_resource type="Script" path="res://scripts/event_bus/event_handler.gd" id="4_c7t3g"]
@@ -46,7 +46,7 @@ func _ready() -> void:
 		add_theme_font_size_override(\"font_size\", 12)
 "
 
-[node name="Control2" type="Control"]
+[node name="Gameplay" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -331,7 +331,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -243.0
 offset_top = 76.0
-offset_right = 210.0
+offset_right = 246.0
 offset_bottom = 173.0
 grow_horizontal = 2
 mouse_filter = 2
@@ -467,90 +467,11 @@ script = ExtResource("4_ullpb")
 
 [node name="UpgradeScreen" parent="." instance=ExtResource("6_6v1j0")]
 visible = false
+z_index = 8
 layout_mode = 1
-
-[node name="EventHandler" type="Node" parent="."]
-script = ExtResource("4_c7t3g")
-
-[node name="NeuroControlOverlay" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("14_qe8ue")
-
-[node name="Label" type="Label" parent="NeuroControlOverlay"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -113.5
-offset_top = 21.0
-offset_right = 113.5
-offset_bottom = 44.0
-grow_horizontal = 2
-theme_override_colors/font_shadow_color = Color(0.748738, 0.0115674, 0.751088, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 3
-theme_override_fonts/font = ExtResource("14_5g5dt")
-theme_override_font_sizes/font_size = 24
-text = "Neuro is choosing an action..."
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="NeuroControlOverlay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 0
-texture = SubResource("GradientTexture2D_d4tdq")
-
-[node name="SpeedControl" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -279.0
-offset_top = 14.0
-offset_right = -11.0
-offset_bottom = 41.0
-grow_horizontal = 0
-alignment = 2
-script = ExtResource("2_w836i")
-
-[node name="Label" type="Label" parent="SpeedControl"]
-layout_mode = 2
-text = "Speed:"
-
-[node name="SpeedSlowButton" type="Button" parent="SpeedControl"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-toggle_mode = true
-text = "0.5x"
-script = ExtResource("4_ullpb")
-
-[node name="SpeedNormalButton" type="Button" parent="SpeedControl"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-toggle_mode = true
-text = "1x"
-script = ExtResource("4_ullpb")
-
-[node name="SpeedFastButton" type="Button" parent="SpeedControl"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-toggle_mode = true
-text = "3x"
-script = ExtResource("4_ullpb")
 
 [node name="PastHands" type="Control" parent="."]
+z_index = 8
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -617,7 +538,91 @@ layout_mode = 2
 [node name="EventHandler" type="Node" parent="PastHands"]
 script = ExtResource("4_c7t3g")
 
+[node name="EventHandler" type="Node" parent="."]
+script = ExtResource("4_c7t3g")
+
+[node name="NeuroControlOverlay" type="Control" parent="."]
+z_index = 9
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_qe8ue")
+
+[node name="Label" type="Label" parent="NeuroControlOverlay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.5
+offset_top = 21.0
+offset_right = 113.5
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.748738, 0.0115674, 0.751088, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("14_5g5dt")
+theme_override_font_sizes/font_size = 24
+text = "Neuro is choosing an action..."
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NeuroControlOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_d4tdq")
+
+[node name="SpeedControl" type="HBoxContainer" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -279.0
+offset_top = 14.0
+offset_right = -11.0
+offset_bottom = 41.0
+grow_horizontal = 0
+alignment = 2
+script = ExtResource("2_w836i")
+
+[node name="Label" type="Label" parent="SpeedControl"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="SpeedSlowButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "0.5x"
+script = ExtResource("4_ullpb")
+
+[node name="SpeedNormalButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "1x"
+script = ExtResource("4_ullpb")
+
+[node name="SpeedFastButton" type="Button" parent="SpeedControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+toggle_mode = true
+text = "3x"
+script = ExtResource("4_ullpb")
+
 [node name="QuitButton" type="Button" parent="."]
+z_index = 10
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -640,6 +645,7 @@ grow_horizontal = 2
 show_percentage = false
 
 [node name="MusicSlider" type="Control" parent="."]
+z_index = 10
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

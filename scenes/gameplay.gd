@@ -67,6 +67,8 @@ func _show_upgrades() -> void:
 	past_hands.populate_hands_list()
 	upgrade_screen.visible = true
 	upgrade_screen.show_upgrades()
+	$ShaderBg.z_index = 5
+	items_container.z_index = upgrade_screen.z_index
 
 func _end_game() -> void:
 	var review_screen := REVIEW_SCREEN.instantiate()
