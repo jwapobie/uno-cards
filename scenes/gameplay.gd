@@ -29,6 +29,8 @@ func _ready() -> void:
 	event_handler.register_handler(Event.Type.HEALTH_CHANGES_FINISHED, _after_health_changes_finished)
 	turn_count_label.text = str(turn)
 	draw_count(7)
+	await get_tree().create_timer(2).timeout
+	card_hand.tell_neuro_about_hand()
 
 func set_items(items :Array[PackedScene]) -> void:
 	for i in items.size():

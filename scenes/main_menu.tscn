@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt087mwc204t2"]
+[gd_scene load_steps=7 format=3 uid="uid://bt087mwc204t2"]
 
 [ext_resource type="Texture2D" uid="uid://b6gppx3mdxwik" path="res://icons/pocky.png" id="2_kunl1"]
 [ext_resource type="Script" path="res://objects/quit_button.gd" id="2_lwwgd"]
 [ext_resource type="FontFile" uid="uid://clkjryi7d3f4q" path="res://fonts/Cthulhu's Calling.otf" id="2_ytlxq"]
 [ext_resource type="Script" path="res://objects/review_screen/restart_button.gd" id="3_2c2ra"]
+[ext_resource type="Script" path="res://objects/neuro_integration_option_button.gd" id="5_duq54"]
+[ext_resource type="Script" path="res://scripts/utility/tooltipped.gd" id="5_mvqme"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -82,3 +84,36 @@ offset_right = 492.0
 offset_bottom = 2.0
 grow_vertical = 0
 texture = ExtResource("2_kunl1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -273.0
+offset_top = -56.0
+offset_right = -17.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Neuro Integration:"
+script = ExtResource("5_mvqme")
+tooltip_content = "Enables Neuro-sama SDK integration.
+<*Off:> No integration.
+<*Co-Op:> Neuro will choose your upgrades. You will need to play with her item choices.
+<*Autonomous:> Neuro will play the game herself. (Not implemented)"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+selected = 0
+item_count = 2
+popup/item_0/text = "Off"
+popup/item_1/text = "Co-Op"
+popup/item_1/id = 1
+script = ExtResource("5_duq54")

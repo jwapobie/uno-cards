@@ -24,6 +24,11 @@ func show_game_over_screen() -> void:
 	restart_button.visible = true
 	close_button.visible = false
 	animate_screen_appear()
+	Context.send('Game over! You made it to round %s, with a max round score of %s and a cumulative score of %s.' % [
+		GameState.round_num,
+		GameState.max_round_score,
+		GameState.cumulative_round_score
+	], false)
 
 func show_run_complete_screen() -> void:
 	title_label.text = "You Win!"
@@ -31,6 +36,11 @@ func show_run_complete_screen() -> void:
 	restart_button.visible = true
 	close_button.visible = true
 	animate_screen_appear()
+	Context.send('You win! You have reached round %s, with a max round score of %s and a cumulative score of %s.' % [
+		GameState.round_num,
+		GameState.max_round_score,
+		GameState.cumulative_round_score
+	], false)
 
 func animate_screen_appear() -> void:
 	visible = true

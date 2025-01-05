@@ -11,6 +11,7 @@ func _ready() -> void:
 	event_handler.register_handler(Event.Type.UPGRADE_SELECTED, on_upgrade_selected, 10, 0)
 	GameState.reset()
 	deck = CardDeck.new_deck()
+	Context.send("You are starting a new run.", true)
 	new_round()
 
 func new_round() -> void:

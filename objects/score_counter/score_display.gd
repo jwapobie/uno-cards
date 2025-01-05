@@ -49,3 +49,4 @@ func on_scoring_finished(event: EventScoringFinished) -> void:
 		EventBus.queue_event(health_event, true)
 		var health_finished := EventHealthChangesFinished.new()
 		EventBus.queue_event(health_finished)
+		Context.send('You scored %s this round.' % total_score, false)
