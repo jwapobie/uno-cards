@@ -1,4 +1,5 @@
 extends RichTextLabel
+class_name LabelParser
 
 func parse_text(to_parse :String) -> void:
 	const STYLES = {
@@ -26,6 +27,34 @@ func parse_text(to_parse :String) -> void:
 			token += c
 	tokens.append(token)
 	text = "".join(tokens)
+
+
+static func parse_plaintext(to_parse :String) -> String:
+	const STYLES = {
+		"+" : ["+",""],
+		"x" : ["x",""],
+		"*" : ["", ""],
+		"c" : ["", ""],
+	}
+	var in_token :bool = false
+	var token :String = ""
+	var tokens :Array[String] = []
+	for c in to_parse:
+		if c == "<" or c == ">":
+			if token != "":
+				if c == ">":
+					var key := token[0]
+					if STYLES.has(key):
+						tokens.append(STYLES[key][0])
+						tokens.append(token.right(-1))
+						tokens.append(STYLES[key][1])
+				else:
+					tokens.append(token)
+			token = ""
+		if c != "<" and c != ">":
+			token += c
+	tokens.append(token)
+	return "".join(tokens)
 
 func _ready() -> void:
 	parse_text("<+12> score <x1.5>\n<*When scoring card: >\nGet super bonus")

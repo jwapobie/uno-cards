@@ -36,6 +36,8 @@ const ITEM_SELECTION = preload("res://objects/tooltip/item_selection.tscn")
 var buttons: Array[Button] = []
 var num_upgrades := 3
 
+var neuro_action_window: ActionWindow
+
 var items_have_changed: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -133,14 +135,32 @@ class ItemAndSelectCallback:
 func create_actions(picked: Array[ItemAndSelectCallback]) -> void:
 	if !self or GameState.neuro_integration_mode == GameState.NEURO_INTEGRATION_MODE.Off:
 		return
-	var action_window = ActionWindow.new(self)
-	var action := create_item_selection_action(action_window, picked)
-	action_window.add_action(action)
-	action_window.set_force(15, "Please select an upgrade to proceed.", '')
-	action_window.register()
+	neuro_action_window = ActionWindow.new(self)
+	var action := create_item_selection_action(neuro_action_window, picked)
+	var item_descriptions = ''
+	for element in picked:
+		var item := element.item
+		item_descriptions += describe_item(item) + '\n'
+	neuro_action_window.set_context(item_descriptions)
+	neuro_action_window.add_action(action)
+	neuro_action_window.set_end(20)
+	neuro_action_window.set_force(15, "Select an upgrade to proceed.", '')
+	neuro_action_window.register()
+	
+	await get_tree().create_timer(30).timeout
+	if self:
+		GameState.neuro_wait_ended.emit()
+
+
+func describe_item(item: Item) -> String:
+	return 'The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description)]
 
 func create_item_selection_action(action_window: ActionWindow, picked: Array[ItemAndSelectCallback]) -> NeuroAction:
 	var action := SelectUpgradeAction.new(action_window)
 	for pick in picked:
 		action.items[pick.item.item_name] = pick.select_callback
 	return action
+
+
+func _exit_tree() -> void:
+	NeuroActionHandler.unregister_actions([SelectUpgradeAction.new(null)])
