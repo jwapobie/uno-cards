@@ -145,3 +145,21 @@ popup/item_0/text = "Off"
 popup/item_1/text = "Co-Op"
 popup/item_1/id = 1
 script = ExtResource("5_duq54")
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -37.0
+offset_right = 54.0
+offset_bottom = -14.0
+grow_vertical = 0
+mouse_filter = 1
+text = "v1.01"
+script = ExtResource("5_mvqme")
+tooltip_content = "<*1.01 - Post-jam update:>
+Basic Neuro API integration.
+Fixed a bug where cards sometimes carried over adjusted values between rounds.
+Lava lamp background."
