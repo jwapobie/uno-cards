@@ -143,13 +143,14 @@ func create_actions(picked: Array[ItemAndSelectCallback]) -> void:
 	for element in picked:
 		var item := element.item
 		item_descriptions += describe_item(item) + '\n'
+	var hands_info := describe_past_hands()
 	neuro_action_window.set_context(item_descriptions)
 	neuro_action_window.add_action(action)
-	neuro_action_window.set_end(20)
-	neuro_action_window.set_force(15, "Select an upgrade to proceed.", '')
+	neuro_action_window.set_end(30)
+	neuro_action_window.set_force(25, "Select an upgrade item to proceed. Upgrades apply equally to yourself and enemy hands.", hands_info)
 	neuro_action_window.register()
 	
-	await get_tree().create_timer(30).timeout
+	await get_tree().create_timer(35).timeout
 	if self:
 		GameState.neuro_wait_ended.emit()
 
@@ -161,6 +162,17 @@ func describe_item(item: Item) -> String:
 	else:
 		#print('The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description_neuro)])
 		return 'The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description_neuro)]
+
+func describe_past_hands() -> String:
+	var context := 'List of Enemy hands, which can damage you based on their score:\n'
+	for hand in GameState.played_hands:
+		var hand_str := '* The hand from round %s includes the cards: [%s]. Its score is currently %s.\n' % [
+			hand.round_num,
+			', '.join(hand.cards),
+			hand.score_current
+		]
+		context += hand_str
+	return context
 
 func create_item_selection_action(action_window: ActionWindow, picked: Array[ItemAndSelectCallback]) -> NeuroAction:
 	var action := SelectUpgradeAction.new(action_window)
