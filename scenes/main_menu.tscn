@@ -91,7 +91,7 @@ offset_bottom = 2.0
 grow_vertical = 0
 texture = ExtResource("2_kunl1")
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="Options" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -99,14 +99,18 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -251.0
-offset_top = -75.0
+offset_top = -108.0
 offset_right = -13.0
-offset_bottom = -18.0
+offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 0
-columns = 2
+alignment = 2
 
-[node name="Label" type="Label" parent="GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Options/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 1
@@ -114,23 +118,25 @@ text = "Theme:"
 script = ExtResource("5_mvqme")
 tooltip_content = "For silly lava lamp shader."
 
-[node name="ThemeOption" type="OptionButton" parent="GridContainer"]
+[node name="ThemeOption" type="OptionButton" parent="Options/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 script = ExtResource("7_f7wrt")
 
-[node name="Label2" type="Label" parent="GridContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="NeuroLabel" type="Label" parent="Options/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 1
 text = "Neuro Integration:"
 script = ExtResource("5_mvqme")
-tooltip_content = "Enables Neuro-sama SDK integration.
+tooltip_content = "Enables Neuro-sama SDK integration. You must be green and round (or honorarily designated as such.)
 <*Off:> No integration.
-<*Co-Op:> Neuro will choose your upgrades. You will need to play with her item choices.
-<*Autonomous:> Neuro will play the game herself. (Not implemented)"
+<*Co-Op:> Neuro will choose your upgrades. You will need to play with her item choices."
 
-[node name="NeuroOption" type="OptionButton" parent="GridContainer"]
+[node name="NeuroOption" type="OptionButton" parent="Options/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 selected = 0
