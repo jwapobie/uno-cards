@@ -7,7 +7,7 @@
 [node name="ExtraScore" instance=ExtResource("1_tjq0l")]
 script = ExtResource("2_x3u6j")
 item_name = "Small Change"
-description = "Gives <+2> score when scoring a card."
+description = "Gives <+2> when scoring a card."
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_il5nt")

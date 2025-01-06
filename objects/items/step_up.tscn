@@ -7,7 +7,7 @@
 [node name="StepUp" instance=ExtResource("1_p7mka")]
 script = ExtResource("2_ubnv6")
 item_name = "Step Up"
-description = "<x2> when all cards in hand form growing sequence. Needs at least 3 cards played.
+description = "<x2> when all cards in hand form ascending sequence. Needs at least 3 cards played.
 Example: 1 2 2 4 9"
 
 [node name="Sprite2D" parent="." index="2"]

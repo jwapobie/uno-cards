@@ -31,10 +31,10 @@ func parse_text(to_parse :String) -> void:
 
 static func parse_plaintext(to_parse :String) -> String:
 	const STYLES = {
-		"+" : ["+",""],
-		"x" : ["x",""],
+		"+" : ["+"," score"],
+		"x" : ["","x score multiplier"],
 		"*" : ["", ""],
-		"c" : ["", ""],
+		"c" : ["card ", ""],
 	}
 	var in_token :bool = false
 	var token :String = ""

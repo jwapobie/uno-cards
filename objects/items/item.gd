@@ -4,6 +4,7 @@ class_name Item
 @onready var event_handler: EventHandler = $EventHandler
 @export var item_name :String
 @export_multiline var description :String
+@export_multiline var description_neuro :String
 @export var is_unique :bool = false
 @onready var sprite_2d: Sprite2D = $Sprite2D
 var index: int = 0

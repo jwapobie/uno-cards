@@ -155,7 +155,12 @@ func create_actions(picked: Array[ItemAndSelectCallback]) -> void:
 
 
 func describe_item(item: Item) -> String:
-	return 'The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description)]
+	if !item.description_neuro or item.description_neuro == "":
+		#print('The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description)])
+		return 'The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description)]
+	else:
+		#print('The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description_neuro)])
+		return 'The item %s has the description: %s' % [item.item_name, LabelParser.parse_plaintext(item.description_neuro)]
 
 func create_item_selection_action(action_window: ActionWindow, picked: Array[ItemAndSelectCallback]) -> NeuroAction:
 	var action := SelectUpgradeAction.new(action_window)

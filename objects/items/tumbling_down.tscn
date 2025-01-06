@@ -7,7 +7,7 @@
 [node name="TumblingDown" instance=ExtResource("1_ek3g7")]
 script = ExtResource("2_cs4st")
 item_name = "Tumbling Down"
-description = "<x2> when all cards in hand form shrinking sequence. Needs at least 3 cards played.
+description = "<x2> when all cards in hand form descending sequence. Needs at least 3 cards played.
 Example: 8 4 4 2 1"
 
 [node name="Sprite2D" parent="." index="2"]
