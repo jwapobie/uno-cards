@@ -81,12 +81,12 @@ func show_upgrades() -> void:
 	var item_select_callbacks: Array[ItemAndSelectCallback]= []
 	for item in picked:
 		var upgrade_item :Item = item.instantiate()
-		var new_button = ITEM_SELECTION.instantiate()
+		var new_button := ITEM_SELECTION.instantiate() as ItemSelection
 		new_button.custom_minimum_size = Vector2(0, 160)
 		var on_select := on_upgrade_selected.bind(item, upgrade_item.is_unique, new_button)
 		new_button.pressed.connect(on_select)
-		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item))
-		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item))
+		new_button.mouse_entered.connect(on_button_hover.bind(upgrade_item, new_button))
+		new_button.mouse_exited.connect(on_button_unhover.bind(upgrade_item, new_button))
 		new_button.add_child(upgrade_item)
 		upgrade_item.visible = false
 		upgrade_buttons.add_child(new_button)
@@ -119,14 +119,16 @@ func on_upgrade_selected(item: PackedScene, is_unique :bool, button: ItemSelecti
 		GameState.neuro_wait_ended.emit()
 
 
-func on_button_hover(item: Item) -> void:
-	item.index = 100
-	item.enable()
-	items_have_changed = true
+func on_button_hover(item: Item, item_selection: ItemSelection) -> void:
+	if !item_selection.button.disabled:
+		item.index = 100
+		item.enable()
+		items_have_changed = true
 
-func on_button_unhover(item: Item) -> void:
-	item.disable()
-	items_have_changed = true
+func on_button_unhover(item: Item, item_selection: ItemSelection) -> void:
+	if !item_selection.button.disabled:
+		item.disable()
+		items_have_changed = true
 
 class ItemAndSelectCallback:
 	var item: Item

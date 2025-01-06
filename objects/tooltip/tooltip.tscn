@@ -3,28 +3,46 @@
 [ext_resource type="Script" path="res://objects/tooltip/tooltip.gd" id="1_qc2au"]
 [ext_resource type="PackedScene" uid="uid://d3urw8d4uyseg" path="res://objects/tooltip/item_description.tscn" id="2_wdlnm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oj1tj"]
-bg_color = Color(0, 0, 0, 0.757)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybiix"]
+bg_color = Color(0.0687983, 0.0687983, 0.0687983, 0.839216)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[node name="Tooltip" type="PanelContainer"]
-visible = false
+[node name="Tooltip" type="Control"]
 z_index = 100
 custom_minimum_size = Vector2(320, 0)
+layout_mode = 3
+anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 3
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_oj1tj")
 script = ExtResource("1_qc2au")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
+offset_right = 320.0
+offset_bottom = 31.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ybiix")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ItemDescription" parent="MarginContainer" instance=ExtResource("2_wdlnm")]
+[node name="ItemDescription" parent="PanelContainer/MarginContainer" instance=ExtResource("2_wdlnm")]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
