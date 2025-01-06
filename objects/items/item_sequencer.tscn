@@ -7,7 +7,7 @@
 [node name="ItemSequencer" instance=ExtResource("1_rlceb")]
 script = ExtResource("2_nefc8")
 item_name = "Sequencer"
-description = "<*On Card scoring:> If value is 1 higher than previous card, <x1.3> to score"
+description = "<*On Card scoring:> If value is 1 higher than previous card, <x1.3>"
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_vhdai")

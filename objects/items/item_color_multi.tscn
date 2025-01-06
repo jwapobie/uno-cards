@@ -7,7 +7,7 @@
 [node name="ItemColorMulti" instance=ExtResource("1_7vhfm")]
 script = ExtResource("2_0qxm2")
 item_name = "Rainbow Multi"
-description = "<x1.5> for <*adjacent> cards of <*different color>"
+description = "<x1.5> when <*adjacent> cards are a <*different color>"
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("3_rnogo")
