@@ -16,6 +16,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Tooltip" type="Control"]
+visible = false
 z_index = 100
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 3
