@@ -1,5 +1,7 @@
 extends Node
 
+const VERSION = "1.01"
+
 class EnemyHand:
 	var cards: Array[Card]
 	var round_num: int
