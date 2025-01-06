@@ -24,8 +24,8 @@ void fragment() {
 		dist += ball_dist(input_points[i].xy, input_points[i].z, uv);
 	}
 	float edge = 0.8;
-	dist += pow(uv.y*1.05, 10)*0.5;
-	dist += pow((1.0 - uv.y)*1.05, 10)*0.5;
+	dist += pow(uv.y*1.03, 10)*0.5;
+	dist += pow((1.0 - uv.y)*1.03, 10)*0.5;
 	dist = smoothstep(edge - 0.02, edge + 0.02, dist)*0.2 + dist*0.8;
 	COLOR = texture(color_ramp, vec2(dist));
 	//COLOR = vec4(vec3(dist), 1.0);

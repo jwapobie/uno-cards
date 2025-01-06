@@ -21,6 +21,8 @@ var neuro_integration_mode := NEURO_INTEGRATION_MODE.Off
 signal neuro_wait_started
 signal neuro_wait_ended
 
+var current_theme :Texture2D = preload("res://scenes/lava_colors/default1.tres")
+
 var health: int = STARTING_HEALTH
 var played_hand :Array[CardObject] = []:
 	set(arr):

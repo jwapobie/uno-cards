@@ -1,22 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://fqy1sq8ab6au"]
+[gd_scene load_steps=6 format=3 uid="uid://fqy1sq8ab6au"]
 
 [ext_resource type="Script" path="res://scenes/shader_bg.gd" id="1_h16mg"]
 [ext_resource type="Shader" path="res://scenes/shader_bg.gdshader" id="2_1va2p"]
 [ext_resource type="Script" path="res://scripts/lava_ball.gd" id="3_f1db1"]
-
-[sub_resource type="Gradient" id="Gradient_yq3ic"]
-offsets = PackedFloat32Array(0.429719, 0.751004, 0.911647)
-colors = PackedColorArray(0.160156, 0.109101, 0.155027, 1, 0.320313, 0.0837007, 0.0669596, 1, 0.335938, 0.171985, 0.141777, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tvigu"]
-gradient = SubResource("Gradient_yq3ic")
+[ext_resource type="Texture2D" uid="uid://3u82bwanievc" path="res://scenes/lava_colors/low_contrast.tres" id="3_wugob"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2y00"]
 shader = ExtResource("2_1va2p")
-shader_parameter/array_size = 16
-shader_parameter/input_points = Array[Vector3]([Vector3(1.36386, 0.999568, 3.15921), Vector3(1.35963, 0.241135, 3.45135), Vector3(0.607107, 1.08489, 4.28674), Vector3(0.0100132, 1.02704, 2.38117), Vector3(0.331757, 1.22441, 1.50897), Vector3(1.71043, 1.07484, 3.85455), Vector3(0.608882, 0.669406, 4.47013), Vector3(1.21993, 1.08715, 4.38495), Vector3(1.12585, 0.825763, 3.42493), Vector3(0.876296, 0.719531, 5.2039), Vector3(1.30132, -0.0572237, 4.91884), Vector3(1.71615, 0.0944095, 4.00221), Vector3(1.14297, -0.470192, 0.879035), Vector3(1.77532, 0.633769, 5.14327), Vector3(1.34222, 0.929112, 2.94425), Vector3(1.98699, -0.399947, 1e-05)])
+shader_parameter/array_size = 1
+shader_parameter/input_points = Array[Vector3]([Vector3(-1.02265, 1.42801, 1e-05)])
 shader_parameter/canvas_size = Vector2(1152, 648)
-shader_parameter/color_ramp = SubResource("GradientTexture1D_tvigu")
+shader_parameter/color_ramp = ExtResource("3_wugob")
 
 [node name="ShaderBg" type="Control"]
 layout_mode = 3
@@ -43,7 +37,7 @@ metadata/_edit_lock_ = true
 [node name="ControlPoints" type="Node" parent="."]
 
 [node name="MouseBall" type="Node2D" parent="."]
-position = Vector2(1078.02, -181.27)
+position = Vector2(396, 938)
 scale = Vector2(1e-05, 1)
 script = ExtResource("3_f1db1")
 
@@ -54,7 +48,7 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 22.3333
-text = "3.434"
+text = "0.889"
 
 [node name="bottom" type="Label" parent="."]
 visible = false
@@ -65,7 +59,7 @@ anchor_bottom = 1.0
 offset_top = -22.3333
 offset_right = 40.0
 grow_vertical = 0
-text = "4.636"
+text = "3.788"
 
 [node name="Total" type="Label" parent="."]
 visible = false
@@ -73,7 +67,7 @@ layout_mode = 0
 offset_top = 29.0
 offset_right = 40.0
 offset_bottom = 51.3333
-text = "total: 61.549"
+text = "total: 42.408"
 
 [node name="Avg" type="Label" parent="."]
 visible = false
@@ -81,4 +75,4 @@ layout_mode = 0
 offset_top = 60.0
 offset_right = 40.0
 offset_bottom = 82.3333
-text = "avg: 4.103"
+text = "avg: 2.827"

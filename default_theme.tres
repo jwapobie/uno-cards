@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://5c0tm6smuwr6"]
 
-[ext_resource type="StyleBox" uid="uid://b2n2lhl4do6xx" path="res://button_style.tres" id="1_lhwrn"]
+[ext_resource type="StyleBox" path="res://button_style.tres" id="1_lhwrn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0lpc"]
 content_margin_left = 10.0

@@ -15,7 +15,16 @@ var bottom_charge :float = 0
 var top_charge :float = 0
 var free_balls :Array[LavaBall] = []
 # Called when the node enters the scene tree for the first time.
+
+func change_theme(new_theme :Texture2D):
+	if new_theme:
+		visible = true
+		shader_rect.material.set_shader_parameter("color_ramp", new_theme)
+	else:
+		visible = false
+
 func _ready() -> void:
+	change_theme(GameState.current_theme)
 	for c in control_points.get_children():
 		c.queue_free()
 	for i in 15:
@@ -37,6 +46,7 @@ func move(ball :LavaBall, delta :float):
 			top_charge += lost_charge
 		else:
 			free_balls.append(ball)
+			top_charge += ball.charge
 	elif ball.position.y > size.y + 100:
 		#ball.speed = 0
 		var lost_charge = delta*1.0
@@ -45,6 +55,7 @@ func move(ball :LavaBall, delta :float):
 			bottom_charge += lost_charge
 		else:
 			free_balls.append(ball)
+			bottom_charge += ball.charge
 
 func spawn_top(ball :LavaBall):
 	var bsize = 2 + randf()*5

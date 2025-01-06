@@ -13,7 +13,6 @@ render_mode blend_mix;
 
 
 "
-graph_offset = Vector2(-399.747, 16.7904)
 mode = 1
 flags/light_only = false
 nodes/fragment/2/node = SubResource("VisualShaderNodeVec3Parameter_tyewj")
