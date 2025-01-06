@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt087mwc204t2"]
+[gd_scene load_steps=11 format=3 uid="uid://bt087mwc204t2"]
 
 [ext_resource type="PackedScene" uid="uid://fqy1sq8ab6au" path="res://scenes/shader_bg.tscn" id="1_5xpsm"]
 [ext_resource type="Texture2D" uid="uid://b6gppx3mdxwik" path="res://icons/pocky.png" id="2_kunl1"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://objects/neuro_integration_option_button.gd" id="5_duq54"]
 [ext_resource type="Script" path="res://scripts/utility/tooltipped.gd" id="5_mvqme"]
 [ext_resource type="Script" path="res://objects/theme_option.gd" id="7_f7wrt"]
+[ext_resource type="Texture2D" uid="uid://bt8suc2dgcrjc" path="res://icons/github-mark-white.svg" id="9_x73wu"]
+[ext_resource type="Script" path="res://objects/github_button.gd" id="10_ejdks"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -84,9 +86,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 76.0
+offset_left = 69.0
 offset_top = -414.0
-offset_right = 492.0
+offset_right = 485.0
 offset_bottom = 2.0
 grow_vertical = 0
 texture = ExtResource("2_kunl1")
@@ -146,16 +148,28 @@ popup/item_1/text = "Co-Op"
 popup/item_1/id = 1
 script = ExtResource("5_duq54")
 
-[node name="Version" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = -37.0
-offset_right = 54.0
-offset_bottom = -14.0
+offset_left = 8.0
+offset_top = -48.0
+offset_right = 97.0
+offset_bottom = -8.0
 grow_vertical = 0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+texture_filter = 4
+custom_minimum_size = Vector2(44.43, 0)
+layout_mode = 2
+icon = ExtResource("9_x73wu")
+expand_icon = true
+script = ExtResource("10_ejdks")
+
+[node name="Version" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 mouse_filter = 1
 text = "v1.01"
 script = ExtResource("5_mvqme")
