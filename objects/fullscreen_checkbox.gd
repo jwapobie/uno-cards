@@ -4,6 +4,7 @@ extends CheckButton
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	toggled.connect(change_fullscreen)
+	button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 	if OS.has_feature('web'):
 		get_parent().visible = false
 
