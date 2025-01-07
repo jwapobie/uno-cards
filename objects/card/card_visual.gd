@@ -48,9 +48,10 @@ func animate_new_val():
 
 func animate_slash():
 	slash_2.visible = true
+	slash_2.size.x = 1
 	number_2_new.scale = Vector2.ONE*2
 	var tween = create_tween()
-	tween.tween_property(slash_2, "size:x", 40, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(slash_2, "size:x", 45, 0.2*Gameplay.anim_time_multiplier).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel()
 	tween.tween_property(number_2, "modulate", Color.DIM_GRAY, 0.3*Gameplay.anim_time_multiplier)
 	tween.tween_property(number_2_new, "visible", true, 0)
