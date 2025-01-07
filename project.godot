@@ -14,8 +14,8 @@ config/name="unhando"
 config/description="Card game"
 run/main_scene="res://scenes/game_controller.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
-config/windows_native_icon="res://double.ico"
+config/icon="res://icons/double.png"
+config/windows_native_icon="res://icons/ico/double.ico"
 
 [audio]
 
